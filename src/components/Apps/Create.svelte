@@ -17,7 +17,7 @@
     let esSave = await scripts.tenant.apps.getSave(token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = '/apps'
+      window.location = `/apps/${domain}/${state}`
     } else {
       alert(esSave.payload.reason)
     }

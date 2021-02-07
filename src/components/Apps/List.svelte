@@ -39,7 +39,7 @@
       {#if list}
         {#each list as item (item.id)}
           <div class="card" style="padding: 1em; background: #eee;">
-            <h1><i class="material-icons">star</i> <a href={`/apps/${item.id}`}>{item.domain}</a> <span style="float: right;">state: {item.state}</span></h1>
+            <h1><i class="material-icons">star</i> <a href={`/apps/${item.domain}/${item.state}`}>{item.domain}</a> <span style="float: right;">state: {item.state}</span></h1>
             <!-- <h1><span style="float: right;">version: {item.version}</span></h1> -->
             <p>
               created at: {moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}<br />
