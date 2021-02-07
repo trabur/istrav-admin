@@ -45,10 +45,10 @@
 </div>
 
 <style>
-.title {
-  margin: 0; 
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 900;
-}
+  .title {
+    margin: 0; 
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+  }
 </style>
