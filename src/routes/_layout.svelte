@@ -1,22 +1,35 @@
+
+<slot></slot>
+
+<div id="code"></div>
+
 <script>
-	import Nav from '../components/Nav.svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import axios from 'axios'
 
-	export let segment;
+  onMount(() => {
+    // fetch library
+    window.axios = axios
+
+    // appId domain state
+    if (window.location.host === 'localhost:3000') {
+      window.appDomain = 'istrav.com'
+    } else {
+      window.appDomain = window.location.host
+    }
+
+    // dashboard.istrav.com scripts
+    var code = document.createElement('script');
+    code.onload = function (event) {
+      // dashboard scripts & istrav will attach to window
+      // console.log(window.scripts)
+      // console.log(window.istrav)
+
+      istrav.tenant.members.init({ host: 'https://api.istrav.com' })
+      istrav.tenant.apps.init({ host: 'https://api.istrav.com' })
+    };
+    code.src = 'https://dashboard.istrav.com/scripts/index.js';
+    code.setAttribute('type', 'module')
+    document.getElementById('code').appendChild(code); 
+  })
 </script>
-
-<style>
-	main {
-		position: relative;
-		max-width: 56em;
-		background-color: white;
-		padding: 2em;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-</style>
-
-<Nav {segment}/>
-
-<main>
-	<slot></slot>
-</main>
