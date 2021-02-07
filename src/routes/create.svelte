@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>APPS ::: ISTRAV</title>
+	<title>CREATE ::: ISTRAV</title>
 </svelte:head>
 
 <script>
