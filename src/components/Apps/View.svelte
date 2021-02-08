@@ -11,12 +11,15 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
     <h3 class="title">
-      <Delete domain={domain} state={state}/>
-      <i class="material-icons">store</i> {domain} ::: {state}
+      <i class="material-icons">store</i> {domain}
+      <div class="right">
+        <i class="material-icons">flag</i> {state}
+      </div>
     </h3>
     <div class="card" style="padding: 1em; background: #eee;">
 
     </div>
+    <Delete domain={domain} state={state}/>
   </div>
   <div class="col s12 m1"></div>
 </div>
