@@ -2,6 +2,7 @@
 <script>
   import { onMount } from 'svelte';
   import Delete from './Delete.svelte'
+  import Frame from './Frame.svelte'
 
 	export let domain;
   export let state;
@@ -17,6 +18,7 @@
       </div>
     </h3>
     <div class="card" style="padding: 1em; background: #eee;">
+      <Frame domain={domain} state={state}
       <hr />
     </div>
     {#if state === 'production'}
