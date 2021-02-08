@@ -12,7 +12,7 @@
   <div class="col s12 m10">
     <h3 class="title">
       <Delete domain={domain} state={state}/>
-      {domain} ::: {state}
+      <i class="material-icons">store</i> {domain} ::: {state}
     </h3>
     <div class="card" style="padding: 1em; background: #eee;">
 
