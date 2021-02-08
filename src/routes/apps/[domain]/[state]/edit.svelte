@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import Edit from '../../../../components/Apps/Edit.svelte'
   import Navigation from '../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../components/Header/MainLinks.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -23,11 +24,7 @@
 </script>
 
 <Navigation>
-  <ul class="right">
-    <li><a href={`/apps/${domain}/${state}/featured`}><i class="material-icons">star</i></a></li>
-    <li><a href={`/apps/${domain}/${state}/categories`}><i class="material-icons">widgets</i></a></li>
-    <li><a href={`/apps/${domain}/${state}/products`}><i class="material-icons">shopping_basket</i></a></li>
-  </ul>
+  <MainLinks domain={domain} state={state} />
 </Navigation>
 <br />
 <br />
