@@ -9,18 +9,28 @@
 
   // When this is true, show the component
   let load = false
+  let domain
+  let state
 
   $: { reMount($page.params.domain) }
   $: { reMount($page.params.state) }
   function reMount() {
     load = false
     setTimeout(() => load = true, 0)
+    domain = $page.params.domain
+    state = $page.params.state
   }
 </script>
 
-<Navigation />
+<Navigation>
+  <ul class="right">
+    <li><a href={`/apps/${domain}/${state}/featured`}><i class="material-icons">assistant_photo</i></a></li>
+    <li><a href={`/apps/${domain}/${state}/categories`}><i class="material-icons">store</i></a></li>
+    <li><a href={`/apps/${domain}/${state}/products`}><i class="material-icons">shopping_basket</i></a></li>
+  </ul>
+</Navigation>
 <br />
 <br />
 {#if load === true}
-  <View domain={$page.params.domain} state={$page.params.state} />
+  <View domain={domain} state={state} />
 {/if}

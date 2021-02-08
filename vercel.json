@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/apps/:id", "destination": "/" },
-    { "source": "/apps", "destination": "/" }
+    { "source": "/apps", "destination": "/" },
+    { "source": "/apps/:domain/:state", "destination": "/" }
   ]
 }

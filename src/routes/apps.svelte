@@ -23,7 +23,11 @@
   })
 </script>
 
-<Navigation />
+<Navigation>
+  <ul class="right">
+    <li><a href="/logout"><i class="material-icons">logout</i></a></li>
+  </ul>
+</Navigation>
 {#if display}
   <List />
 {/if}
