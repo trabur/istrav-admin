@@ -32,5 +32,5 @@
 <br />
 <br />
 {#if load === true}
-  <Edit domain={domain} state={state} />
+  <Edit domainId={domain} stateId={state} />
 {/if}
