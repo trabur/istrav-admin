@@ -19,6 +19,11 @@
     <div class="card" style="padding: 1em; background: #eee;">
 
     </div>
+    {#if state === 'production'}
+      <a href={`https://${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">LIVE</a>
+    {:else}
+      <a href={`/apps/${domain}/production`} class="waves-effect btn left">PROD</a>
+    {/if}
     <Delete domain={domain} state={state}/>
   </div>
   <div class="col s12 m1"></div>
