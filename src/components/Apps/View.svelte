@@ -3,9 +3,22 @@
   import { onMount } from 'svelte';
   import Delete from './Delete.svelte'
   import Frame from './Frame.svelte'
+  import Status from './Status.svelte'
 
 	export let domain;
   export let state;
+  let app
+
+  onMount(async () => {
+    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    console.log('esOne', esOne)
+    if (esOne.payload.success === true) {
+      app = esOne.payload.data
+      console.log('app', app)
+    } else {
+      alert(esOne.payload.reason)
+    }
+  })
 </script>
 
 <div class="row">
@@ -17,14 +30,15 @@
         <i class="material-icons">flag</i> {state}
       </div>
     </h3>
-    <div class="card" style="padding: 1em; background: #eee;">
-      <Frame domain={domain} state={state}
-      <hr />
-    </div>
-    {#if state === 'production'}
-      <a href={`https://${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">LIVE</a>
-    {:else}
-      <a href={`/apps/${domain}/production`} class="waves-effect btn left">PROD</a>
+    {#if app}
+      <div class="card" style="padding: 1em; background: #eee;">
+        <div class="masonry">
+          <Frame domain={domain} state={state} />
+          <Status domain={domain} state={state} demo={app.demo} />
+        </div>
+        <hr />
+        <p>{JSON.stringify(app, null, 2)}</p>
+      </div>
     {/if}
     <Delete domain={domain} state={state}/>
     <a href={`/apps/${domain}/${state}/edit`} class="waves-effect btn right" style="margin-right: 0.5em;">EDIT</a>
@@ -37,5 +51,12 @@
     margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  .masonry {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 2em;
   }
 </style>

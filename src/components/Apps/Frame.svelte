@@ -9,6 +9,10 @@
 
 <style>
   #wrap {
+    background: #fff;
+    float: left;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
     width: 320px;
     height: 192px;
     padding: 0;

@@ -1,11 +1,17 @@
 
-<slot></slot>
+{#if loading}
+  <!-- do nothing -->
+{:else}
+  <slot></slot>
+{/if}
 
 <div id="code"></div>
 
 <script>
   import { onMount, onDestroy } from 'svelte';
   import axios from 'axios'
+
+  let loading = true
 
   onMount(() => {
     // fetch library
@@ -27,6 +33,7 @@
 
       istrav.tenant.members.init({ host: 'https://api.istrav.com' })
       istrav.tenant.apps.init({ host: 'https://api.istrav.com' })
+      loading = false
     };
     code.src = 'https://dashboard.istrav.com/scripts/index.js';
     code.setAttribute('type', 'module')

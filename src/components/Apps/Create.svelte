@@ -4,6 +4,7 @@
 
 	let domain = '';
   let state = '';
+  let demo = '';
 
 	async function create() {
     if (domain === '') return alert('Domain Name must be defined.')
@@ -12,7 +13,8 @@
     let token = localStorage.getItem('token')
     let change = {
       domain,
-      state
+      state,
+      demo
     }
     let esSave = await scripts.tenant.apps.getSave(token, change)
     console.log('esSave', esSave)
@@ -31,12 +33,19 @@
     <div class="card" style="padding: 1em; background: #eee;">
       <div class="row">
         <div class="input-field col s12">
+          <i class="material-icons prefix">store</i>
           <input id="domain" type="text" class="validate" bind:value={domain}>
           <label for="domain">Domain Name</label>
         </div>
         <div class="input-field col s12">
+          <i class="material-icons prefix">flag</i>
           <input id="state" type="text" class="validate" bind:value={state}>
           <label for="state">State</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">cloud</i>
+          <input id="demo" type="text" class="validate" bind:value={demo}>
+          <label for="demo">https://{demo}.demension.click</label>
         </div>
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => create()}>Submit</button>
