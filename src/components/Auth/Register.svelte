@@ -70,7 +70,7 @@
       </div>
     </div>
     <div style="text-align: right;">
-      <a href="/login" class="waves-effect red lighten-2 btn">LOGIN</a>
+      <a href="/" class="waves-effect red lighten-2 btn">LOGIN</a>
     </div>
   </div>
   <div class="col s12 m4"></div>
