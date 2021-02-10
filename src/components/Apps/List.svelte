@@ -4,7 +4,7 @@
   import moment from 'moment'
   import Create from './Create.svelte'
 
-  let list
+  let list = []
   let loading = true
 
   onMount(async () => {
@@ -36,7 +36,7 @@
         <p>loading...</p>
       </div>
     {:else}
-      {#if list}
+      {#if list.length}
         {#each list as item (item.id)}
           <div class="card" style="padding: 1em; background: #eee;">
             <h1><i class="material-icons">store</i> <a href={`/apps/${item.domain}/${item.state}`}>{item.domain}</a> <span style="float: right;"><i class="material-icons">flag</i> {item.state}</span></h1>
