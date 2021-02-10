@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/register", "destination": "/" },
     { "source": "/apps/:id", "destination": "/" },
     { "source": "/create", "destination": "/" },
     { "source": "/apps", "destination": "/" },
