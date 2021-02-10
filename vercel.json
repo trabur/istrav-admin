@@ -8,7 +8,10 @@
     { "source": "/apps/:domain/:state", "destination": "/" },
     { "source": "/apps/:domain/:state/edit", "destination": "/" },
     { "source": "/apps/:domain/:state/collections", "destination": "/" },
+    { "source": "/apps/:domain/:state/collections/add", "destination": "/" },
     { "source": "/apps/:domain/:state/categories", "destination": "/" },
-    { "source": "/apps/:domain/:state/products", "destination": "/" }
+    { "source": "/apps/:domain/:state/categories/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/products", "destination": "/" },
+    { "source": "/apps/:domain/:state/products/add", "destination": "/" }
   ]
 }
