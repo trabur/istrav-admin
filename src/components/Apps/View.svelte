@@ -25,7 +25,7 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
     <h3 class="title">
-      <i class="material-icons">store</i> {domain}
+      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}</a>
       <div class="right">
         <i class="material-icons">flag</i> {state}
       </div>
