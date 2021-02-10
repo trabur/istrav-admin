@@ -25,7 +25,7 @@
       console.log('esLogin', esLogin)
       if (esLogin.payload.success === true) {
         localStorage.setItem('token', esLogin.payload.data.token)
-        window.location = '/account'
+        window.location = '/apps'
       } else {
         alert(esLogin.payload.reason)
       }
