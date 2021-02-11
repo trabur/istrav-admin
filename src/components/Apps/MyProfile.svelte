@@ -40,7 +40,7 @@
       </div>
     {:else}
       <div class="card" style="padding: 1em; background: #eee;">
-        <h1><i class="material-icons">person</i> <a href={`/apps/${item.domain}/${item.state}`}>{item.username}</a></h1>
+        <h1><i class="material-icons">person</i> {item.username}</h1>
         <!-- <h1><span style="float: right;">version: {item.version}</span></h1> -->
         <hr>
         {JSON.stringify(item, null, 2)}
