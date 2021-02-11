@@ -1,6 +1,28 @@
 <script>
+  import { onMount } from 'svelte';
+
   export let domain
   export let state
+  let appId
+  let demo
+  let table = []
+
+  onMount(async () => {
+    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    console.log('esOne', esOne)
+    if (esOne.payload.success === true) {
+      appId = esOne.payload.data.id
+      demo = esOne.payload.data.demo
+      let esAll = await scripts.store.collections.getAll(appId)
+      if (esAll.payload.success === true) {
+        table = esAll.payload.data
+      } else {
+        alert(esAll.payload.reason)
+      }
+    } else {
+      alert(esOne.payload.reason)
+    }
+  })
 </script>
 
 <h3 class="title">
@@ -13,33 +35,29 @@
 <a href={`/apps/${domain}/${state}/collections/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
 
 <div class="list">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Item Name</th>
-        <th>Item Price</th>
-      </tr>
-    </thead>
+  {#if table.length}
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Slug</th>
+          <th>Image</th>
+          <th style="text-align: right;">Change</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-      </tr>
-      <tr>
-        <td>Alan</td>
-        <td>Jellybean</td>
-        <td>$3.76</td>
-      </tr>
-      <tr>
-        <td>Jonathan</td>
-        <td>Lollipop</td>
-        <td>$7.00</td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        {#each table as row (row.id)}
+          <tr>
+            <td>{row.name}</td>
+            <td><a href={`https://${demo}.dimension.click/collections/${row.slug}`} target="_blank">/collections/{row.slug}</a></td>
+            <td>{row.image}</td>
+            <td style="text-align: right;"><a href={`/apps/${domain}/${state}/collections/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {/if}
 </div>
 
 <style>
