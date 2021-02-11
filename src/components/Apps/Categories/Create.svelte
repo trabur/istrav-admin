@@ -8,19 +8,18 @@
   let name = ''
   let slug = ''
   let image = ''
+  let appId
 
 	async function create() {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
-    if (image === '') return alert('Image must be defined.')
 
     let token = localStorage.getItem('token')
     let change = {
       name,
-      slug,
-      image
+      slug
     }
-    let esSave = await scripts.store.categories.getSave(token, change)
+    let esSave = await scripts.store.categories.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
       window.location = `/apps/${domain}/${state}/categories`
@@ -28,6 +27,16 @@
       alert(esSave.payload.reason)
     }
   }
+
+  onMount(async () => {
+    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    console.log('esOne', esOne)
+    if (esOne.payload.success === true) {
+      appId = esOne.payload.data.id
+    } else {
+      alert(esOne.payload.reason)
+    }
+  })
 </script>
 
 <div class="row">

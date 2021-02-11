@@ -7,18 +7,18 @@
 
   let name = ''
   let slug = ''
+  let appId
   
 	async function create() {
-    if (domain === '') return alert('Domain Name must be defined.')
-    if (state === '') return alert('State must be defined.')
+    if (name === '') return alert('Name must be defined.')
+    if (slug === '') return alert('Slug must be defined.')
 
     let token = localStorage.getItem('token')
     let change = {
-      domain,
-      state,
-      demo
+      name,
+      slug
     }
-    let esSave = await scripts.store.collections.getSave(token, change)
+    let esSave = await scripts.store.collections.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
       window.location = `/apps/${domain}/${state}/collections`
@@ -26,6 +26,16 @@
       alert(esSave.payload.reason)
     }
   }
+
+  onMount(async () => {
+    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    console.log('esOne', esOne)
+    if (esOne.payload.success === true) {
+      appId = esOne.payload.data.id
+    } else {
+      alert(esOne.payload.reason)
+    }
+  })
 </script>
 
 <div class="row">
