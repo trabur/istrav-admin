@@ -5,6 +5,7 @@
 <script>
   import { onMount } from 'svelte'
   import List from '../components/Apps/List.svelte'
+  import MyProfile from '../components/Apps/MyProfile.svelte'
   import Navigation from '../components/Header/Navigation.svelte'
   
   let display = false
@@ -29,5 +30,6 @@
   </ul>
 </Navigation>
 {#if display}
+  <MyProfile />
   <List />
 {/if}
