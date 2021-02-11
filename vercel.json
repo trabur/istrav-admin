@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/edit", "destination": "/" },
     { "source": "/register", "destination": "/" },
     { "source": "/logout", "destination": "/" },
     { "source": "/apps/:id", "destination": "/" },
