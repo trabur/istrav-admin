@@ -14,7 +14,8 @@
     "is-valid-domain": "^0.0.17",
     "moment": "^2.29.1",
     "polka": "next",
-    "sirv": "^1.0.0"
+    "sirv": "^1.0.0",
+    "slugify": "^1.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

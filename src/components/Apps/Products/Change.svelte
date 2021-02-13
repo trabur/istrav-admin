@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { each } from 'svelte/internal';
+  import slugify from 'slugify'
 
 	export let domain = '';
   export let state = '';
@@ -94,7 +94,7 @@
     <div class="card" style="padding: 1em; background: #eee;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
+          <input id="name" type="text" class="validate" bind:value={name} on:change={() => slug = slugify(name)}>
           <label for="name">Name</label>
         </div>
         <div class="input-field col s12">
