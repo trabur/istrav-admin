@@ -4,10 +4,12 @@
   import Delete from './Delete.svelte'
   import Frame from './Frame.svelte'
   import Status from './Status.svelte'
+  import Totals from './Totals.svelte'
 
 	export let domain;
   export let state;
   let app
+  let totals
 
   onMount(async () => {
     let esOne = await scripts.tenant.apps.getOne(domain, state)
@@ -17,6 +19,16 @@
       console.log('app', app)
     } else {
       alert(esOne.payload.reason)
+    }
+
+    // totals
+    let esTotals = await scripts.tenant.apps.getTotals(domain, state)
+    console.log('esTotals', esTotals)
+    if (esTotals.payload.success === true) {
+      totals = esTotals.payload.data
+      console.log('totals', totals)
+    } else {
+      alert(esTotals.payload.reason)
     }
   })
 </script>
@@ -36,6 +48,8 @@
           <Frame domain={domain} state={state} />
           <Status domain={domain} state={state} demo={app.demo} />
         </div>
+        <hr />
+        <Totals domain={domain} state={state} totals={totals} />
         <hr />
         <p>{JSON.stringify(app, null, 2)}</p>
       </div>
