@@ -27,6 +27,13 @@
     state = $page.params.state
     slug = $page.params.slug
   }
+
+  onMount(() =>{
+		// if not already logged in then direct to login
+		if (!localStorage.getItem('token')) {
+			window.location.href = '/'
+		}
+  })
 </script>
 
 <Navigation>

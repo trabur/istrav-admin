@@ -2,6 +2,7 @@
 <script>
   import { onMount } from 'svelte';
   import slugify from 'slugify'
+  import Delete from './Delete.svelte'
 
 	export let domain = '';
   export let state = '';
@@ -78,7 +79,8 @@
       </div>
     </div>
     <div style="text-align: right;">
-      <a href={`/apps/${domain}/${state}/categories`} class="waves-effect red lighten-2 btn">CATEGORIES</a>
+      <Delete appId={appId} slug={slugId} domain={domain} state={state} />
+      <a href={`/apps/${domain}/${state}/categories`} class="waves-effect btn" style="margin-right: 0.5em;">cancel</a>
     </div>
   </div>
   <div class="col s12 m4"></div>

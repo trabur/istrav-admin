@@ -21,6 +21,13 @@
     domain = $page.params.domain
     state = $page.params.state
   }
+
+  onMount(() =>{
+		// if not already logged in then direct to login
+		if (!localStorage.getItem('token')) {
+			window.location.href = '/'
+		}
+  })
 </script>
 
 <Navigation>
