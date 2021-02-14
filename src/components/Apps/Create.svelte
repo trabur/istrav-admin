@@ -4,7 +4,7 @@
 
 	let domain = '';
   let state = '';
-  let demo = '';
+  let endpoint = ''
 
 	async function create() {
     if (domain === '') return alert('Domain Name must be defined.')
@@ -14,7 +14,7 @@
     let change = {
       domain,
       state,
-      demo
+      endpoint
     }
     let esSave = await scripts.tenant.apps.getSave(token, change)
     console.log('esSave', esSave)
@@ -44,9 +44,14 @@
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">cloud</i>
-          <input id="demo" type="text" class="validate" bind:value={demo}>
-          <label for="demo">https://{demo}.demension.click</label>
+          <input id="endpoint" type="text" class="validate" bind:value={endpoint}>
+          <label for="endpoint">Endpoint</label>
         </div>
+        <ul style="margin-left: 3.5em;">
+          <li>https://{endpoint}.dimension.click</li>
+          <li>https://{endpoint}.farmerless.com</li>
+          <li>https://{endpoint}.burnfort.com</li>
+        </ul>
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => create()}>Submit</button>
       </div>

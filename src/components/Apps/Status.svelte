@@ -1,22 +1,30 @@
 <script>
   export let domain
-  export let demo
+  export let endpoint
   // export let state
 </script>
 
 <div class="status">
   <div class="masonry">
     <div>
-      <p class="title">demo endpoint:</p>
-      <a href={`https://${demo}.dimension.click`} target="_blank" class="waves-effect btn red lighten-2 left">{`${demo}.dimension.click`}</a>
-    </div>
-    <p>(note: we manage this domain for you; click edit to change.)</p>
-    <div>
-      <p class="title">application endpoint:</p>
+      <p class="title">main endpoint:</p>
       <a href={`https://${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{domain}</a>
     </div>
-    <p>(note: this is your custom domain. checkout the docs here: <a href="https://docs.istrav.com" target="_blank">https://docs.istrav.com</a>.)</p>
+    <div>
+      <p class="title">storefront endpoint:</p>
+      <a href={`https://${endpoint}.dimension.click`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.dimension.click`}</a>
+    </div>
+    <div>
+      <p class="title">customer endpoint:</p>
+      <a href={`https://${endpoint}.farmerless.com`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.farmerless.com`}</a>
+    </div>
+    <div>
+      <p class="title">employee endpoint:</p>
+      <a href={`https://${endpoint}.burnfort.com`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.burnfort.com`}</a>
+    </div>
   </div>
+  <br />
+  <p>(note: for managing your domain... checkout the docs here: <a href="https://docs.istrav.com" target="_blank">https://docs.istrav.com</a>.)</p>
 </div>
 
 <style>

@@ -46,7 +46,7 @@
       <div class="card" style="padding: 1em; background: #eee;">
         <div class="masonry">
           <Frame domain={domain} state={state} />
-          <Status domain={domain} state={state} demo={app.demo} />
+          <Status domain={domain} state={state} endpoint={app.endpoint} />
         </div>
         <hr />
         <Totals domain={domain} state={state} totals={totals} />
@@ -70,7 +70,7 @@
   .masonry {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 320px 1fr;
     grid-gap: 2em;
   }
 </style>

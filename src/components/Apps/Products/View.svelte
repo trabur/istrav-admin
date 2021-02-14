@@ -4,7 +4,7 @@
   export let domain
   export let state
   let appId
-  let demo
+  let endpoint
   let table = []
 
   onMount(async () => {
@@ -12,7 +12,7 @@
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
-      demo = esOne.payload.data.demo
+      endpoint = esOne.payload.data.endpoint
       let esAll = await scripts.store.products.getAll(appId)
       if (esAll.payload.success === true) {
         table = esAll.payload.data
@@ -50,7 +50,7 @@
         {#each table as row (row.id)}
           <tr>
             <td>{row.name}</td>
-            <td><a href={`https://${demo}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
+            <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
             <td>{row.image}</td>
             <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
           </tr>

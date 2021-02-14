@@ -6,7 +6,7 @@
 
   let domain = domainId
   let state = stateId
-  let demo = ''
+  let endpoint = ''
 
   onMount(async () => {
     M.updateTextFields();
@@ -16,7 +16,7 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      demo = app.demo
+      endpoint = app.endpoint || ''
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -29,7 +29,7 @@
     let change = {
       domain: domain,
       state: state,
-      demo: demo
+      endpoint: endpoint
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
@@ -62,9 +62,14 @@
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">cloud</i>
-          <input id="demo" type="text" class="validate" bind:value={demo}>
-          <label for="demo">https://{demo}.demension.click</label>
+          <input id="endpoint" type="text" class="validate" bind:value={endpoint}>
+          <label for="endpoint">Endpoint</label>
         </div>
+        <ul style="margin-left: 3.5em;">
+          <li>https://{endpoint}.dimension.click</li>
+          <li>https://{endpoint}.farmerless.com</li>
+          <li>https://{endpoint}.burnfort.com</li>
+        </ul>
       </div>
     </div>
     <button class="waves-effect btn red lighten-2 right" on:click={() => submit()}>SAVE</button>
