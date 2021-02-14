@@ -7,21 +7,21 @@
   export let slug;
   
   function areYouSure() {
-    var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" category? Please renter quotation to confirm.`, "");
+    var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" product? Please renter quotation to confirm.`, "");
     if (confirmDelete === `${slug}`) {
-      alert('Confirm delete success. The category will be removed.')
+      alert('Confirm delete success. The product will be removed.')
       remove()
     } else {
-      alert('Confirm delete mismatch. The category will not be removed.')
+      alert('Confirm delete mismatch. The product will not be removed.')
     }
   }
 
   async function remove() {
     let token = localStorage.getItem('token')
-    let esDelete = await scripts.store.categories.getRemove(appId, token, slug)
+    let esDelete = await scripts.store.products.getRemove(appId, token, slug)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/categories`
+      window.location = `/apps/${domain}/${state}/products`
     } else {
       alert(esDelete.payload.reason)
     }
