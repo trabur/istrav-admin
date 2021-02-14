@@ -22,12 +22,12 @@
       slug,
       image
     }
-    let esSave = await scripts.store.categories.getUpdate(appId, token, slugId, change)
-    console.log('esSave', esSave)
-    if (esSave.payload.success === true) {
+    let esUpdate = await scripts.store.categories.getUpdate(appId, token, slugId, change)
+    console.log('esUpdate', esUpdate)
+    if (esUpdate.payload.success === true) {
       window.location = `/apps/${domain}/${state}/categories`
     } else {
-      alert(esSave.payload.reason)
+      alert(esUpdate.payload.reason)
     }
   }
 
