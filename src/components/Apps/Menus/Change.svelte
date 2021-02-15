@@ -11,9 +11,6 @@
   let slug = slugId
   let raw = ''
   let appId
-  let categoryId = ''
-  let categories = []
-  let categoryIdChoices
 
   function isValidJson(string) {
     try {
