@@ -41,10 +41,10 @@
           <div class="card" style="padding: 1em; background: #eee;">
             <h1><i class="material-icons">store</i> <a href={`/apps/${item.domain}/${item.state}`}>{item.domain}</a> <span style="float: right;"><i class="material-icons">flag</i> {item.state}</span></h1>
             <!-- <h1><span style="float: right;">version: {item.version}</span></h1> -->
-            <p>
+            <!-- <p>
               created at: {moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}<br />
               updated at: {moment(item.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
-            </p>
+            </p> -->
             <hr>
             <code>{JSON.stringify(JSON.parse(item.raw), null, 2)}</code>
           </div>
