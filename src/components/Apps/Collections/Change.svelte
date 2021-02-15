@@ -76,6 +76,7 @@
         </div>
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
+        <a href={`/apps/${domain}/${state}/collections/${slugId}/products`} style="margin-right: 1em;" class="right waves-effect btn"><i class="material-icons">stop</i></a>
       </div>
     </div>
     <div style="text-align: right;">
