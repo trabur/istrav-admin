@@ -33,6 +33,8 @@
 
       istrav.tenant.members.init({ host: 'https://api.istrav.com' })
       istrav.tenant.apps.init({ host: 'https://api.istrav.com' })
+      istrav.app.menus.init({ host: 'https://api.istrav.com' })
+      istrav.app.pages.init({ host: 'https://api.istrav.com' })
       istrav.store.collections.init({ host: 'https://api.istrav.com' })
       istrav.store.categories.init({ host: 'https://api.istrav.com' })
       istrav.store.products.init({ host: 'https://api.istrav.com' })
