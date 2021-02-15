@@ -7,6 +7,7 @@
   let domain = domainId
   let state = stateId
   let endpoint = ''
+  let raw = ''
 
   onMount(async () => {
     M.updateTextFields();
@@ -17,6 +18,7 @@
       let app = esOne.payload.data
       console.log('app', app)
       endpoint = app.endpoint || ''
+      raw = app.raw
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -29,7 +31,8 @@
     let change = {
       domain: domain,
       state: state,
-      endpoint: endpoint
+      endpoint: endpoint,
+      raw: raw
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
@@ -70,6 +73,10 @@
           <li>https://{endpoint}.farmerless.com</li>
           <li>https://{endpoint}.burnfort.com</li>
         </ul>
+        <div class="input-field col s12">
+          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
+          <label for="raw">Raw</label>
+        </div>
       </div>
     </div>
     <button class="waves-effect btn red lighten-2 right" on:click={() => submit()}>SAVE</button>
@@ -84,5 +91,11 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  textarea {
+    background: #fff;
+    border: 1px solid #aaa;
+    min-height: 10em;
   }
 </style>

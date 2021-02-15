@@ -51,7 +51,7 @@
         <hr />
         <Totals domain={domain} state={state} totals={totals} />
         <hr />
-        <p>{JSON.stringify(app, null, 2)}</p>
+        <code>{JSON.stringify(JSON.parse(app.raw), null, 2)}</code>
       </div>
     {/if}
     <Delete domain={domain} state={state}/>

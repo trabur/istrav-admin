@@ -16,6 +16,9 @@
     { "source": "/apps/:domain/:state/categories/:slug", "destination": "/" },
     { "source": "/apps/:domain/:state/products", "destination": "/" },
     { "source": "/apps/:domain/:state/products/add", "destination": "/" },
-    { "source": "/apps/:domain/:state/products/:slug", "destination": "/" }
+    { "source": "/apps/:domain/:state/products/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/menus", "destination": "/" },
+    { "source": "/apps/:domain/:state/menus/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/menus/:slug", "destination": "/" }
   ]
 }
