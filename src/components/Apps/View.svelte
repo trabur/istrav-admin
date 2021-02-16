@@ -1,7 +1,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Delete from './Delete.svelte'
   import Frame from './Frame.svelte'
   import Status from './Status.svelte'
   import Totals from './Totals.svelte'
@@ -54,8 +53,8 @@
         <code>{JSON.stringify(JSON.parse(app.raw), null, 2)}</code>
       </div>
     {/if}
-    <Delete domain={domain} state={state}/>
-    <a href={`/apps/${domain}/${state}/edit`} class="waves-effect btn right" style="margin-right: 0.5em;">EDIT</a>
+    <a href={`/apps/${domain}/${state}/edit`} class="waves-effect btn right">EDIT</a>
+    <a href={`/apps/${domain}/${state}/intro`} class="waves-effect btn right" style="margin-right: 0.5em;">INTRO</a>
   </div>
   <div class="col s12 m1"></div>
 </div>

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import Delete from './Delete.svelte'
   export let domainId
   export let stateId
   let loading = false
@@ -55,7 +56,7 @@
   <div class="col s12 m4">
     <h3 class="title">EDIT APP</h3>
     <div class="card" style="padding: 1em; background: #eee;">
-      <div class="row" style="margin-bottom: 0;">
+      <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">store</i>
           <input id="domain" type="text" class="validate" bind:value={domain}>
@@ -85,13 +86,17 @@
           <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
           <label for="raw">Raw</label>
         </div>
+        <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>
     </div>
-    <button class="waves-effect btn red lighten-2 right" on:click={() => submit()}>SAVE</button>
+    <Delete domain={domain} state={state}/>
     <a href={`/apps/${domainId}/${stateId}`} class="waves-effect btn right" style="margin-right: 0.5em;">CANCEL</a>
   </div>
   <div class="col s12 m4"></div>
 </div>
+<br />
+<br />
+<br />
 
 <style>
   .title {

@@ -1,6 +1,5 @@
 
 <script>
-
 	export let domain;
   export let state;
   
@@ -26,4 +25,4 @@
   }
 </script>
 
-<button class="waves-effect btn right" on:click={() => areYouSure()}>DELETE</button>
+<button class="waves-effect btn right red lighten-2" on:click={() => areYouSure()}>DELETE</button>
