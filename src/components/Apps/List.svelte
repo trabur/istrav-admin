@@ -1,8 +1,7 @@
 <script>
   // import { login } from './methods'
   import { onMount } from 'svelte';
-  import moment from 'moment'
-  import Create from './Create.svelte'
+  // import moment from 'moment'
 
   let list = []
   let loading = true

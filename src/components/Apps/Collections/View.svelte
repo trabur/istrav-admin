@@ -6,6 +6,7 @@
   let appId
   let endpoint
   let table = []
+  let uploads
 
   onMount(async () => {
     let esOne = await scripts.tenant.apps.getOne(domain, state)
@@ -13,6 +14,8 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
+      uploads = esOne.payload.data.uploads
+      
       let esAll = await scripts.store.collections.getAll(appId)
       if (esAll.payload.success === true) {
         table = esAll.payload.data
@@ -51,7 +54,9 @@
           <tr>
             <td>{row.name}</td>
             <td><a href={`https://${endpoint}.dimension.click/collections/${row.slug}`} target="_blank">/collections/{row.slug}</a></td>
-            <td>{row.image}</td>
+            <td>
+              <a href={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/collections/${row.slug}/${row.image}`} target="_blank">{row.image}</a>
+            </td>
             <td style="text-align: right;"><a href={`/apps/${domain}/${state}/collections/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
           </tr>
         {/each}

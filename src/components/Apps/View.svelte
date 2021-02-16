@@ -46,7 +46,7 @@
       <div class="card" style="padding: 1em; background: #eee;">
         <div class="masonry">
           <Frame domain={domain} state={state} />
-          <Status domain={domain} state={state} endpoint={app.endpoint} />
+          <Status domain={domain} state={state} endpoint={app.endpoint} uploads={app.uploads} />
         </div>
         <hr />
         <Totals domain={domain} state={state} totals={totals} />

@@ -1,11 +1,12 @@
 <script>
   export let domain
   export let endpoint
+  export let uploads
   // export let state
 </script>
 
 <div class="status">
-  <div class="masonry">
+  <div class="masonry" style="margin-bottom: 1em;">
     <div>
       <p class="title">main endpoint:</p>
       <a href={`https://${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{domain}</a>
@@ -23,8 +24,8 @@
       <a href={`https://${endpoint}.burnfort.com`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.burnfort.com`}</a>
     </div>
   </div>
-  <br />
-  <p>(note: for managing your domain... checkout the docs here: <a href="https://docs.istrav.com" target="_blank">https://docs.istrav.com</a>.)</p>
+  <p class="title">cdn endpoint:</p>
+  <p>https://rawcdn.githack.com/{uploads}/...</p>
 </div>
 
 <style>

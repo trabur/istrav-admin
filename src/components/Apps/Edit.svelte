@@ -8,6 +8,7 @@
   let state = stateId
   let endpoint = ''
   let raw = ''
+  let uploads = ''
 
   onMount(async () => {
     M.updateTextFields();
@@ -19,6 +20,7 @@
       console.log('app', app)
       endpoint = app.endpoint || ''
       raw = app.raw
+      uploads = app.uploads
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -29,10 +31,11 @@
     loading = true
     let token = localStorage.getItem('token')
     let change = {
-      domain: domain,
-      state: state,
-      endpoint: endpoint,
-      raw: raw
+      domain,
+      state,
+      endpoint,
+      raw,
+      uploads
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
@@ -73,6 +76,11 @@
           <li>https://{endpoint}.farmerless.com</li>
           <li>https://{endpoint}.burnfort.com</li>
         </ul>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">file_upload</i>
+          <input id="uploads" type="text" class="validate" bind:value={uploads}>
+          <label for="uploads">Uploads</label>
+        </div>
         <div class="input-field col s12">
           <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
           <label for="raw">Raw</label>

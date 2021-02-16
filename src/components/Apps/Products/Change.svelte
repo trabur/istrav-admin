@@ -11,6 +11,7 @@
   let slug = slugId
   let image = ''
   let appId
+  let uploads
   let categoryId = ''
   let categories = []
   let categoryIdChoices
@@ -44,6 +45,7 @@
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
+      uploads = esOne.payload.data.uploads
 
       // fetch product
       let esProduct = await scripts.store.products.getOne(appId, slug)
@@ -106,6 +108,7 @@
           <input id="image" type="text" class="validate" bind:value={image}>
           <label for="image">Image</label>
         </div>
+        <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${slug}/${image}`} alt="" style="width: 100%;" />
         <div class="input-field col s12">
           {#if categories.length}
             <div class="label">Category</div>

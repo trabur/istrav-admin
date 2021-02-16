@@ -12,6 +12,7 @@
   let slug = slugId
   let image = ''
   let appId
+  let uploads
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -39,6 +40,8 @@
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
+      uploads = esOne.payload.data.uploads
+
       let esCollection = await scripts.store.collections.getOne(appId, slug)
       console.log('esCollection', esCollection)
       if (esCollection.payload.success === true) {
@@ -74,6 +77,7 @@
           <input id="image" type="text" class="validate" bind:value={image}>
           <label for="image">Image</label>
         </div>
+        <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/collections/${slug}/${image}`} alt="" style="width: 100%;" />
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
         <a href={`/apps/${domain}/${state}/collections/${slugId}/products`} style="margin-right: 1em;" class="right waves-effect btn"><i class="material-icons">stop</i></a>
