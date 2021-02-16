@@ -16,6 +16,8 @@
   let categories = []
   let categoryIdChoices
   let price = 0
+  let description
+  let details
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -29,7 +31,9 @@
       slug,
       image,
       categoryId,
-      price: price * 100
+      price: price * 100,
+      description,
+      details
     }
     let esUpdate = await scripts.store.products.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -59,6 +63,8 @@
         image = data.image
         categoryId = data.categoryId
         price = data.price / 100
+        description = data.description
+        details = data.details
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esProduct.payload.reason)
@@ -126,6 +132,14 @@
           <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
           <label for="price">Price</label>
         </div>
+        <div class="input-field col s12">
+          <textarea id="description" type="text" class="validate" bind:value={description}></textarea>
+          <label for="description">Description</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="details" type="text" class="validate" bind:value={details} style="height: 15em;"></textarea>
+          <label for="details">Details</label>
+        </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -159,5 +173,11 @@
     color: #9E9E99;
     font-size: 0.7em;
     margin-top: -1em;
+  }
+
+  textarea {
+    background: #fff;
+    border: 1px solid #aaa;
+    min-height: 5em;
   }
 </style>
