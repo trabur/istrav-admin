@@ -15,6 +15,7 @@
   let categoryId = ''
   let categories = []
   let categoryIdChoices
+  let price = 0
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -27,7 +28,8 @@
       name,
       slug,
       image,
-      categoryId
+      categoryId,
+      price: price * 100
     }
     let esUpdate = await scripts.store.products.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -56,6 +58,7 @@
         slug = data.slug
         image = data.image
         categoryId = data.categoryId
+        price = data.price / 100
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esProduct.payload.reason)
@@ -119,6 +122,10 @@
             <br />
           {/if}
         </div>
+        <div class="input-field col s12">
+          <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
+          <label for="price">Price</label>
+        </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -129,6 +136,9 @@
   </div>
   <div class="col s12 m4"></div>
 </div>
+<br />
+<br />
+<br />
 
 <style>
   .title {

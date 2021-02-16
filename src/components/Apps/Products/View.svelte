@@ -45,6 +45,7 @@
           <th>Name</th>
           <th>Slug</th>
           <th>Image</th>
+          <th>Price</th>
           <th style="text-align: right;">Change</th>
         </tr>
       </thead>
@@ -57,6 +58,7 @@
             <td>
               <a href={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} target="_blank">{row.image}</a>
             </td>
+            <td>${row.price / 100}</td>
             <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
           </tr>
         {/each}
