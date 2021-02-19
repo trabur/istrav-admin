@@ -11,7 +11,7 @@
   let totals
 
   onMount(async () => {
-    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       app = esOne.payload.data

@@ -47,7 +47,7 @@
   onMount(async () => {
     M.updateTextFields();
 
-    let esOne = await scripts.tenant.apps.getOne(domain, state)
+    let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id

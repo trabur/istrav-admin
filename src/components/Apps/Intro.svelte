@@ -15,7 +15,7 @@
   onMount(async () => {
     M.updateTextFields();
 
-    let esOne = await scripts.tenant.apps.getOne(domainId, stateId)
+    let esOne = await scripts.tenant.apps.getOne(null, domainId, stateId)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
