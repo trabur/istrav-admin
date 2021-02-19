@@ -9,6 +9,7 @@
     { "source": "/apps/:domain/:state", "destination": "/" },
     { "source": "/apps/:domain/:state/edit", "destination": "/" },
     { "source": "/apps/:domain/:state/intro", "destination": "/" },
+    { "source": "/apps/:domain/:state/stripe", "destination": "/" },
     { "source": "/apps/:domain/:state/collections", "destination": "/" },
     { "source": "/apps/:domain/:state/collections/add", "destination": "/" },
     { "source": "/apps/:domain/:state/collections/:slug", "destination": "/" },

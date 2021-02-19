@@ -1,0 +1,40 @@
+
+<script>
+  import { onMount } from 'svelte';
+  import Stripe from '../../../../components/Apps/Stripe.svelte'
+  import Navigation from '../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../components/Header/MainLinks.svelte'
+
+  import { stores } from "@sapper/app"
+  const { page } = stores()
+
+  // When this is true, show the component
+  let load = false
+  let domain
+  let state
+
+  $: { reMount($page.params.domain) }
+  $: { reMount($page.params.state) }
+  function reMount() {
+    load = false
+    setTimeout(() => load = true, 0)
+    domain = $page.params.domain
+    state = $page.params.state
+  }
+
+  onMount(() =>{
+		// if not already logged in then direct to login
+		if (!localStorage.getItem('token')) {
+			window.location.href = '/'
+		}
+  })
+</script>
+
+<Navigation>
+  <MainLinks domain={domain} state={state} />
+</Navigation>
+<br />
+<br />
+{#if load === true}
+  <Stripe domain={domain} state={state} />
+{/if}
