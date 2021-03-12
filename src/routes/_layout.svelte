@@ -24,10 +24,10 @@
       window.appDomain = window.location.host
     }
 
-    // dashboard.istrav.com scripts
+    // headless.istrav.com scripts
     var code = document.createElement('script');
     code.onload = function (event) {
-      // dashboard scripts & istrav will attach to window
+      // headless scripts & istrav will attach to window
       // console.log(window.scripts)
       // console.log(window.istrav)
 
@@ -40,7 +40,7 @@
       istrav.store.products.init({ host: 'https://api.istrav.com' })
       loading = false
     };
-    code.src = 'https://dashboard.istrav.com/scripts/index.js';
+    code.src = 'https://headless.istrav.com/scripts/index.js';
     code.setAttribute('type', 'module')
     document.getElementById('code').appendChild(code); 
   })

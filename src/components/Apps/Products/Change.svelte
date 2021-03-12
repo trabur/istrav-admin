@@ -18,6 +18,7 @@
   let price = 0
   let description
   let details
+  let url
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -33,7 +34,8 @@
       categoryId,
       price: price * 100,
       description,
-      details
+      details,
+      url
     }
     let esUpdate = await scripts.store.products.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -65,6 +67,7 @@
         price = data.price / 100
         description = data.description
         details = data.details
+        url = data.url
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esProduct.payload.reason)
@@ -139,6 +142,10 @@
         <div class="input-field col s12">
           <textarea id="details" type="text" class="validate" bind:value={details} style="height: 15em;"></textarea>
           <label for="details">Details</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="url" type="text" class="validate" bind:value={url}>
+          <label for="url">URL</label>
         </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
