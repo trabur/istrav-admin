@@ -21,7 +21,7 @@
 
 <div class="middle">
   <h3 class="title">LOGIN</h3>
-  <div class="card" style="width: 100%; padding: 1em; background: #eee;">
+  <div class="card" style="width: 100%; padding: 1em;">
     <div class="row">
       <div class="input-field col s12">
         <input id="email" type="text" class="validate" bind:value={email}>

@@ -15,12 +15,14 @@
 	})
 </script>
 
-<div class="masonry row">
-	<div class="col s12 m6 hide-on-small-and-down" style="padding-left: 0;">
-		<Welcome />
-	</div>
-  <div class="col s12 m6">
-		<Login />
+<div class="dotted">
+	<div class="masonry row">
+		<div class="col s12 m6 hide-on-small-and-down" style="padding-left: 0;">
+			<Welcome />
+		</div>
+		<div class="col s12 m6">
+			<Login />
+		</div>
 	</div>
 </div>
 
@@ -31,5 +33,12 @@
 	.masonry .col {
     height: 100vh;
 		position: relative;
+	}
+
+	.dotted {
+		background-image: radial-gradient(#ddd 20%, transparent 20%), radial-gradient(#ddd 20%, transparent 20%);
+    background-color: #eee;
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
 	}
 </style>
