@@ -48,9 +48,11 @@
           <label for="endpoint">Endpoint</label>
         </div>
         <ul style="margin-left: 3.5em;">
+          <li>https://{endpoint}.tyu67.com</li>
           <li>https://{endpoint}.dimension.click</li>
-          <li>https://{endpoint}.farmerless.com</li>
           <li>https://{endpoint}.burnfort.com</li>
+          <li>https://{endpoint}.aaghc.com</li>
+          <li>https://{endpoint}.printedbasics.com</li>
         </ul>
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => create()}>Submit</button>
