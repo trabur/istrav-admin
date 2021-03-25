@@ -6,6 +6,7 @@
   import { onMount } from 'svelte'
   import Create from '../components/Apps/Create.svelte'
   import Navigation from '../components/Header/Navigation.svelte'
+  import Footer from '../components/Footer.svelte'
   
   let display = false
   onMount(() =>{
@@ -30,3 +31,4 @@
 {#if display}
   <Create />
 {/if}
+<Footer />

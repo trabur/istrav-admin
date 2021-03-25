@@ -58,9 +58,12 @@
   }
 </script>
 
-<div class="row">
+<div class="row" style="min-height: 100vh;">
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
+    <br class="hide-on-med-and-down" />
+    <br class="hide-on-med-and-down" />
+    <br />
     <h3 class="title">MY PROFILE</h3>
     <div class="card" style="padding: 1em; background: #eee;">
       <div class="row">
@@ -87,15 +90,18 @@
     <div style="text-align: right;">
       <a href="/apps" class="waves-effect red lighten-2 btn">APPS</a>
     </div>
+    <br class="hide-on-med-and-down" />
+    <br class="hide-on-med-and-down" />
+    <br />
   </div>
   <div class="col s12 m4"></div>
 </div>
 
 <style>
-.title {
-  margin: 0; 
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 900;
-}
+  .title {
+    margin: 0; 
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+  }
 </style>

@@ -4,6 +4,7 @@
   import Analytics from '../../../../components/Apps/Analytics.svelte'
   import Navigation from '../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../components/Footer.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -38,3 +39,4 @@
 {#if load === true}
   <Analytics domain={domain} state={state} />
 {/if}
+<Footer />

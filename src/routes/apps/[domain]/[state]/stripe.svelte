@@ -4,6 +4,7 @@
   import Stripe from '../../../../components/Apps/Stripe.svelte'
   import Navigation from '../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../components/Footer.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -38,3 +39,4 @@
 {#if load === true}
   <Stripe domain={domain} state={state} />
 {/if}
+<Footer />

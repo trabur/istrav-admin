@@ -6,6 +6,7 @@
   import { onMount } from 'svelte'
   import Create from '../../../../../components/Apps/Menus/Create.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
+  import Footer from '../../../../../components/Footer.svelte'
   
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -39,3 +40,4 @@
 {#if load}
   <Create domain={domain} state={state} />
 {/if}
+<Footer />

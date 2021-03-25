@@ -7,6 +7,7 @@
   import List from '../components/Apps/List.svelte'
   import MyProfile from '../components/Apps/MyProfile.svelte'
   import Navigation from '../components/Header/Navigation.svelte'
+  import Footer from '../components/Footer.svelte'
   
   let display = false
   onMount(() =>{
@@ -33,3 +34,4 @@
   <MyProfile />
   <List />
 {/if}
+<Footer />

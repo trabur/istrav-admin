@@ -21,11 +21,12 @@
   })
 </script>
 
-<br />
-<br />
-<div class="row">
+<div class="row" style="min-height: 100vh;">
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
+    <br class="hide-on-med-and-down" />
+    <br class="hide-on-med-and-down" />
+    <br />
     <h3 class="title">
       <a class="waves-effect waves-light btn right modal-trigger" href="/create" style="margin: 0;">CREATE</a>
       APPLICATIONS:
@@ -54,11 +55,12 @@
         </div>
       {/if}
     {/if}
+    <br class="hide-on-med-and-down" />
+    <br class="hide-on-med-and-down" />
+    <br />
   </div>
   <div class="col s12 m1"></div>
 </div>
-<br />
-<br />
 
 <style>
   p {

@@ -4,6 +4,7 @@
   import View from '../../../../../../components/Apps/Collections/Products.svelte'
   import Navigation from '../../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../../../components/Footer.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -39,3 +40,4 @@
 {#if load === true}
   <View domain={domain} state={state} slug={slug} />
 {/if}
+<Footer />
