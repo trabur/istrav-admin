@@ -6,8 +6,7 @@
   import { onMount } from 'svelte'
   import List from '../components/Apps/List.svelte'
   import MyProfile from '../components/Apps/MyProfile.svelte'
-  import Navigation from '../components/Header/Navigation.svelte'
-  import Footer from '../components/Footer.svelte'
+	import Welcome from '../components/Auth/Welcome.svelte'
   
   let display = false
   onMount(() =>{
@@ -25,13 +24,40 @@
   })
 </script>
 
-<Navigation>
-  <ul class="right">
-    <li><a href="/logout"><i class="material-icons">logout</i></a></li>
-  </ul>
-</Navigation>
-{#if display}
-  <MyProfile />
-  <List />
-{/if}
-<Footer />
+<div class="dotted">
+	<div class="masonry row">
+		<div class="col s12 m6 hide-on-small-and-down" style="padding-left: 0;">
+			<Welcome />
+		</div>
+		<div class="col s12 m6">
+      <br class="hide-on-med-and-down" />
+      <br class="hide-on-med-and-down" />
+      <br />
+      {#if display}
+        <MyProfile />
+        <List />
+      {/if}
+      <br class="hide-on-med-and-down" />
+      <br class="hide-on-med-and-down" />
+      <br />
+		</div>
+	</div>
+</div>
+
+<style>
+	.masonry {
+		margin: 0;
+	}
+	.masonry .col {
+    height: 100vh;
+		position: relative;
+    overflow: auto;
+	}
+
+	.dotted {
+		background-image: radial-gradient(#ddd 20%, transparent 20%), radial-gradient(#ddd 20%, transparent 20%);
+    background-color: #eee;
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+	}
+</style>

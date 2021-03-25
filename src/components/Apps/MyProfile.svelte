@@ -25,30 +25,25 @@
   })
 </script>
 
-<br />
-<br />
-<div class="row">
-  <div class="col s12 m1"></div>
-  <div class="col s12 m10">
-    <h3 class="title">
-      <a class="waves-effect waves-light btn right modal-trigger" href="/edit" style="margin: 0;">EDIT</a>
-      MY PROFILE:
-    </h3>
-    {#if loading}
-      <div class="card" style="padding: 1em; background: #eee;">
-        <p>loading...</p>
-      </div>
-    {:else}
-      <div class="card" style="padding: 1em; background: #eee;">
-        <h1><i class="material-icons">person</i> {item.username}</h1>
-        <!-- <h1><span style="float: right;">version: {item.version}</span></h1> -->
-        <hr>
-        {JSON.stringify(item, null, 2)}
-      </div>
-    {/if}
+<h3 class="title">
+  <a class="waves-effect waves-light btn right modal-trigger" href="/edit" style="margin: 0;">EDIT</a>
+  MY PROFILE:
+</h3>
+{#if loading}
+  <div class="card" style="padding: 1em;">
+    <p>loading...</p>
   </div>
-  <div class="col s12 m1"></div>
-</div>
+{:else}
+  <div class="card" style="padding: 1em;">
+    <h1><i class="material-icons">person</i> {item.username}</h1>
+    <!-- <h1><span style="float: right;">version: {item.version}</span></h1> -->
+    <hr>
+    {JSON.stringify(item, null, 2)}
+    <br />
+    <br />
+    <a href="/logout" class="waves-effect btn logout red lighten-2">LOG OUT</a>
+  </div>
+{/if}
 
 <style>
   p {
@@ -63,5 +58,9 @@
     margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  .logout {
+    width: 100%;
   }
 </style>
