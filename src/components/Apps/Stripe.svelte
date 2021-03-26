@@ -54,7 +54,7 @@
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
     <h3 class="title">EDIT APP</h3>
-    <div class="card" style="padding: 1em; background: #eee;">
+    <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
           <div class="switch">

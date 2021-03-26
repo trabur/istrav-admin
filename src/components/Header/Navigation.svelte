@@ -11,11 +11,11 @@
 </script>
 
 <nav>
-  <div class="nav-wrapper">
+  <div class="nav-wrapper teal">
     {#if token}
-      <a href="/apps" class="brand-logo left" style="margin-left: 0.5em;"><i class="material-icons">lock_open</i> ISTRAV</a>
+      <a href="/apps" class="brand-logo left" style="margin-left: 0.5em;"><i class="material-icons">lock_open</i> METAHEAP</a>
     {:else}
-      <a href="/" class="brand-logo left" style="margin-left: 0.5em;"><i class="material-icons">lock_outline</i> ISTRAV</a>
+      <a href="/" class="brand-logo left" style="margin-left: 0.5em;"><i class="material-icons">lock_outline</i> METAHEAP</a>
     {/if}
     <slot></slot>
   </div>

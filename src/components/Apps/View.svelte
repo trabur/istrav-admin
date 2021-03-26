@@ -42,7 +42,7 @@
       </div>
     </h3>
     {#if app}
-      <div class="card" style="padding: 1em; background: #eee;">
+      <div class="card" style="padding: 1em;">
         <div class="masonry">
           <Frame domain={domain} state={state} />
           <Status domain={domain} state={state} endpoint={app.endpoint} uploads={app.uploads} />

@@ -8,6 +8,7 @@
   import Navigation from '../../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../../components/Footer.svelte'
+  import Sidebar from '../../../../../../components/Sidebar.svelte'
   
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -37,13 +38,15 @@
   })
 </script>
 
-<Navigation>
-  <MainLinks domain={domain} state={state} />
-</Navigation>
-<br />
-<br />
-<br />
-{#if load}
-  <Change domain={domain} state={state} slugId={slug}  />
-{/if}
-<Footer />
+<Sidebar domain={domain} state={state}>
+  <Navigation>
+    <MainLinks domain={domain} state={state} />
+  </Navigation>
+  <br />
+  <br />
+  <br />
+  {#if load}
+    <Change domain={domain} state={state} slugId={slug}  />
+  {/if}
+  <Footer />
+</Sidebar>
