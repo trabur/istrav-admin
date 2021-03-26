@@ -81,6 +81,5 @@
 
   .list {
     margin: 0 1em;
-    min-height: 100vh;
   }
 </style>

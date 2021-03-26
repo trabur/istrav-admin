@@ -6,6 +6,7 @@
   export let slug
   let appId
   let endpoint
+  let uploads
   let table = []
   let products = []
 
@@ -35,6 +36,7 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
+      uploads = esOne.payload.data.uploads
       
       // fetch all products
       let esAll = await scripts.store.products.getAll(appId)
@@ -72,56 +74,66 @@
   })
 </script>
 
-<h3 class="title">
-  <a href={`/apps/${domain}/${state}/collections/${slug}`}><i class="material-icons">store</i> /collections/{slug}/products</a>
-  <div class="right">
-    <i class="material-icons">flag</i> {state}
+
+<div class="row" style="min-height: 100vh;">
+  <div class="col s0 m1"></div>
+  <div class="col s12 m10">
+    <h3 class="title">
+      <a href={`/apps/${domain}/${state}/collections/${slug}`}><i class="material-icons">store</i> /collections/{slug}/products</a>
+      <div class="right">
+        <i class="material-icons">flag</i> {state}
+      </div>
+    </h3>
+    <div class="card">
+      <div class="list">
+        {#if table.length}
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Slug</th>
+                <th>Select</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {#each table as row (row.id)}
+                <tr>
+                  <td>
+                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} class="image" alt={row.image} />
+                  </td>
+                  <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" on:change={() => setTimeout(change, 0)} bind:checked={row.isSelected} />
+                        <span>{row.name}</span>
+                      </label>
+                    </form>
+                  </td>
+                </tr>
+              {/each}
+            </tbody>
+          </table>
+        {/if}
+      </div>
+    </div>
   </div>
-</h3>
-
-<div class="list">
-  {#if table.length}
-    <table>
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>Slug</th>
-          <th>Image</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {#each table as row (row.id)}
-          <tr>
-            <td>
-              <form action="#">
-                <label>
-                  <input type="checkbox" on:change={() => setTimeout(change, 0)} bind:checked={row.isSelected} />
-                  <span>{row.name}</span>
-                </label>
-              </form>
-            </td>
-            <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
-            <td>{row.image}</td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  {/if}
+  <div class="col s0 m1"></div>
 </div>
 
 <style>
   .title {
-    padding: 0.5em; 
+    margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
-    background: #333;
-    box-shadow: inset 0px 10px 10px -10px #000;
-    color: #eee;
-    margin: 0;
   }
 
   .list {
     margin: 0 1em;
+  }
+  
+  .list .image {
+    height: 3em;
   }
 </style>
