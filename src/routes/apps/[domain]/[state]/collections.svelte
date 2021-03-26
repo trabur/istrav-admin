@@ -36,8 +36,14 @@
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
+  <br />
+  <br />
+  <br />
   {#if load === true}
     <View domain={domain} state={state}  />
   {/if}
+  <br />
+  <br />
+  <br />
   <Footer />
 </Sidebar>

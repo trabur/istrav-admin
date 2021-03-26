@@ -39,8 +39,12 @@
   </Navigation>
   <br />
   <br />
+  <br />
   {#if load === true}
     <View domain={domain} state={state} />
   {/if}
+  <br />
+  <br />
+  <br />
   <Footer />
 </Sidebar>

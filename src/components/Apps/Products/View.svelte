@@ -28,43 +28,49 @@
   })
 </script>
 
-<h3 class="title">
-  <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/products</a>
-  <div class="right">
-    <i class="material-icons">flag</i> {state}
+<div class="row" style="min-height: 100vh;">
+  <div class="col s0 m1"></div>
+  <div class="col s12 m10">
+    <h3 class="title">
+      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/products</a>
+      <div class="right">
+        <i class="material-icons">flag</i> {state}
+      </div>
+    </h3>
+    <div class="card">
+      <a href={`/apps/${domain}/${state}/products/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <div class="list">
+        {#if table.length}
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Price</th>
+                <th style="text-align: right;">Change</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {#each table as row (row.id)}
+                <tr>
+                  <td>
+                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} class="image" alt={row.image} />
+                  </td>
+                  <td>{row.name}</td>
+                  <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
+                  <td>${row.price / 100}</td>
+                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                </tr>
+              {/each}
+            </tbody>
+          </table>
+        {/if}
+      </div>
+    </div>
   </div>
-</h3>
-
-<a href={`/apps/${domain}/${state}/products/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
-
-<div class="list">
-  {#if table.length}
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Slug</th>
-          <th>Image</th>
-          <th>Price</th>
-          <th style="text-align: right;">Change</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {#each table as row (row.id)}
-          <tr>
-            <td>{row.name}</td>
-            <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
-            <td>
-              <a href={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} target="_blank">{row.image}</a>
-            </td>
-            <td>${row.price / 100}</td>
-            <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  {/if}
+  <div class="col s0 m1"></div>
 </div>
 
 <style>
@@ -75,17 +81,17 @@
   }
   
   .title {
-    padding: 0.5em; 
+    margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
-    background: #333;
-    box-shadow: inset 0px 10px 10px -10px #000;
-    color: #eee;
-    margin: 0;
   }
 
   .list {
     margin: 0 1em;
     min-height: 100vh;
+  }
+
+  .list .image {
+    height: 3em;
   }
 </style>
