@@ -12,7 +12,7 @@
           <li><a class="grey-text text-lighten-3" href="https://dimension.click">Storefronts</a></li>
           <li><a class="grey-text text-lighten-3" href="https://burnfort.com">Blogs</a></li>
           <li><a class="grey-text text-lighten-3" href="https://aaghc.com">Forums</a></li>
-          <li><a class="grey-text text-lighten-3" href="https://printedbasics.com">Promo</a></li>
+          <li><a class="grey-text text-lighten-3" href="https://printedbasics.com">Promotional Products</a></li>
         </ul>
       </div>
     </div>
