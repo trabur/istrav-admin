@@ -35,11 +35,11 @@
     </div>
     
     <div>
-      <p class="title">fulfillment primary:</p>
-      <a href={`https://fulfillment.${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{`fulfillment.${domain}`}</a>
+      <p class="title">forum primary:</p>
+      <a href={`https://forum.${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{`forum.${domain}`}</a>
     </div>
     <div>
-      <p class="title">fulfillment demo:</p>
+      <p class="title">forum demo:</p>
       <a href={`https://${endpoint}.aaghc.com`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.aaghc.com`}</a>
     </div>
 
