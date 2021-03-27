@@ -11,7 +11,7 @@
           <li><a class="grey-text text-lighten-3" href="#!">Marketing</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Storefronts</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Blogs</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Fulfillment</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Forum</a></li>
           <li><a class="grey-text text-lighten-3" href="#!">Promo</a></li>
         </ul>
       </div>
