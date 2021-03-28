@@ -19,7 +19,7 @@
   </div>
   <div class="footer-copyright">
     <div class="container">
-      Copyright @{new Date().getFullYear()} <a href="https://metaheap.io">{`METAHEAP.IO`}</a>. All Rights Reserved. Powered by <a href="https://istrav.com" target="_blank">ISTRAV</a>.
+      Copyright @{new Date().getFullYear()} <a href="https://metaheap.io">{`metaheap.io`}</a>. All Rights Reserved. Powered by <a href="https://istrav.com" target="_blank">ISTRAV</a>.
     </div>
   </div>
 </footer>
