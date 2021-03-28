@@ -41,6 +41,16 @@ import Nav from "./Nav.svelte"
       name: 'Orders',
       icon: 'markunread_mailbox'
     },
+    {
+      slug: 'plans',
+      name: 'Subscription Plans',
+      icon: 'card_membership'
+    },
+    {
+      slug: 'licenses',
+      name: 'License Keys',
+      icon: 'vpn_key'
+    },
   ]
 </script>
 
