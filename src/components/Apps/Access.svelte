@@ -4,21 +4,20 @@
   export let domainId
   export let stateId
 
+  let appId
   let loading = false
   let key = ''
 
   onMount(async () => {
     M.updateTextFields();
 
-    let esOne = await scripts.tenant.apps.getOne(null, domain, state)
+    let esOne = await scripts.tenant.apps.getOne(null, domainId, stateId)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      endpoint = app.endpoint || ''
-      raw = app.raw
-      brands = app.brands
-      uploads = app.uploads
+      key = app.licenseKey
+      appId = app.id
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -28,18 +27,30 @@
   async function submit() {
     loading = true
     let token = localStorage.getItem('token')
-    let change = {
-      key
-    }
-    let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
-    console.log('esUpdate', esUpdate)
-    if (esUpdate.payload.success === true) {
-      let app = esUpdate.payload.data
-      console.log('app', app)
-      window.location.href = `/apps/${app.domain}/${app.state}`
+
+    let esLicense = await scripts.subscription.licenses.getOne(appId, key)
+    console.log('esLicense', esLicense)
+    if (esLicense.payload.success === true) {
+      let license = esLicense.payload.data
+      console.log('license', license)
+
+      let change = {
+        licenseKey: key,
+        licenseId: license.id
+      }
+      let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
+      console.log('esUpdate', esUpdate)
+      if (esUpdate.payload.success === true) {
+        let app = esUpdate.payload.data
+        console.log('app', app)
+        window.location.href = `/apps/${app.domain}/${app.state}`
+      } else {
+        alert(esUpdate.payload.reason)
+      }
     } else {
-      alert(esUpdate.payload.reason)
+      alert(esLicense.payload.reason)
     }
+
     loading = false
   }
 </script>

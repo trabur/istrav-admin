@@ -38,6 +38,8 @@
       istrav.store.collections.init({ host: 'https://api.istrav.com' })
       istrav.store.categories.init({ host: 'https://api.istrav.com' })
       istrav.store.products.init({ host: 'https://api.istrav.com' })
+      istrav.subscription.licenses.init({ host: 'https://api.istrav.com' })
+      istrav.subscription.plans.init({ host: 'https://api.istrav.com' })
       loading = false
     };
     code.src = 'https://headless.istrav.com/scripts/index.js';
