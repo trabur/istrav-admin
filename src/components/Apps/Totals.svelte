@@ -14,8 +14,8 @@
     <a href={`/apps/${domain}/${state}/pages`} class="waves-effect btn red lighten-2 left">pages ({totals.pagesCount})</a>
     <a href={`/apps/${domain}/${state}/users`} class="waves-effect btn red lighten-2 left">users ({totals.usersCount})</a>
     <a href={`/apps/${domain}/${state}/orders`} class="waves-effect btn red lighten-2 left">orders ({totals.ordersCount})</a>
-    <a href={`/apps/${domain}/${state}/orders`} class="waves-effect btn red lighten-2 left">plans ({totals.plansCount})</a>
-    <a href={`/apps/${domain}/${state}/orders`} class="waves-effect btn red lighten-2 left">licenses ({totals.licensesCount})</a>
+    <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn red lighten-2 left">plans ({totals.plansCount})</a>
+    <a href={`/apps/${domain}/${state}/licenses`} class="waves-effect btn red lighten-2 left">licenses ({totals.licensesCount})</a>
   </div>
 {/if}
 
