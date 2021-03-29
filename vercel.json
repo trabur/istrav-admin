@@ -22,6 +22,12 @@
     { "source": "/apps/:domain/:state/products/:slug", "destination": "/" },
     { "source": "/apps/:domain/:state/menus", "destination": "/" },
     { "source": "/apps/:domain/:state/menus/add", "destination": "/" },
-    { "source": "/apps/:domain/:state/menus/:slug", "destination": "/" }
+    { "source": "/apps/:domain/:state/menus/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/licenses", "destination": "/" },
+    { "source": "/apps/:domain/:state/licenses/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/licenses/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/plans", "destination": "/" },
+    { "source": "/apps/:domain/:state/plans/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/plans/:slug", "destination": "/" }
   ]
 }
