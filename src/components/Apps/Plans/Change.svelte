@@ -8,6 +8,8 @@
 
   let name = ''
   let slug = slugId
+  let price
+  let purchaseUrl
   let appId
   let grantMarketing
   let grantShop
@@ -18,15 +20,30 @@
   let limitFileStorage
   let limitEventSources
   let limitDatabaseRecords
+  let details
+  let raw
+
+  function isValidJson(string) {
+    try {
+      JSON.parse(string)
+    } catch (e) {
+      return false
+    }
+    return true
+  }
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
+    if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
+    if (!isValidJson(details)) return alert('Details must be valid JSON.')
 
     let token = localStorage.getItem('token')
     let change = {
       name,
       slug,
+      price,
+      purchaseUrl,
       grantMarketing,
       grantShop,
       grantForum,
@@ -35,7 +52,9 @@
       limitOnlineVisitors,
       limitFileStorage,
       limitEventSources,
-      limitDatabaseRecords
+      limitDatabaseRecords,
+      raw,
+      details
     }
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -61,6 +80,8 @@
         let data = esProduct.payload.data
         name = data.name
         slug = data.slug
+        price = data.price
+        purchaseUrl = data.purchaseUrl
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
         grantForum = data.grantForum
@@ -70,6 +91,8 @@
         limitFileStorage = data.limitFileStorage
         limitEventSources = data.limitEventSources
         limitDatabaseRecords = data.limitDatabaseRecords
+        raw = data.raw
+        details = data.details
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esProduct.payload.reason)
@@ -93,6 +116,18 @@
         <div class="input-field col s12">
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
+          <label for="price">Price</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="purchaseUrl" type="text" class="validate" bind:value={purchaseUrl}>
+          <label for="purchaseUrl">Purchase Url</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="details" type="text" class="validate" bind:value={details}></textarea>
+          <label for="details">Details</label>
         </div>
         <div class="input-field col s12">
           <div>Marketing:</div>
@@ -170,6 +205,10 @@
           <input id="limitDatabaseRecords" type="number" step="1" class="validate" bind:value={limitDatabaseRecords}>
           <label for="limitDatabaseRecords">limitDatabaseRecords in GB/mo</label>
         </div>
+        <div class="input-field col s12">
+          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
+          <label for="raw">Raw</label>
+        </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -190,5 +229,11 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  textarea {
+    background: #fff;
+    border: 1px solid #aaa;
+    min-height: 10em;
   }
 </style>

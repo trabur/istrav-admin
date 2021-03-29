@@ -128,8 +128,4 @@
   .list {
     margin: 0 1em;
   }
-
-  .center {
-    text-align: center;
-  }
 </style>
