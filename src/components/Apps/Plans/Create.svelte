@@ -1,13 +1,12 @@
 
 <script>
-  import { onMount } from 'svelte';
-  import slugify from 'slugify'
+  import { onMount } from 'svelte'
 
-	export let domain = '';
-  export let state = '';
+	export let domain
+  export let state
 
-  let name = ''
-  let slug = ''
+  let name 
+  let slug
   let appId
 
 	async function create() {
@@ -19,10 +18,10 @@
       name,
       slug
     }
-    let esSave = await scripts.store.products.getSave(appId, token, change)
+    let esSave = await scripts.subscription.plans.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/products`
+      window.location = `/apps/${domain}/${state}/plans`
     } else {
       alert(esSave.payload.reason)
     }
@@ -42,11 +41,11 @@
 <div class="row" style="min-height: 100vh;">
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
-    <h3 class="title">CREATE PRODUCT</h3>
+    <h3 class="title">CREATE PLAN</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name} on:change={() => slug = slugify(name)}>
+          <input id="name" type="text" class="validate" bind:value={name}>
           <label for="name">Name</label>
         </div>
         <div class="input-field col s12">
@@ -58,7 +57,7 @@
       </div>
     </div>
     <div style="text-align: right;">
-      <a href={`/apps/${domain}/${state}/products`} class="waves-effect red lighten-2 btn">Cancel</a>
+      <a href={`/apps/${domain}/${state}/plans`} class="waves-effect red lighten-2 btn">Cancel</a>
     </div>
   </div>
   <div class="col s12 m4"></div>

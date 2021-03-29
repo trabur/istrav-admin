@@ -16,7 +16,7 @@
       endpoint = esOne.payload.data.endpoint
       uploads = esOne.payload.data.uploads
       
-      let esAll = await scripts.store.products.getAll(appId)
+      let esAll = await scripts.subscription.plans.getAll(appId)
       if (esAll.payload.success === true) {
         table = esAll.payload.data
       } else {
@@ -38,16 +38,19 @@
       </div>
     </h3>
     <div class="card">
-      <a href={`/apps/${domain}/${state}/products/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <a href={`/apps/${domain}/${state}/plans/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <div class="list">
         {#if table.length}
           <table>
             <thead>
               <tr>
-                <th>Image</th>
                 <th>Name</th>
                 <th>Slug</th>
-                <th>Price</th>
+                <th>Marketing</th>
+                <th>Shop</th>
+                <th>Forum</th>
+                <th>Blog</th>
+                <th>Promo</th>
                 <th style="text-align: right;">Change</th>
               </tr>
             </thead>
@@ -55,13 +58,49 @@
             <tbody>
               {#each table as row (row.id)}
                 <tr>
-                  <td>
-                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} class="image" alt={row.image} />
-                  </td>
                   <td>{row.name}</td>
-                  <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
-                  <td>${row.price / 100}</td>
-                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                  <td><a href={`https://${endpoint}.tyu67.com/plans/${row.slug}`} target="_blank">/plans/{row.slug}</a></td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" disabled bind:checked={row.grantMarketing} />
+                        <span></span>
+                      </label>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" disabled bind:checked={row.grantShop} />
+                        <span></span>
+                      </label>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" disabled bind:checked={row.grantForum} />
+                        <span></span>
+                      </label>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" disabled bind:checked={row.grantBlog} />
+                        <span></span>
+                      </label>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="#">
+                      <label>
+                        <input type="checkbox" disabled bind:checked={row.grantPromo} />
+                        <span></span>
+                      </label>
+                    </form>
+                  </td>
+                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/plans/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}
             </tbody>
@@ -90,7 +129,7 @@
     margin: 0 1em;
   }
 
-  .list .image {
-    height: 3em;
+  .center {
+    text-align: center;
   }
 </style>
