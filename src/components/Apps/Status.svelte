@@ -26,11 +26,11 @@
     </div>
     
     <div>
-      <p class="title">blog primary:</p>
-      <a href={`https://blog.${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{`blog.${domain}`}</a>
+      <p class="title">channel primary:</p>
+      <a href={`https://channel.${domain}`} target="_blank" class="waves-effect btn red lighten-2 left">{`channel.${domain}`}</a>
     </div>
     <div>
-      <p class="title">blog demo:</p>
+      <p class="title">channel demo:</p>
       <a href={`https://${endpoint}.burnfort.com`} target="_blank" class="waves-effect btn red lighten-2 left">{`${endpoint}.burnfort.com`}</a>
     </div>
     
