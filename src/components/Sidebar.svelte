@@ -57,15 +57,15 @@ import Nav from "./Nav.svelte"
       icon: 'attach_file'
     },
     {
-      slug: 'channel-videos',
+      slug: 'videos',
       name: 'Channel Videos',
       icon: 'videocam'
     },
     {
-      slug: 'channel-guides',
+      slug: 'guides',
       name: 'Channel Guides',
       icon: 'ondemand_video'
-    },
+    }
   ]
 </script>
 

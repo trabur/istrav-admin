@@ -28,6 +28,13 @@
     { "source": "/apps/:domain/:state/licenses/:slug", "destination": "/" },
     { "source": "/apps/:domain/:state/plans", "destination": "/" },
     { "source": "/apps/:domain/:state/plans/add", "destination": "/" },
-    { "source": "/apps/:domain/:state/plans/:slug", "destination": "/" }
+    { "source": "/apps/:domain/:state/plans/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/videos", "destination": "/" },
+    { "source": "/apps/:domain/:state/videos/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/videos/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/guides", "destination": "/" },
+    { "source": "/apps/:domain/:state/guides/add", "destination": "/" },
+    { "source": "/apps/:domain/:state/guides/:slug", "destination": "/" },
+    { "source": "/apps/:domain/:state/guides/:slug/videos", "destination": "/" }
   ]
 }

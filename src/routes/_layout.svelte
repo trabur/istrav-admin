@@ -40,9 +40,11 @@
       istrav.store.products.init({ host: 'https://api.istrav.com' })
       istrav.subscription.licenses.init({ host: 'https://api.istrav.com' })
       istrav.subscription.plans.init({ host: 'https://api.istrav.com' })
+      istrav.channel.videos.init({ host: 'https://api.istrav.com' })
+      istrav.channel.guides.init({ host: 'https://api.istrav.com' })
       loading = false
     };
-    code.src = 'https://headless.istrav.com/scripts/index.js';
+    code.src = 'https://farmerless.com/scripts/index.js';
     code.setAttribute('type', 'module')
     document.getElementById('code').appendChild(code); 
   })
