@@ -51,6 +51,21 @@ import Nav from "./Nav.svelte"
       name: 'License Keys',
       icon: 'vpn_key'
     },
+    {
+      slug: 'media-storage',
+      name: 'Media Storage',
+      icon: 'attach_file'
+    },
+    {
+      slug: 'channel-videos',
+      name: 'Channel Videos',
+      icon: 'videocam'
+    },
+    {
+      slug: 'channel-guides',
+      name: 'Channel Guides',
+      icon: 'ondemand_video'
+    },
   ]
 </script>
 
