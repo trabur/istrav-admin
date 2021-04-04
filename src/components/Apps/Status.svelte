@@ -53,7 +53,7 @@
     </div>
   </div>
   <p class="title">cdn endpoint:</p>
-  <p>https://rawcdn.githack.com/{uploads}/...</p>
+  <p>{uploads}/...</p>
 </div>
 
 <style>

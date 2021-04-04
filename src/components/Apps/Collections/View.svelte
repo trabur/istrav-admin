@@ -55,7 +55,7 @@
               {#each table as row (row.id)}
                 <tr>
                   <td>
-                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/collections/${row.slug}/${row.image}`} class="image" alt={row.image} />
+                    <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
                   </td>
                   <td>{row.name}</td>
                   <td><a href={`https://${endpoint}.dimension.click/collections/${row.slug}`} target="_blank">/collections/{row.slug}</a></td>

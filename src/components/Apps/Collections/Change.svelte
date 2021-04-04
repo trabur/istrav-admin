@@ -13,6 +13,7 @@
   let image = ''
   let appId
   let uploads
+  let token
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -35,6 +36,7 @@
 
   onMount(async () => {
     M.updateTextFields();
+    token = localStorage.getItem('token')
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
@@ -57,6 +59,48 @@
       alert(esOne.payload.reason)
     }
   })
+
+	let preview
+  let fileinput
+  let files
+	
+	const onFileSelected = (e) => {
+    let image = e.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(image)
+    reader.onload = e => {
+      preview = e.target.result
+    }
+  }
+
+  function upload() {
+    if (!preview) {
+      return alert('Please select a file before doing that.')
+    }
+
+    const formData = new FormData()
+    formData.append('appId', appId)
+    formData.append('token', token)
+    formData.append('folder', `collections/${slug}`)
+    formData.append('sampleFile', files[0])
+
+    fetch('https://hacktracks.org/v1/files/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then((response) => response.json()).then((result) => {
+        console.log('Success:', result)
+        // reset form
+        files = null
+        fileinput = null
+        preview = null
+        // update main
+        image = result.payload.data.Key
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  }
 </script>
 
 <div class="row" style="min-height: 100vh;">
@@ -73,11 +117,23 @@
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
         </div>
+
+        {#if preview}
+          <img class="preview" src="{preview}" alt="d" style="max-width: 100%;" />
+        {/if}
+        <button class="btn" on:click={(e)=>{e.preventDefault();fileinput.click();}}>Select Media</button>
+        <button class="btn right" on:click={upload}>UPLOAD</button>
+        <input type="file" name="sampleFile" style="display:none" on:change={(e)=>onFileSelected(e)} bind:files bind:this={fileinput} >
+        <br />
+        <br />
+
         <div class="input-field col s12">
           <input id="image" type="text" class="validate" bind:value={image}>
           <label for="image">Image</label>
         </div>
-        <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/collections/${slug}/${image}`} alt="" style="width: 100%;" />
+        <img src={`${uploads}/${image}`} alt="" style="width: 100%;" />
+        <p>{`${uploads}/${image}`}</p>
+
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
         <a href={`/apps/${domain}/${state}/collections/${slugId}/products`} style="margin-right: 1em;" class="right waves-effect btn"><i class="material-icons">stop</i></a>
