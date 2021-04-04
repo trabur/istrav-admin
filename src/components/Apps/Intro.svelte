@@ -3,7 +3,9 @@
 
   export let domainId
   export let stateId
+  let appId
   let uploads
+  let token
 
   // intro
   let image = "heic1901a.jpg"
@@ -14,6 +16,7 @@
 
   onMount(async () => {
     M.updateTextFields();
+    token = localStorage.getItem('token')
 
     let esOne = await scripts.tenant.apps.getOne(null, domainId, stateId)
     console.log('esOne', esOne)
@@ -21,6 +24,7 @@
       let app = esOne.payload.data
       console.log('app', app)
       uploads = app.uploads
+      appId = app.id
       image = app.image
       line1 = app.line1
       line2 = app.line2
@@ -51,11 +55,53 @@
       alert(esUpdate.payload.reason)
     }
   }
+
+	let preview
+  let fileinput
+  let files
+	
+	const onFileSelected = (e) => {
+    let image = e.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(image)
+    reader.onload = e => {
+      preview = e.target.result
+    }
+  }
+
+  function upload() {
+    if (!preview) {
+      return alert('Please select a file before doing that.')
+    }
+
+    const formData = new FormData()
+    formData.append('appId', appId)
+    formData.append('token', token)
+    formData.append('folder', `intro`)
+    formData.append('sampleFile', files[0])
+
+    fetch('https://hacktracks.org/v1/files/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then((response) => response.json()).then((result) => {
+        console.log('Success:', result)
+        // reset form
+        files = null
+        fileinput = null
+        preview = null
+        // update main
+        image = result.payload.data.Key
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  }
 </script>
 
 <div class="banner">
   {#if uploads}
-    <div class="image" style={`background-image: url(https://rawcdn.githack.com/${uploads}/${domainId}/${stateId}/${image});`}>
+    <div class="image" style={`background-image: url(${uploads}/${image});`}>
       <div class="announce">
         <div class="hide-on-med-and-down">
           <span class="first"><h1 class="text">{line1}</h1></span><br />
@@ -80,10 +126,23 @@
     <h3 class="title">EDIT INTRO</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
+        
+        {#if preview}
+          <img class="preview" src="{preview}" alt="d" style="max-width: 100%;" />
+        {/if}
+        <button class="btn" on:click={(e)=>{e.preventDefault();fileinput.click();}}>Select Media</button>
+        <button class="btn right" on:click={upload}>UPLOAD</button>
+        <input type="file" name="sampleFile" style="display:none" on:change={(e)=>onFileSelected(e)} bind:files bind:this={fileinput} >
+        <br />
+        <br />
+
         <div class="input-field col s12">
           <input id="image" type="text" class="validate" bind:value={image}>
           <label for="image">Image</label>
         </div>
+        <img src={`${uploads}/${image}`} alt="" style="width: 100%;" />
+        <p>{`${uploads}/${image}`}</p>
+
         <div class="input-field col s12">
           <input id="line1" type="text" class="validate" bind:value={line1}>
           <label for="line1">Line 1</label>
