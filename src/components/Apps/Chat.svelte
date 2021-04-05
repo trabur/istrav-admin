@@ -41,7 +41,7 @@
   }
 </script>
 
-<div class="row" style="min-height: 100vh;">
+<div class="row">
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
     <h3 class="title">EDIT APP</h3>
@@ -64,9 +64,6 @@
   </div>
   <div class="col s12 m4"></div>
 </div>
-<br />
-<br />
-<br />
 
 <style>
   .title {

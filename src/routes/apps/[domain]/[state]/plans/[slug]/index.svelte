@@ -42,11 +42,16 @@
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
-  <br />
-  <br />
-  <br />
-  {#if load}
-    <Change domain={domain} state={state} slugId={slug}  />
-  {/if}
+  <div style="min-height: 100vh;">
+    <br />
+    <br />
+    <br />
+    {#if load}
+      <Change domain={domain} state={state} slugId={slug}  />
+    {/if}
+    <br />
+    <br />
+    <br />
+  </div>
   <Footer />
 </Sidebar>

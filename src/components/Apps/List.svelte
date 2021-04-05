@@ -21,7 +21,7 @@
   })
 </script>
 
-<div style="min-height: 100vh;">
+<div>
   <h3 class="title">
     <a class="waves-effect waves-light btn right modal-trigger" href="/create" style="margin: 0;">CREATE</a>
     APPLICATIONS:

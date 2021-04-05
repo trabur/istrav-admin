@@ -15,7 +15,7 @@
       <h1 class="logo">METAHEAP.IO</h1>
       <div class="power">Powered by <a href="https://istrav.com">ISTRAV</a></div>
       <br />
-      <div class="desc">Welcome to the admin control panel for creating and managing web solutions (marketing, storefronts, blogs, forums, and promo) built for website owners. Getting started is FREE; in minutes, be up and running with your very own production ready website in just a few clicks.</div>
+      <div class="desc">Welcome to the admin control panel for creating and managing web solutions (marketing, storefronts, channels, forums, and promotional products) built for website owners. Getting started is FREE; in minutes, be up and running with your very own production ready website in just a few clicks.</div>
       <br />
       <a href="https://docs.istrav.com" target="_blank" class="waves-effect btn">DOCUMENTATION</a>
     </div>

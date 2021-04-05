@@ -36,10 +36,16 @@
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
-  <br />
-  <br />
-  {#if load === true}
-    <Chat domain={domain} state={state} />
-  {/if}
+  <div style="min-height: 100vh;">
+    <br />
+    <br />
+    <br />
+    {#if load === true}
+      <Chat domain={domain} state={state} />
+    {/if}
+    <br />
+    <br />
+    <br />
+  </div>
   <Footer />
 </Sidebar>
