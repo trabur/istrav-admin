@@ -91,6 +91,7 @@
             <thead>
               <tr>
                 <th>Image</th>
+                <!-- <th>Name</th> -->
                 <th>Slug</th>
                 <th>Select</th>
               </tr>
@@ -100,8 +101,9 @@
               {#each table as row (row.id)}
                 <tr>
                   <td>
-                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/videos/${row.slug}/${row.image}`} class="image" alt={row.image} />
+                    <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
                   </td>
+                  <!-- <td>{row.name}</td> -->
                   <td><a href={`https://${endpoint}.burnfort.com/watch/${row.slug}`} target="_blank">/watch/{row.slug}</a></td>
                   <td>
                     <form action="#">

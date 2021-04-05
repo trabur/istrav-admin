@@ -9,19 +9,21 @@
 
   let name = ''
   let slug = slugId
+  let image
   let video = ''
   let appId
   let uploads
   let description
+  let token
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
-
-    let token = localStorage.getItem('token')
+    
     let change = {
       name,
       slug,
+      image,
       video,
       description
     }
@@ -36,6 +38,7 @@
 
   onMount(async () => {
     M.updateTextFields();
+    token = localStorage.getItem('token')
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
@@ -50,6 +53,7 @@
         let data = esVideo.payload.data
         name = data.name
         slug = data.slug
+        image = data.image
         video = data.video
         description = data.description
         setTimeout(() => M.updateTextFields(), 0)
@@ -60,6 +64,48 @@
       alert(esOne.payload.reason)
     }
   })
+
+	let preview
+  let fileinput
+  let files
+	
+	const onFileSelected = (e) => {
+    let image = e.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(image)
+    reader.onload = e => {
+      preview = e.target.result
+    }
+  }
+
+  function upload() {
+    if (!preview) {
+      return alert('Please select a file before doing that.')
+    }
+
+    const formData = new FormData()
+    formData.append('appId', appId)
+    formData.append('token', token)
+    formData.append('folder', `videos/${slug}`)
+    formData.append('sampleFile', files[0])
+
+    fetch('https://hacktracks.org/v1/files/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then((response) => response.json()).then((result) => {
+        console.log('Success:', result)
+        // reset form
+        files = null
+        fileinput = null
+        preview = null
+        // update main
+        image = result.payload.data.Key
+      })
+      .catch((error) => {
+        console.error('Error:', error)
+      })
+  }
 </script>
 
 <div class="row">
@@ -76,11 +122,25 @@
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
         </div>
+
+        {#if preview}
+          <img class="preview" src="{preview}" alt="d" style="max-width: 100%;" />
+        {/if}
+        <button class="btn" on:click={(e)=>{e.preventDefault();fileinput.click();}}>Select Media</button>
+        <button class="btn right" on:click={upload}>UPLOAD</button>
+        <input type="file" name="sampleFile" style="display:none" on:change={(e)=>onFileSelected(e)} bind:files bind:this={fileinput} >
+        <br />
+        <br />
+
         <div class="input-field col s12">
-          <input id="video" type="text" class="validate" bind:value={video}>
-          <label for="video">Video</label>
+          <input id="image" type="text" class="validate" bind:value={image}>
+          <label for="image">Image</label>
         </div>
-        <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/videos/${slug}/${video}`} alt="" style="width: 100%;" />
+        <img src={`${uploads}/${image}`} alt="" style="width: 100%;" />
+        <p>{`${uploads}/${image}`}</p>
+
+        <a href={`/apps/${domain}/${state}/videos/${slug}/watch`} class="waves-effect btn btn-large" style="width: 100%;">GOTO VIDEO</a>
+
         <div class="input-field col s12">
           <textarea id="description" type="text" class="validate" bind:value={description}></textarea>
           <label for="description">Description</label>

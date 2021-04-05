@@ -55,7 +55,7 @@
               {#each table as row (row.id)}
                 <tr>
                   <td>
-                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/guides/${row.slug}/${row.image}`} class="image" alt={row.image} />
+                    <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
                   </td>
                   <td>{row.name}</td>
                   <td><a href={`https://${endpoint}.burnfort.com/browse/${row.slug}`} target="_blank">/browse/{row.slug}</a></td>

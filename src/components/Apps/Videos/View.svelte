@@ -44,6 +44,7 @@
           <table>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Slug</th>
                 <th style="text-align: right;">Change</th>
@@ -53,6 +54,9 @@
             <tbody>
               {#each table as row (row.id)}
                 <tr>
+                  <td>
+                    <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
+                  </td>
                   <td>{row.name}</td>
                   <td><a href={`https://${endpoint}.burnfort.com/watch/${row.slug}`} target="_blank">/watch/{row.slug}</a></td>
                   <td style="text-align: right;"><a href={`/apps/${domain}/${state}/videos/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
@@ -82,5 +86,9 @@
 
   .list {
     margin: 0 1em;
+  }
+  
+  .list .image {
+    height: 3em;
   }
 </style>
