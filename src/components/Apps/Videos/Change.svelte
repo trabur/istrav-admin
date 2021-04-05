@@ -90,7 +90,7 @@
     </div>
     <div style="text-align: right;">
       <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-      <a href={`/apps/${domain}/${state}/products`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
+      <a href={`/apps/${domain}/${state}/videos`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
   <div class="col s12 m4"></div>
