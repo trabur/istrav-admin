@@ -18,7 +18,7 @@
     window.axios = axios
 
     // appId domain state
-    if (window.location.host === 'localhost:3000') {
+    if (window.location.host === 'localhost:5280') {
       window.appDomain = 'istrav.com'
     } else {
       window.appDomain = window.location.host

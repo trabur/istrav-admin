@@ -55,9 +55,12 @@
     {/if}
     <a href={`/apps/${domain}/${state}/edit`} class="waves-effect btn right">EDIT</a>
     <a href={`/apps/${domain}/${state}/intro`} class="waves-effect btn right" style="margin-right: 0.5em;">INTRO</a>
-    <a href={`/apps/${domain}/${state}/stripe`} class="waves-effect btn right" style="margin-right: 0.5em;">STRIPE</a>
+    <a href={`/apps/${domain}/${state}/payments`} class="waves-effect btn right" style="margin-right: 0.5em;">PAYMENTS</a>
     <a href={`/apps/${domain}/${state}/chat`} class="waves-effect btn right" style="margin-right: 0.5em;">CHAT</a>
     <a href={`/apps/${domain}/${state}/analytics`} class="waves-effect btn right" style="margin-right: 0.5em;">ANALYTICS</a>
+    <a href={`/apps/${domain}/${state}/comments`} class="waves-effect btn right" style="margin-right: 0.5em;">COMMENTS</a>
+    <a href={`/apps/${domain}/${state}/email`} class="waves-effect btn right" style="margin-right: 0.5em;">EMAIL</a>
+    <a href={`/apps/${domain}/${state}/hosting`} class="waves-effect btn right" style="margin-right: 0.5em;">HOSTING</a>
   </div>
   <div class="col s12 m1"></div>
 </div>

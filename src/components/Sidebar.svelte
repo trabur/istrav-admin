@@ -86,6 +86,16 @@ import Nav from "./Nav.svelte"
       name: 'Collaborators',
       icon: 'contacts'
     },
+    {
+      slug: 'domains',
+      name: 'Host Domains',
+      icon: 'domain'
+    },
+    {
+      slug: 'deployments',
+      name: 'Host Deployments',
+      icon: 'public'
+    },
   ]
 </script>
 
