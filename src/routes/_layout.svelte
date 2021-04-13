@@ -27,8 +27,8 @@
       console.log('localhost settings:', appDomain, backend, headless)
     } else {
       window.appDomain = window.location.host
-      backend = 'https://hacktracks.org'
-      headless = 'https://farmerless.com'
+      backend = process.env.API_URI || 'https://hacktracks.org'
+      headless = proccess.env.HEADLESS_URI || 'https://farmerless.com'
       console.log('production settings:', appDomain, backend, headless)
     }
 
