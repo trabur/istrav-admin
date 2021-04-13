@@ -15,6 +15,9 @@
   let uploads
   let description
   let token
+  let contentCreatorId = ''
+  let users = []
+  let contentCreatorIdChoices
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -60,6 +63,30 @@
       } else {
         alert(esVideo.payload.reason)
       }
+
+      // fetch users for dropdown
+      let esUsers = await scripts.account.users.getAll(appId)
+      console.log('esUsers', esUsers)
+      if (esUsers.payload.success === true) {
+        users = esUsers.payload.data
+      } else {
+        alert(esUsers.payload.reason)
+      }
+      
+      setTimeout(() => {
+        const contentCreatorIdElement = document.querySelector('#contentCreatorId');
+        contentCreatorIdChoices = new Choices(contentCreatorIdElement);
+        users.forEach((value, index) => {
+          console.log(`${value.id} === ${contentCreatorId}`)
+          if (value.id === contentCreatorId) {
+            users[index].selected = true
+          }
+          users[index].value = value.id
+          users[index].label = value.username
+        })
+        console.log('users', users)
+        contentCreatorIdChoices.setChoices(users, 'value', 'label', false)
+      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
@@ -123,6 +150,17 @@
           <label for="slug">Slug</label>
         </div>
 
+        <div class="input-field col s12">
+          {#if users.length}
+            <div class="label">Content Creator</div>
+            <div class="choices">
+              <select id="contentCreatorId" class="choices" bind:value={contentCreatorId}></select>
+            </div>
+            <br />
+            <br />
+          {/if}
+        </div>
+
         {#if preview}
           <img class="preview" src="{preview}" alt="d" style="max-width: 100%;" />
         {/if}
@@ -168,5 +206,18 @@
     background: #fff;
     border: 1px solid #aaa;
     min-height: 5em;
+  }
+
+  .choices {
+    position: absolute;
+    right: 0.75em;
+    left: 0.75em;
+    z-index: 10;
+  }
+
+  .label {
+    color: #9E9E99;
+    font-size: 0.7em;
+    margin-top: -1em;
   }
 </style>

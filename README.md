@@ -2,6 +2,11 @@ METAHEAP.IO
 ========
 
 ```bash
+# development
+export PORT=5280; npm run dev
+```
+
+```bash
 npm install
 npm run build
 npm start

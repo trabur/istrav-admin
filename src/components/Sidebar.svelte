@@ -52,11 +52,6 @@ import Nav from "./Nav.svelte"
       icon: 'vpn_key'
     },
     {
-      slug: 'media-storage',
-      name: 'Media Storage',
-      icon: 'attach_file'
-    },
-    {
       slug: 'videos',
       name: 'Channel Videos',
       icon: 'videocam'
@@ -65,7 +60,32 @@ import Nav from "./Nav.svelte"
       slug: 'guides',
       name: 'Channel Guides',
       icon: 'ondemand_video'
-    }
+    },
+    {
+      slug: 'playlists',
+      name: 'Playlists',
+      icon: 'playlist_play'
+    },
+    {
+      slug: 'forums',
+      name: 'Bulletin Boards',
+      icon: 'forum'
+    },
+    {
+      slug: 'topics',
+      name: 'Message Topics',
+      icon: 'chat'
+    },
+    {
+      slug: 'media-storage',
+      name: 'Media Storage',
+      icon: 'attach_file'
+    },
+    {
+      slug: 'collaborators',
+      name: 'Collaborators',
+      icon: 'contacts'
+    },
   ]
 </script>
 

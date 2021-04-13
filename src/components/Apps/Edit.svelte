@@ -76,11 +76,11 @@
           <label for="endpoint">Endpoint</label>
         </div>
         <ul style="margin-left: 3.5em;">
-          <li>https://{endpoint}.tyu67.com</li>
-          <li>https://{endpoint}.dimension.click</li>
-          <li>https://{endpoint}.burnfort.com</li>
-          <li>https://{endpoint}.aaghc.com</li>
-          <li>https://{endpoint}.printedbasics.com</li>
+          <li>http://{endpoint}.tyu67.com</li>
+          <li>http://{endpoint}.dimension.click</li>
+          <li>http://{endpoint}.burnfort.com</li>
+          <li>http://{endpoint}.aaghc.com</li>
+          <li>http://{endpoint}.printedbasics.com</li>
         </ul>
         <div class="input-field col s12">
           <i class="material-icons prefix">file_upload</i>

@@ -31,6 +31,9 @@
       // console.log(window.scripts)
       // console.log(window.istrav)
 
+      istrav.account.users.init({ host: 'https://hacktracks.org' })
+      istrav.account.carts.init({ host: 'https://hacktracks.org' })
+      istrav.account.orders.init({ host: 'https://hacktracks.org' })
       istrav.tenant.members.init({ host: 'https://hacktracks.org' })
       istrav.tenant.apps.init({ host: 'https://hacktracks.org' })
       istrav.app.menus.init({ host: 'https://hacktracks.org' })
