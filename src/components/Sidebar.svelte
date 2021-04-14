@@ -22,6 +22,16 @@ import Nav from "./Nav.svelte"
       icon: 'stop'
     },
     {
+      slug: 'products',
+      name: 'Stock Keeping Units',
+      icon: 'local_offer'
+    },
+    {
+      slug: 'plans',
+      name: 'Subscription Plans',
+      icon: 'card_membership'
+    },
+    {
       slug: 'menus',
       name: 'Menus',
       icon: 'format_list_numbered'
@@ -40,16 +50,6 @@ import Nav from "./Nav.svelte"
       slug: 'orders',
       name: 'Orders',
       icon: 'markunread_mailbox'
-    },
-    {
-      slug: 'plans',
-      name: 'Subscription Plans',
-      icon: 'card_membership'
-    },
-    {
-      slug: 'licenses',
-      name: 'License Keys',
-      icon: 'vpn_key'
     },
     {
       slug: 'videos',
@@ -79,7 +79,7 @@ import Nav from "./Nav.svelte"
     {
       slug: 'media-storage',
       name: 'Media Storage',
-      icon: 'attach_file'
+      icon: 'sd_storage'
     },
     {
       slug: 'collaborators',
@@ -89,12 +89,22 @@ import Nav from "./Nav.svelte"
     {
       slug: 'domains',
       name: 'Host Domains',
-      icon: 'domain'
+      icon: 'http'
+    },
+    {
+      slug: 'dns',
+      name: 'Host DNS Records',
+      icon: 'public'
     },
     {
       slug: 'deployments',
       name: 'Host Deployments',
-      icon: 'public'
+      icon: 'storage'
+    },
+    {
+      slug: 'licenses',
+      name: 'License Keys',
+      icon: 'vpn_key'
     },
   ]
 </script>
