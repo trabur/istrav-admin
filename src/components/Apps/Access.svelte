@@ -7,11 +7,14 @@
   let appId
   let loading = false
   let key = ''
+  let token
 
   onMount(async () => {
     M.updateTextFields();
 
-    let esOne = await scripts.tenant.apps.getOne(null, domainId, stateId)
+    token = localStorage.getItem('token')
+
+    let esOne = await scripts.tenant.apps.getOne(token, domainId, stateId)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
@@ -28,27 +31,34 @@
     loading = true
     let token = localStorage.getItem('token')
 
-    let esLicense = await scripts.subscription.licenses.getOne(appId, key)
-    console.log('esLicense', esLicense)
-    if (esLicense.payload.success === true) {
-      let license = esLicense.payload.data
-      console.log('license', license)
-
-      let change = {
-        licenseKey: key,
-        licenseId: license.id
-      }
-      let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
-      console.log('esUpdate', esUpdate)
-      if (esUpdate.payload.success === true) {
-        let app = esUpdate.payload.data
-        console.log('app', app)
-        window.location.href = `/apps/${app.domain}/${app.state}`
+    let change
+    if (key) {
+      let esLicense = await scripts.subscription.licenses.getOne(appId, key)
+      console.log('esLicense', esLicense)
+      if (esLicense.payload.success === true) {
+        let license = esLicense.payload.data
+        console.log('license', license)
+        change = {
+          licenseKey: key,
+          licenseId: license.id
+        }
       } else {
-        alert(esUpdate.payload.reason)
+        alert(esLicense.payload.reason)
       }
     } else {
-      alert(esLicense.payload.reason)
+      change = {
+        licenseKey: null,
+        licenseId: null
+      }
+    }
+    let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
+    console.log('esUpdate', esUpdate)
+    if (esUpdate.payload.success === true) {
+      let app = esUpdate.payload.data
+      console.log('app', app)
+      window.location.href = `/apps/${app.domain}/${app.state}`
+    } else {
+      alert(esUpdate.payload.reason)
     }
 
     loading = false

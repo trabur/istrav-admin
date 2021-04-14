@@ -56,7 +56,7 @@
                 <tr>
                   <td>{row.key.substring(0,8)}...</td>
                   {#if row.register}
-                    <td>{row.register.domain}/{row.register.state}</td>
+                    <td><a href={`/apps/${row.register.domain}/${row.register.state}`}>/apps/{row.register.domain}/{row.register.state}</a></td>
                   {:else}
                     <td>none</td>
                   {/if}

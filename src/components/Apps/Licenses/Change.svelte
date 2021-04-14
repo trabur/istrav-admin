@@ -12,6 +12,10 @@
   let planId = ''
   let plans = []
   let planIdChoices
+  let registerId
+  let registerDomain
+  let registerState
+  let token
 
 	async function change() {
     if (key === '') return alert('Name must be defined.')
@@ -22,6 +26,7 @@
     let change = {
       key,
       planId,
+      registerId,
     }
     let esUpdate = await scripts.subscription.licenses.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -32,8 +37,24 @@
     }
   }
 
+  async function findAppId () {
+    if (!registerDomain && !registerState) {
+      return registerId = null
+    }
+
+    let getOne = await scripts.tenant.apps.getOne(token, registerDomain, registerState)
+    console.log('getOne', getOne)
+    if (getOne.payload.success === true) {
+      registerId = getOne.payload.data.id
+    } else {
+      alert(getOne.payload.reason)
+    }
+  }
+
   onMount(async () => {
     M.updateTextFields();
+
+    token = localStorage.getItem('token')
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
@@ -47,6 +68,12 @@
         let data = esLicense.payload.data
         key = data.key
         planId = data.planId
+        if (data.register) {
+          registerId = data.register.id
+          registerDomain = data.register.domain
+          registerState = data.register.state
+        }
+
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esLicense.payload.reason)
@@ -102,6 +129,22 @@
             <br />
           {/if}
         </div>
+
+        <div class="input-field col s12">
+          <input id="registerDomain" type="text" class="validate" bind:value={registerDomain} on:change={() => findAppId()}>
+          <label for="registerDomain">register domain</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="registerState" type="text" class="validate" bind:value={registerState} on:change={() => findAppId()}>
+          <label for="registerState">register state</label>
+        </div>
+        {#if registerId}
+          <div style="padding: 0 0.75em;">
+            <h5>Register Id:</h5>
+            <p>{registerId}</p>
+          </div>
+        {/if}
+
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
