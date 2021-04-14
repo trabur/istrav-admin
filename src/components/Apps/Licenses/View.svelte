@@ -16,7 +16,7 @@
       endpoint = esOne.payload.data.endpoint
       uploads = esOne.payload.data.uploads
       
-      let esAll = await scripts.store.products.getAll(appId)
+      let esAll = await scripts.subscription.licenses.getAll(appId)
       if (esAll.payload.success === true) {
         table = esAll.payload.data
       } else {
@@ -38,16 +38,15 @@
       </div>
     </h3>
     <div class="card">
-      <a href={`/apps/${domain}/${state}/products/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <a href={`/apps/${domain}/${state}/licenses/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <div class="list">
         {#if table.length}
           <table>
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>Price</th>
+                <th>Key</th>
+                <th>Registered App</th>
+                <th>Subscription Plan</th>
                 <th style="text-align: right;">Change</th>
               </tr>
             </thead>
@@ -55,13 +54,18 @@
             <tbody>
               {#each table as row (row.id)}
                 <tr>
-                  <td>
-                    <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${row.slug}/${row.image}`} class="image" alt={row.image} />
-                  </td>
-                  <td>{row.name}</td>
-                  <td><a href={`https://${endpoint}.dimension.click/products/${row.slug}`} target="_blank">/products/{row.slug}</a></td>
-                  <td>${row.price / 100}</td>
-                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/products/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                  <td>{row.key.substring(0,8)}...</td>
+                  {#if row.register}
+                    <td>{row.register.domain}/{row.register.state}</td>
+                  {:else}
+                    <td>none</td>
+                  {/if}
+                  {#if row.plan}
+                    <td>{row.plan.slug}</td>
+                  {:else}
+                    <td>none</td>
+                  {/if}
+                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/licenses/${row.key}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}
             </tbody>

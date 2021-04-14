@@ -3,44 +3,30 @@
   import slugify from 'slugify'
   import Delete from './Delete.svelte'
 
-	export let domain = '';
-  export let state = '';
-  export let slugId = '';
+	export let domain
+  export let state
+  export let slugId
 
-  let name = ''
-  let slug = slugId
-  let image = ''
+  let key = ''
   let appId
-  let uploads
-  let categoryId = ''
-  let categories = []
-  let categoryIdChoices
-  let price = 0
-  let description
-  let details
-  let url
+  let planId = ''
+  let plans = []
+  let planIdChoices
 
 	async function change() {
-    if (name === '') return alert('Name must be defined.')
-    if (slug === '') return alert('Slug must be defined.')
-    categoryId = categoryIdChoices.getValue(true)
-    console.log('categoryId', categoryId)
+    if (key === '') return alert('Name must be defined.')
+    planId = planIdChoices.getValue(true)
+    console.log('planId', planId)
 
     let token = localStorage.getItem('token')
     let change = {
-      name,
-      slug,
-      image,
-      categoryId,
-      price: price * 100,
-      description,
-      details,
-      url
+      key,
+      planId,
     }
-    let esUpdate = await scripts.store.products.getUpdate(appId, token, slugId, change)
+    let esUpdate = await scripts.subscription.licenses.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/products`
+      window.location = `/apps/${domain}/${state}/licenses`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -53,48 +39,41 @@
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
-      uploads = esOne.payload.data.uploads
 
-      // fetch product
-      let esProduct = await scripts.store.products.getOne(appId, slug)
-      console.log('esProduct', esProduct)
-      if (esProduct.payload.success === true) {
-        let data = esProduct.payload.data
-        name = data.name
-        slug = data.slug
-        image = data.image
-        categoryId = data.categoryId
-        price = data.price / 100
-        description = data.description
-        details = data.details
-        url = data.url
+      // fetch license
+      let esLicense = await scripts.subscription.licenses.getOne(appId, slugId)
+      console.log('esLicense', esLicense)
+      if (esLicense.payload.success === true) {
+        let data = esLicense.payload.data
+        key = data.key
+        planId = data.planId
         setTimeout(() => M.updateTextFields(), 0)
       } else {
-        alert(esProduct.payload.reason)
+        alert(esLicense.payload.reason)
       }
 
-      // fetch categories for dropdown
-      let esCategories = await scripts.store.categories.getAll(appId)
-      console.log('esCategories', esCategories)
-      if (esCategories.payload.success === true) {
-        categories = esCategories.payload.data
+      // fetch plans for dropdown
+      let esPlans = await scripts.subscription.plans.getAll(appId)
+      console.log('esPlans', esPlans)
+      if (esPlans.payload.success === true) {
+        plans = esPlans.payload.data
       } else {
-        alert(esCategories.payload.reason)
+        alert(esPlans.payload.reason)
       }
       
       setTimeout(() => {
-        const categoryIdElement = document.querySelector('#categoryId');
-        categoryIdChoices = new Choices(categoryIdElement);
-        categories.forEach((value, index) => {
-          console.log(`${value.id} === ${categoryId}`)
-          if (value.id === categoryId) {
-            categories[index].selected = true
+        const planIdElement = document.querySelector('#planId');
+        planIdChoices = new Choices(planIdElement);
+        plans.forEach((value, index) => {
+          console.log(`${value.id} === ${planId}`)
+          if (value.id === planId) {
+            plans[index].selected = true
           }
-          categories[index].value = value.id
-          categories[index].label = value.name
+          plans[index].value = value.id
+          plans[index].label = value.name
         })
-        console.log('categories', categories)
-        categoryIdChoices.setChoices(categories, 'value', 'label', false)
+        console.log('plans', plans)
+        planIdChoices.setChoices(plans, 'value', 'label', false)
       }, 0)
     } else {
       alert(esOne.payload.reason)
@@ -105,54 +84,30 @@
 <div class="row">
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
-    <h3 class="title">CHANGE PRODUCT</h3>
+    <h3 class="title">CHANGE LICENSE</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name} on:change={() => slug = slugify(name)}>
-          <label for="name">Name</label>
+          <input id="key" type="text" class="validate" bind:value={key}>
+          <label for="key">Key</label>
         </div>
+
         <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="image" type="text" class="validate" bind:value={image}>
-          <label for="image">Image</label>
-        </div>
-        <img src={`https://rawcdn.githack.com/${uploads}/${domain}/${state}/products/${slug}/${image}`} alt="" style="width: 100%;" />
-        <div class="input-field col s12">
-          {#if categories.length}
-            <div class="label">Category</div>
+          {#if plans.length}
+            <div class="label">Plan</div>
             <div class="choices">
-              <select id="categoryId" class="choices" bind:value={categoryId}></select>
+              <select id="planId" class="choices" bind:value={planId}></select>
             </div>
             <br />
             <br />
           {/if}
-        </div>
-        <div class="input-field col s12">
-          <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
-          <label for="price">Price</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="description" type="text" class="validate" bind:value={description}></textarea>
-          <label for="description">Description</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="details" type="text" class="validate" bind:value={details} style="height: 15em;"></textarea>
-          <label for="details">Details</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="url" type="text" class="validate" bind:value={url}>
-          <label for="url">URL</label>
         </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
     <div style="text-align: right;">
       <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-      <a href={`/apps/${domain}/${state}/products`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
+      <a href={`/apps/${domain}/${state}/licenses`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
   <div class="col s12 m4"></div>
