@@ -32,6 +32,11 @@ import Nav from "./Nav.svelte"
       icon: 'card_membership'
     },
     {
+      slug: 'licenses',
+      name: 'License Keys',
+      icon: 'vpn_key'
+    },
+    {
       slug: 'menus',
       name: 'Menus',
       icon: 'format_list_numbered'
@@ -100,11 +105,6 @@ import Nav from "./Nav.svelte"
       slug: 'deployments',
       name: 'Host Deployments',
       icon: 'storage'
-    },
-    {
-      slug: 'licenses',
-      name: 'License Keys',
-      icon: 'vpn_key'
     },
   ]
 </script>
