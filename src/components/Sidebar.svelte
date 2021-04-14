@@ -7,6 +7,16 @@ import Nav from "./Nav.svelte"
 
   let navigation = [
     {
+      slug: 'menus',
+      name: 'Menus',
+      icon: 'format_list_numbered'
+    },
+    {
+      slug: 'pages',
+      name: 'Pages',
+      icon: 'note'
+    },
+    {
       slug: 'collections',
       name: 'Collections',
       icon: 'apps'
@@ -42,21 +52,6 @@ import Nav from "./Nav.svelte"
       icon: 'markunread_mailbox'
     },
     {
-      slug: 'menus',
-      name: 'Menus',
-      icon: 'format_list_numbered'
-    },
-    {
-      slug: 'pages',
-      name: 'Pages',
-      icon: 'note'
-    },
-    {
-      slug: 'users',
-      name: 'Users',
-      icon: 'person'
-    },
-    {
       slug: 'videos',
       name: 'Channel Videos',
       icon: 'videocam'
@@ -85,6 +80,11 @@ import Nav from "./Nav.svelte"
       slug: 'media-storage',
       name: 'Media Storage',
       icon: 'sd_storage'
+    },
+    {
+      slug: 'users',
+      name: 'Users',
+      icon: 'person'
     },
     {
       slug: 'collaborators',
