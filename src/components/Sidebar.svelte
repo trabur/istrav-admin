@@ -37,6 +37,11 @@ import Nav from "./Nav.svelte"
       icon: 'vpn_key'
     },
     {
+      slug: 'orders',
+      name: 'Orders',
+      icon: 'markunread_mailbox'
+    },
+    {
       slug: 'menus',
       name: 'Menus',
       icon: 'format_list_numbered'
@@ -50,11 +55,6 @@ import Nav from "./Nav.svelte"
       slug: 'users',
       name: 'Users',
       icon: 'person'
-    },
-    {
-      slug: 'orders',
-      name: 'Orders',
-      icon: 'markunread_mailbox'
     },
     {
       slug: 'videos',
