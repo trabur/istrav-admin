@@ -42,7 +42,7 @@
       icon: 'stop'
     },
     {
-      slug: 'products',
+      slug: 'stock-keeping-units',
       name: 'Stock Keeping Units',
       icon: 'local_offer'
     },
