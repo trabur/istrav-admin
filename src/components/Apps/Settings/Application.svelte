@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-  import Delete from './Delete.svelte'
+  import Delete from '../Delete.svelte'
+  import SidebarSettings from '../../SidebarSettings.svelte'
+
   export let domainId
   export let stateId
   let loading = false
@@ -55,9 +57,12 @@
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">EDIT APP</h3>
+  <div class="col s12 m2"></div>
+  <div class="col s12 m3">
+    <SidebarSettings domain={domainId} state={stateId} />
+  </div>
+  <div class="col s12 m5">
+    <h3 class="title">Application</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
@@ -101,7 +106,7 @@
     <Delete domain={domain} state={state}/>
     <a href={`/apps/${domainId}/${stateId}`} class="waves-effect btn right" style="margin-right: 0.5em;">CANCEL</a>
   </div>
-  <div class="col s12 m4"></div>
+  <div class="col s12 m2"></div>
 </div>
 
 <style>

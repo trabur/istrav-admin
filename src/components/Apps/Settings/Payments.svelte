@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  import SidebarSettings from '../../SidebarSettings.svelte'
+  
   export let domain
   export let state  
 
@@ -51,9 +53,12 @@
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">EDIT APP</h3>
+  <div class="col s12 m2"></div>
+  <div class="col s12 m3">
+    <SidebarSettings domain={domain} state={state} />
+  </div>
+  <div class="col s12 m5">
+    <h3 class="title">Payments</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">

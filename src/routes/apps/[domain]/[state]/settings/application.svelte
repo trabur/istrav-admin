@@ -1,11 +1,11 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Edit from '../../../../components/Apps/Edit.svelte'
-  import Navigation from '../../../../components/Header/Navigation.svelte'
-  import MainLinks from '../../../../components/Header/MainLinks.svelte'
-  import Footer from '../../../../components/Footer.svelte'
-  import Sidebar from '../../../../components/Sidebar.svelte'
+  import Application from '../../../../../components/Apps/Settings/Application.svelte'
+  import Navigation from '../../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../../components/Footer.svelte'
+  import Sidebar from '../../../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <Edit domainId={domain} stateId={state} />
+      <Application domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />

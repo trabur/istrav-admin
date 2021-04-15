@@ -12,6 +12,11 @@
       icon: 'dashboard'
     },
     {
+      slug: 'intro',
+      name: 'Introduction',
+      icon: 'highlight'
+    },
+    {
       slug: 'menus',
       name: 'Menus',
       icon: 'format_list_numbered'
@@ -110,6 +115,11 @@
       slug: 'deployments',
       name: 'Host Deployments',
       icon: 'storage'
+    },
+    {
+      slug: 'settings/application',
+      name: 'Settings',
+      icon: 'settings'
     },
   ]
 

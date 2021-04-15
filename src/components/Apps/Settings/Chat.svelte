@@ -1,9 +1,12 @@
 <script>
   import { onMount } from 'svelte';
+  import SidebarSettings from '../../SidebarSettings.svelte'
+
   export let domain
   export let state  
 
-  let googleAnalyticsMeasurementId
+  let tawkToPropertyId
+  let tawkToChatId
 
   onMount(async () => {
     M.updateTextFields();
@@ -14,7 +17,8 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      googleAnalyticsMeasurementId = app.googleAnalyticsMeasurementId
+      tawkToPropertyId = app.tawkToPropertyId
+      tawkToChatId = app.tawkToChatId
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -24,7 +28,8 @@
   async function submit() {
     let token = localStorage.getItem('token')
     let change = {
-      googleAnalyticsMeasurementId
+      tawkToPropertyId,
+      tawkToChatId
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domain, state, change)
     console.log('esUpdate', esUpdate)
@@ -39,22 +44,30 @@
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">EDIT APP</h3>
+  <div class="col s12 m2"></div>
+  <div class="col s12 m3">
+    <SidebarSettings domain={domain} state={state} />
+  </div>
+  <div class="col s12 m5">
+    <h3 class="title">Chat</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="googleAnalyticsMeasurementId" type="text" class="validate" bind:value={googleAnalyticsMeasurementId}>
-          <label for="googleAnalyticsMeasurementId">googleAnalyticsMeasurementId</label>
+          <input id="tawkToPropertyId" type="text" class="validate" bind:value={tawkToPropertyId}>
+          <label for="tawkToPropertyId">tawkToPropertyId</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="tawkToChatId" type="text" class="validate" bind:value={tawkToChatId}>
+          <label for="tawkToChatId">tawkToChatId</label>
         </div>
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>
     </div>
     <a href={`/apps/${domain}/${state}`} class="waves-effect btn right">CANCEL</a>
   </div>
-  <div class="col s12 m4"></div>
+  <div class="col s12 m2"></div>
 </div>
 
 <style>

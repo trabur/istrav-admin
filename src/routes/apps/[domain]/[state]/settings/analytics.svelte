@@ -1,11 +1,11 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Chat from '../../../../components/Apps/Chat.svelte'
-  import Navigation from '../../../../components/Header/Navigation.svelte'
-  import MainLinks from '../../../../components/Header/MainLinks.svelte'
-  import Footer from '../../../../components/Footer.svelte'
-  import Sidebar from '../../../../components/Sidebar.svelte'
+  import Analytics from '../../../../../components/Apps/Settings/Analytics.svelte'
+  import Navigation from '../../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../../components/Footer.svelte'
+  import Sidebar from '../../../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <Chat domain={domain} state={state} />
+      <Analytics domain={domain} state={state} />
     {/if}
     <br />
     <br />

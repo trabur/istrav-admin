@@ -1,11 +1,11 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Analytics from '../../../../components/Apps/Analytics.svelte'
-  import Navigation from '../../../../components/Header/Navigation.svelte'
-  import MainLinks from '../../../../components/Header/MainLinks.svelte'
-  import Footer from '../../../../components/Footer.svelte'
-  import Sidebar from '../../../../components/Sidebar.svelte'
+  import Stripe from '../../../../../components/Apps/Settings/Payments.svelte'
+  import Navigation from '../../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../../components/Footer.svelte'
+  import Sidebar from '../../../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <Analytics domain={domain} state={state} />
+      <Stripe domain={domain} state={state} />
     {/if}
     <br />
     <br />
