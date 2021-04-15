@@ -10,5 +10,13 @@
 </script>
 
 <Navigation />
-<Edit />
+<div style="min-height: 100vh;">
+	<br />
+	<br />
+	<br />
+	<Edit />
+	<br />
+	<br />
+	<br />
+</div>
 <Footer />

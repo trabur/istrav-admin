@@ -25,10 +25,15 @@
 </script>
 
 <Navigation />
-<br />
-<br />
-<br />
-{#if display}
-  <Create />
-{/if}
+<div style="min-height: 100vh;">
+	<br />
+	<br />
+	<br />
+  {#if display}
+    <Create />
+  {/if}
+	<br />
+	<br />
+	<br />
+</div>
 <Footer />
