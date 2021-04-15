@@ -1,6 +1,6 @@
 
 <script>
-import Nav from "./Nav.svelte"
+  import { onMount } from "svelte";
 
   export let domain
   export let state
@@ -112,13 +112,21 @@ import Nav from "./Nav.svelte"
       icon: 'storage'
     },
   ]
+
+  onMount(() => {
+    setTimeout(() => {
+
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, {});
+    }, 1000)
+  })
 </script>
 
 
 <div class="masonry">
   <div class="left-panel card">
     <h5 style="text-align: center;">Admin Control<br />Panel</h5>
-    <ul>
+    <ul class="sidenav">
       {#each navigation as nav}
         <a href={`/apps/${domain}/${state}/${nav.slug}`}>
           <li class="waves-effect" style="width: 100%;">
@@ -162,12 +170,28 @@ import Nav from "./Nav.svelte"
 
   .masonry .left-panel {
     margin: 0;
-    padding: 0.5em;
+    padding: 0.5em 0;
   }
 
   .masonry .left-panel,
   .masonry .right-panel {
     height: 100vh;
     overflow: auto;
+  }
+
+  .sidenav {
+    -webkit-transform: inherit !important;
+    transform: inherit !important;
+    background-color: transparent;
+    position: inherit;
+    padding: 0;
+    overflow-y: visible;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    width: 100%;
+    height: fit-content;
+  }
+  .sidenav li {
+    line-height: inherit;
   }
 </style>
