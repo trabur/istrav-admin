@@ -1,11 +1,11 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Access from '../../../../components/Apps/Access.svelte'
-  import Navigation from '../../../../components/Header/Navigation.svelte'
-  import MainLinks from '../../../../components/Header/MainLinks.svelte'
-  import Footer from '../../../../components/Footer.svelte'
-  import Sidebar from '../../../../components/Sidebar.svelte'
+  import HostProvider from '../../../../../components/Apps/Access/HostProvider.svelte'
+  import Navigation from '../../../../../components/Header/Navigation.svelte'
+  import MainLinks from '../../../../../components/Header/MainLinks.svelte'
+  import Footer from '../../../../../components/Footer.svelte'
+  import Sidebar from '../../../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"
   const { page } = stores()
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <Access domainId={domain} stateId={state} />
+      <HostProvider domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />

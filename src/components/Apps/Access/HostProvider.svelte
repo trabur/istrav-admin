@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import SidebarAccess from '../../SidebarAccess.svelte'
   
   export let domainId
   export let stateId
@@ -104,36 +105,20 @@
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">CLOUD ACCESS</h3>
+  <div class="col s12 m2"></div>
+  <div class="col s12 m3">
+    {#if hostId}
+      <SidebarAccess domain={domainId} state={stateId} hostId={hostId} />
+    {:else}
+      <SidebarAccess domain={domainId} state={stateId} />
+    {/if}
+  </div>
+  <div class="col s12 m5">
+    
+    <h3 class="title">Host Provider</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
-        <div class="input-field col s12">
-          Give your application more juice by signing up for one of our paid monthly subscription plans. Leave empty to remain on the free plan.
-        </div>
-
-        <div class="input-field col s12">
-          <i class="material-icons prefix">vpn_key</i>
-          <input id="key" type="text" class="validate" bind:value={key} on:change={() => appByKey()}>
-          <label for="key">License Key</label>
-        </div>
-
-        <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
-      </div>
-    </div>
-    <a href={`/apps/${domainId}/${stateId}`} class="waves-effect btn right">CANCEL</a>
-  </div>
-  <div class="col s12 m4"></div>
-</div>
-
-{#if hostId}
-  <div class="row">
-    <div class="col s12 m4"></div>
-    <div class="col s12 m4">
-      <h3 class="title">LICENSE KEY</h3>
-      <div class="card" style="padding: 1em;">
-        <div class="row">
+        {#if hostId}
           <div class="input-field col s12">
             <h5>Host Id:</h5>
             <p>{hostId}</p>
@@ -153,12 +138,16 @@
             <input id="hostPlan" type="text" class="validate" bind:value={hostPlan} disabled>
             <label for="hostPlan">host plan</label>
           </div>
-        </div>
+        {:else}
+          <div class="input-field col s12">
+            Please enter a valid license key in order to continue.
+          </div>
+        {/if}
       </div>
     </div>
-    <div class="col s12 m4"></div>
   </div>
-{/if}
+  <div class="col s12 m2"></div>
+</div>
 
 <style>
   .title {

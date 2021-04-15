@@ -4,52 +4,44 @@
 
   export let domain
   export let state
+  export let hostId
 
   let navigation = [
     {
-      slug: 'application',
-      name: 'Application'
-    },
-    {
-      slug: 'analytics',
-      name: 'Analytics'
-    },
-    {
-      slug: 'chat',
-      name: 'Chat'
-    },
-    {
-      slug: 'comments',
-      name: 'Comments'
-    },
-    {
-      slug: 'email',
-      name: 'Email'
-    },
-    {
-      slug: 'payments',
-      name: 'Payments'
-    },
-    {
-      slug: 'hosting',
-      name: 'Hosting'
+      slug: 'license-key',
+      name: 'License Key'
     },
   ]
 
-  onMount(() => {
-    setTimeout(() => {
+  if (hostId) {
+    navigation.push({
+      slug: 'host-provider',
+      name: 'Host Provider'
+    })
+    navigation.push({
+      slug: 'change-plan',
+      name: 'Change Plan'
+    })
+    navigation.push({
+      slug: 'terminate-plan',
+      name: 'Terminate Plan'
+    })
+  } else {
+    navigation.push({
+      slug: 'purchase-plan',
+      name: 'Purchase Plan'
+    })
+  }
 
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems, {});
-    }, 1000)
+  onMount(() => {
+    
   })
 </script>
 
-
-<h3 class="title">SETTINGS:</h3>
+<h3 class="title">ACCESS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
-    <a href={`/apps/${domain}/${state}/settings/${nav.slug}`}>
+    <a href={`/apps/${domain}/${state}/access/${nav.slug}`}>
       <li class="waves-effect" style="width: 100%;">
         <span class="name">{nav.name}</span>
       </li>
