@@ -62,7 +62,7 @@
       appId = esOne.payload.data.id
 
       // fetch license
-      let esLicense = await scripts.subscription.licenses.getOne(appId, slugId)
+      let esLicense = await scripts.subscription.licenses.getOne(slugId)
       console.log('esLicense', esLicense)
       if (esLicense.payload.success === true) {
         let data = esLicense.payload.data

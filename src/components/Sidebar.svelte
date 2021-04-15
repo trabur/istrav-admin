@@ -7,6 +7,11 @@ import Nav from "./Nav.svelte"
 
   let navigation = [
     {
+      slug: '',
+      name: 'Dashboard',
+      icon: 'dashboard'
+    },
+    {
       slug: 'menus',
       name: 'Menus',
       icon: 'format_list_numbered'
