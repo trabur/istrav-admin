@@ -176,10 +176,4 @@
     font-size: 0.7em;
     margin-top: -1em;
   }
-
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 5em;
-  }
 </style>
