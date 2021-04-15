@@ -14,7 +14,7 @@
   let grantMarketing
   let grantShop
   let grantForum
-  let grantBlog
+  let grantChannel
   let grantPromo
   let limitOnlineVisitors
   let limitFileStorage
@@ -47,7 +47,7 @@
       grantMarketing,
       grantShop,
       grantForum,
-      grantBlog,
+      grantChannel,
       grantPromo,
       limitOnlineVisitors,
       limitFileStorage,
@@ -85,7 +85,7 @@
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
         grantForum = data.grantForum
-        grantBlog = data.grantBlog
+        grantChannel = data.grantChannel
         grantPromo = data.grantPromo
         limitOnlineVisitors = data.limitOnlineVisitors
         limitFileStorage = data.limitFileStorage
@@ -166,12 +166,12 @@
           </div>
         </div>
         <div class="input-field col s12">
-          <div>Blog:</div>
+          <div>Channel:</div>
           <div class="switch">
             <label>
               deny
               <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantBlog} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
               <span class="lever"></span>
               grant
             </label>

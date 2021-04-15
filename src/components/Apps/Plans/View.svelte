@@ -49,7 +49,7 @@
                 <th>Marketing</th>
                 <th>Shop</th>
                 <th>Forum</th>
-                <th>Blog</th>
+                <th>Channel</th>
                 <th>Promo</th>
                 <th style="text-align: right;">Change</th>
               </tr>
@@ -87,7 +87,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantBlog} />
+                        <input type="checkbox" disabled bind:checked={row.grantChannel} />
                         <span></span>
                       </label>
                     </form>
