@@ -121,6 +121,11 @@
       name: 'Settings',
       icon: 'settings'
     },
+    {
+      slug: 'access/license-key',
+      name: 'Access',
+      icon: 'power'
+    },
   ]
 
   onMount(() => {
