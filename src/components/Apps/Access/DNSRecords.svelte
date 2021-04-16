@@ -84,6 +84,12 @@ import { validate_each_argument } from 'svelte/internal';
       },
       {
         type: 'CNAME',
+        name: 'headless',
+        content: `dns.${domain}`,
+        working: null
+      },
+      {
+        type: 'CNAME',
         name: 'api',
         content: `dns.${domain}`,
         working: null
