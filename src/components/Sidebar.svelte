@@ -27,6 +27,11 @@
       icon: 'note'
     },
     {
+      slug: 'faq',
+      name: 'FAQ',
+      icon: 'help'
+    },
+    {
       slug: 'collections',
       name: 'Collections',
       icon: 'apps'
@@ -87,8 +92,8 @@
       icon: 'chat'
     },
     {
-      slug: 'media-storage',
-      name: 'Media Storage',
+      slug: 'stored-media',
+      name: 'Stored Media',
       icon: 'sd_storage'
     },
     {
@@ -102,19 +107,34 @@
       icon: 'contacts'
     },
     {
-      slug: 'domains',
+      slug: 'host-domains',
       name: 'Host Domains',
       icon: 'http'
     },
     {
-      slug: 'dns',
+      slug: 'host-dns-records',
       name: 'Host DNS Records',
       icon: 'public'
     },
     {
-      slug: 'deployments',
+      slug: 'host-object-storage',
+      name: 'Host Object Storage',
+      icon: 'inbox'
+    },
+    {
+      slug: 'host-databases',
+      name: 'Host Databases',
+      icon: 'layers'
+    },
+    {
+      slug: 'host-deployments',
       name: 'Host Deployments',
       icon: 'storage'
+    },
+    {
+      slug: 'access/license-key',
+      name: 'Access Permissions',
+      icon: 'power'
     },
     {
       slug: 'settings/application',
@@ -122,9 +142,9 @@
       icon: 'settings'
     },
     {
-      slug: 'access/license-key',
-      name: 'Access',
-      icon: 'power'
+      slug: 'event-sources/notifications',
+      name: 'Event Sources',
+      icon: 'event_note'
     },
   ]
 
