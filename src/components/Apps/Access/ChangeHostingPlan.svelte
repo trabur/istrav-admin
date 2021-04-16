@@ -115,7 +115,7 @@
   </div>
   <div class="col s12 m5">
     
-    <h3 class="title">Host Provider</h3>
+    <h3 class="title">Change Hosting Plan</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         {#if hostId}
@@ -124,16 +124,10 @@
             <p>{hostId}</p>
           </div>
           <div class="input-field col s12">
-            <i class="material-icons prefix">store</i>
-            <input id="hostDomain" type="text" class="validate" bind:value={hostDomain} disabled>
-            <label for="hostDomain">host domain</label>
+            <i class="material-icons prefix">card_membership</i>
+            <input id="hostPlan" type="text" class="validate" bind:value={hostPlan} disabled>
+            <label for="hostPlan">host plan</label>
           </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">flag</i>
-            <input id="hostState" type="text" class="validate" bind:value={hostState} disabled>
-            <label for="hostState">host state</label>
-          </div>
-          <a href={`https://${hostDomain}`} target="_blank" style="margin-left: 1em;" class="waves-effect btn">Host Website</a>
         {:else}
           <div class="input-field col s12">
             Please enter a valid license key in order to continue.

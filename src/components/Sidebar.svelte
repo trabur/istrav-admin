@@ -107,9 +107,9 @@
       icon: 'contacts'
     },
     {
-      slug: 'host-domains',
-      name: 'Host Domains',
-      icon: 'http'
+      slug: 'host-domain-names',
+      name: 'Host Domain Names',
+      icon: 'store'
     },
     {
       slug: 'host-dns-records',

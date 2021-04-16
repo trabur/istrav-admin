@@ -19,17 +19,33 @@
       name: 'Host Provider'
     })
     navigation.push({
-      slug: 'change-plan',
-      name: 'Change Plan'
+      slug: 'change-hosting-plan',
+      name: 'Change Hosting Plan'
     })
     navigation.push({
-      slug: 'terminate-plan',
-      name: 'Terminate Plan'
+      slug: 'domain-name',
+      name: 'Domain Name'
+    })
+    navigation.push({
+      slug: 'dns-records',
+      name: 'DNS Records'
+    })
+    navigation.push({
+      slug: 'terminate-subscription',
+      name: 'Terminate Subscription'
     })
   } else {
     navigation.push({
       slug: 'purchase-plan',
       name: 'Purchase Plan'
+    })
+    navigation.push({
+      slug: 'domain-name',
+      name: 'Domain Name'
+    })
+    navigation.push({
+      slug: 'dns-records',
+      name: 'DNS Records'
     })
   }
 
