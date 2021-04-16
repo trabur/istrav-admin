@@ -71,7 +71,7 @@ import { validate_each_argument } from 'svelte/internal';
     img.onerror = function () {
       records[index].working = false
     }
-    img.src = `https://${domain}/poweredByISTRAV.gif`
+    img.src = `https://${domain}/poweredByISTRAV.png`
   }
 
   function getRecords () {
@@ -135,7 +135,7 @@ import { validate_each_argument } from 'svelte/internal';
 
   function checkDNSRecords (records) {
     records.forEach((value, index) => {
-      checkServerStatus(index, value.content)
+      checkServerStatus(index, `${value.name}.${domain}`)
     })
   }
 </script>
@@ -184,7 +184,7 @@ import { validate_each_argument } from 'svelte/internal';
           </tbody>
         </table>
         <br />
-        <div style="padding: 0 1em;">(DNS records are verified by looking for a file named "poweredByISTRAV.gif" that is located in the root directory. Checks should return valid if these and your application's Domain Name are set properly.)</div>
+        <div style="padding: 0 1em;">(DNS records are verified by looking for a file named "poweredByISTRAV.png" that is located in the root directory of our application. Checks should return valid if these DNS Records and your application's Domain Name are set properly.)</div>
         <br />
         <button target="_blank" style="margin-left: 1em;" class="waves-effect btn" on:click={() => checkDNSRecords(getRecords())}>Check DNS Records</button>
       </div>
