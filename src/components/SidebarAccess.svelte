@@ -39,14 +39,6 @@
       slug: 'purchase-plan',
       name: 'Purchase Plan'
     })
-    navigation.push({
-      slug: 'domain-name',
-      name: 'Domain Name'
-    })
-    navigation.push({
-      slug: 'dns-records',
-      name: 'DNS Records'
-    })
   }
 
   onMount(() => {

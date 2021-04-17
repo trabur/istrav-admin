@@ -124,7 +124,7 @@
           {#if hostId}
             The above is a valid license key (verified by host provider id: {hostId}).
           {:else}
-            The above is an unverified license key. Leave empty to remain on the free plan.
+            (The above is an unverified license key. Consider subscribing to one of our free plans so we can get the ball rolling.)
           {/if}
         </div>
 
