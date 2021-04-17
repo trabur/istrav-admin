@@ -14,7 +14,6 @@
     "is-valid-domain": "^0.0.17",
     "moment": "^2.29.1",
     "polka": "next",
-    "sapper-environment": "^1.0.1",
     "sirv": "^1.0.0",
     "slugify": "^1.4.6"
   },
