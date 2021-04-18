@@ -35,6 +35,7 @@
     // appId domain state
     let backend
     let headless
+    let io
     if (window.location.host === 'localhost:5280') {
       window.appDomain = 'istrav.com'
       headless = 'http://localhost:9999'
