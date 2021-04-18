@@ -93,8 +93,4 @@
   .list {
     margin: 0 1em;
   }
-
-  .list .image {
-    height: 3em;
-  }
 </style>
