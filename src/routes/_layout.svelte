@@ -22,6 +22,10 @@
   import { onMount, onDestroy } from 'svelte';
   import axios from 'axios'
 
+  export let apiUri
+  export let ioUri
+  export let headlessUri
+
   let loading = true
 
   onMount(() => {
@@ -33,14 +37,16 @@
     let headless
     if (window.location.host === 'localhost:5280') {
       window.appDomain = 'istrav.com'
-      backend = 'http://localhost:1337'
       headless = 'http://localhost:9999'
-      console.log('localhost settings:', appDomain, backend, headless)
+      backend = 'http://localhost:1337'
+      io = 'http://localhost:3333'
+      console.log('localhost settings:', appDomain, backend, headless, io)
     } else {
       window.appDomain = window.location.host
-      backend = apiUri || 'https://hacktracks.org'
       headless = headlessUri || 'https://farmerless.com'
-      console.log('production settings:', appDomain, backend, headless)
+      backend = apiUri || 'https://api.hacktracks.org'
+      io = ioUri || 'https://io.hacktracks.org'
+      console.log('production settings:', appDomain, backend, headless, io)
     }
 
     // headless.istrav.com scripts
