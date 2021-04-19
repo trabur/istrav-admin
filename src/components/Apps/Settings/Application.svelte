@@ -11,7 +11,6 @@
   let state = stateId
   let endpoint = ''
   let raw = ''
-  let brands = ''
   let uploads = ''
 
   onMount(async () => {
@@ -24,7 +23,6 @@
       console.log('app', app)
       endpoint = app.endpoint || ''
       raw = app.raw
-      brands = app.brands
       uploads = app.uploads
       setTimeout(() => M.updateTextFields(), 0)
     } else {
@@ -40,7 +38,6 @@
       state,
       endpoint,
       raw,
-      brands,
       uploads
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
@@ -95,10 +92,6 @@
         <div class="input-field col s12">
           <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
           <label for="raw">Raw</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="brands" type="text" class="validate" bind:value={brands}></textarea>
-          <label for="brands">Brands</label>
         </div>
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>

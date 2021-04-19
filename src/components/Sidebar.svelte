@@ -47,11 +47,6 @@
       icon: 'stop'
     },
     {
-      slug: 'stock-keeping-units',
-      name: 'Stock Keeping Units',
-      icon: 'local_offer'
-    },
-    {
       slug: 'plans',
       name: 'Subscription Plans',
       icon: 'card_membership'
