@@ -102,30 +102,35 @@
       icon: 'contacts'
     },
     {
-      slug: 'host-domain-names',
-      name: 'Host Domain Names',
-      icon: 'store'
+      slug: 'hosting',
+      name: 'Hosting',
+      icon: 'dns'
     },
-    {
-      slug: 'host-dns-records',
-      name: 'Host DNS Records',
-      icon: 'public'
-    },
-    {
-      slug: 'host-object-storage',
-      name: 'Host Object Storage',
-      icon: 'inbox'
-    },
-    {
-      slug: 'host-databases',
-      name: 'Host Databases',
-      icon: 'layers'
-    },
-    {
-      slug: 'host-deployments',
-      name: 'Host Deployments',
-      icon: 'storage'
-    },
+    // {
+    //   slug: 'host-domain-names',
+    //   name: 'Host Domain Names',
+    //   icon: 'store'
+    // },
+    // {
+    //   slug: 'host-dns-records',
+    //   name: 'Host DNS Records',
+    //   icon: 'public'
+    // },
+    // {
+    //   slug: 'host-object-storage',
+    //   name: 'Host Object Storage',
+    //   icon: 'inbox'
+    // },
+    // {
+    //   slug: 'host-databases',
+    //   name: 'Host Databases',
+    //   icon: 'layers'
+    // },
+    // {
+    //   slug: 'host-deployments',
+    //   name: 'Host Deployments',
+    //   icon: 'storage'
+    // },
     {
       slug: 'access/license-key',
       name: 'Access Permissions',

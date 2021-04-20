@@ -47,7 +47,7 @@
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name} on:change={() => slug = slugify(name)}>
+          <input id="name" type="text" class="validate" bind:value={name}>
           <label for="name">Name</label>
         </div>
         <div class="input-field col s12">
