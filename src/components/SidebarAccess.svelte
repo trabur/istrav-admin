@@ -32,7 +32,7 @@
     })
     navigation.push({
       slug: 'terminate-subscription-plan',
-      name: 'Terminate Subscription-plan'
+      name: 'Terminate Subscription Plan'
     })
   } else {
     navigation.push({
