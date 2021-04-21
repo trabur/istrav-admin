@@ -44,7 +44,7 @@
     let change = {
       name,
       slug,
-      price,
+      // price,
       purchaseUrl,
       grantMarketing,
       grantShop,
@@ -79,7 +79,7 @@
         let data = esPlan.payload.data
         name = data.name
         slug = data.slug
-        price = data.price
+        // price = data.price
         purchaseUrl = data.purchaseUrl
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
@@ -137,11 +137,6 @@
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
         </div>
-        <div class="input-field col s12">
-          <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
-          <label for="price">Price</label>
-        </div>
-        
 
         <div class="input-field col s12">
           {#if products.length}

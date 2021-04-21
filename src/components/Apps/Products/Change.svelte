@@ -20,12 +20,47 @@
   let details
   let url
   let token
+  let afterPurchase
+  let afterPurchases = [
+    {
+      id: '{SUBSCRIPTION_PLAN}',
+      name: 'Add to subscription plans'
+    },
+    {
+      id: '{ORDER_FULFILLMENT}',
+      name: 'Add to orders'
+    },
+    {
+      id: '{DO_NOTHING}',
+      name: 'Do nothing'
+    },
+  ]
+  let subscriptionPlanId = ''
+  let subscriptionPlans = []
+  let subscriptionPlanIdChoices
+  let afterPurchaseChoices
+  let stockKeepingUnit
+  let inStockCount
 
-	async function change() {
+  function afterPurchaseChange () {
+    afterPurchase = afterPurchaseChoices.getValue(true)
+    console.log('afterPurchase', afterPurchase)
+    
+    loadSubscriptionPlans()
+    setTimeout(() => M.updateTextFields(), 0)
+  }
+
+	async function change () {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
     categoryId = categoryIdChoices.getValue(true)
     console.log('categoryId', categoryId)
+
+    afterPurchase = afterPurchaseChoices.getValue(true)
+    console.log('afterPurchase', afterPurchase)
+
+    subscriptionPlanId = subscriptionPlanIdChoices.getValue(true)
+    console.log('subscriptionPlanId', subscriptionPlanId)
 
     let change = {
       name,
@@ -35,7 +70,11 @@
       price: price * 100,
       description,
       details,
-      url
+      url,
+      afterPurchase,
+      subscriptionPlanId,
+      stockKeepingUnit,
+      inStockCount
     }
     let esUpdate = await scripts.store.products.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -44,6 +83,23 @@
     } else {
       alert(esUpdate.payload.reason)
     }
+  }
+
+  function loadSubscriptionPlans () {
+    setTimeout(() => {
+      const subscriptionPlanIdElement = document.querySelector('#subscriptionPlanId');
+      subscriptionPlanIdChoices = new Choices(subscriptionPlanIdElement);
+      subscriptionPlans.forEach((value, index) => {
+        console.log(`${value.id} === ${subscriptionPlanId}`)
+        if (value.id === subscriptionPlanId) {
+          subscriptionPlans[index].selected = true
+        }
+        subscriptionPlans[index].value = value.id
+        subscriptionPlans[index].label = value.name
+      })
+      console.log('subscriptionPlans', subscriptionPlans)
+      subscriptionPlanIdChoices.setChoices(subscriptionPlans, 'value', 'label', false)
+    }, 100)
   }
 
   onMount(async () => {
@@ -69,6 +125,10 @@
         description = data.description
         details = data.details
         url = data.url
+        afterPurchase = `{${data.afterPurchase[0]}}`
+        subscriptionPlanId = data.subscriptionPlanId
+        stockKeepingUnit = data.stockKeepingUnit
+        inStockCount = data.inStockCount
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esProduct.payload.reason)
@@ -97,6 +157,32 @@
         console.log('categories', categories)
         categoryIdChoices.setChoices(categories, 'value', 'label', false)
       }, 0)
+
+      setTimeout(() => {
+        const afterPurchaseElement = document.querySelector('#afterPurchase');
+        afterPurchaseChoices = new Choices(afterPurchaseElement);
+        afterPurchases.forEach((value, index) => {
+          console.log(`${value.id} === ${afterPurchase}`)
+          if (value.id === afterPurchase) {
+            afterPurchases[index].selected = true
+          }
+          afterPurchases[index].value = value.id
+          afterPurchases[index].label = value.name
+        })
+        console.log('afterPurchases', afterPurchases)
+        afterPurchaseChoices.setChoices(afterPurchases, 'value', 'label', false)
+      }, 0)
+
+      // fetch plans for dropdown
+      let esPlans = await scripts.subscription.plans.getAll(appId)
+      console.log('esPlans', esPlans)
+      if (esPlans.payload.success === true) {
+        subscriptionPlans = esPlans.payload.data
+      } else {
+        alert(esPlans.payload.reason)
+      }
+      
+      loadSubscriptionPlans()
     } else {
       alert(esOne.payload.reason)
     }
@@ -202,6 +288,36 @@
           <input id="url" type="text" class="validate" bind:value={url}>
           <label for="url">URL</label>
         </div>
+
+        <div class="input-field col s12">
+          {#if afterPurchases.length}
+            <div class="label">After Purchase</div>
+            <div class="choices">
+              <!-- svelte-ignore a11y-no-onchange -->
+              <select id="afterPurchase" class="choices" bind:value={afterPurchase} on:change={() => afterPurchaseChange()}></select>
+            </div>
+            <br />
+            <br />
+          {/if}
+        </div>
+        <div class="input-field col s12" style={afterPurchase === '{SUBSCRIPTION_PLAN}' ? 'display: visible;' : 'display: none;'}>
+          <div class="label">Subscription Plan</div>
+          <div class="choices">
+            <select id="subscriptionPlanId" class="choices" bind:value={subscriptionPlanId}></select>
+          </div>
+          <br />
+          <br />
+        </div>
+        {#if afterPurchase === '{ORDER_FULFILLMENT}'}
+          <div class="input-field col s12">
+            <input id="stockKeepingUnit" type="text" class="validate" bind:value={stockKeepingUnit}>
+            <label for="stockKeepingUnit">Stock Keeping Unit (SKU)</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="inStockCount" type="number" step="1" class="validate" bind:value={inStockCount}>
+            <label for="inStockCount">Product In Stock Count</label>
+          </div>
+        {/if}
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
