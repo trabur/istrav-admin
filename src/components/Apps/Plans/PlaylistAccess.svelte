@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
 
-  import Delete from './Delete.svelte'
   import SidebarPlans from '../../SidebarPlans.svelte'
 
 	export let domain
@@ -60,7 +59,7 @@
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/plans`
+      window.location = `/apps/${domain}/${state}/plans/${slug}`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -228,7 +227,6 @@
       </div>
     </div>
     <div style="text-align: right;">
-      <Delete appId={appId} slug={slugId} domain={domain} state={state} />
       <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>

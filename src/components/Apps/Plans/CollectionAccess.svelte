@@ -130,7 +130,7 @@
     <SidebarPlans domain={domain} state={state} slug={slug} />
   </div>
   <div class="col s12 m5">
-    <h3 class="title">Bulletin Board Access</h3>
+    <h3 class="title">Collection Access</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">

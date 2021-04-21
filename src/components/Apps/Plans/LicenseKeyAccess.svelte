@@ -1,18 +1,15 @@
 <script>
   import { onMount } from 'svelte';
 
-  import Delete from './Delete.svelte'
   import SidebarPlans from '../../SidebarPlans.svelte'
 
 	export let domain
   export let state
   export let slugId = '';
 
-  let name = ''
   let slug = slugId
-  let price
-  let purchaseUrl
   let appId
+  let grantApplication
   let grantMarketing
   let grantShop
   let grantForum
@@ -20,25 +17,11 @@
   let grantPromo
   let grantHosting
   let grantWhiteLabel
-  let details
-  let raw
-
-  let purchaseId = ''
-  let products = []
-  let purchaseIdChoices
-
-  function isValidJson(string) {
-    try {
-      JSON.parse(string)
-    } catch (e) {
-      return false
-    }
-    return true
-  }
 
 	async function change() {
     let token = localStorage.getItem('token')
     let change = {
+      grantApplication,
       grantMarketing,
       grantShop,
       grantForum,
@@ -50,7 +33,7 @@
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/plans`
+      window.location = `/apps/${domain}/${state}/plans/${slug}`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -69,7 +52,7 @@
       console.log('esPlan', esPlan)
       if (esPlan.payload.success === true) {
         let data = esPlan.payload.data
-        purchaseUrl = data.purchaseUrl
+        grantApplication = data.grantApplication
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
         grantForum = data.grantForum
@@ -97,102 +80,119 @@
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12" style="margin-bottom: 0;">
-          <h5 style="margin-bottom: 0;">App Permissions</h5>
+          <h5 style="margin-bottom: 0;">On Demand Cloud</h5>
         </div>
         <div class="input-field col s12">
-          <div>Marketing:</div>
+          <div>Application:</div>
           <div class="switch">
             <label>
               deny
               <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Shop:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Forum:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Channel:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Promo:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Hosting:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantHosting} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <input type="checkbox" bind:checked={grantApplication} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
               <span class="lever"></span>
               grant
             </label>
           </div>
         </div>
 
-        <div class="input-field col s12" style="margin-bottom: 0;">
-          <h5 style="margin-bottom: 0;">Remove Branding</h5>
-        </div>
-        <div class="input-field col s12">
-          <div>White Label:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantWhiteLabel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
+        {#if grantApplication}
+          <div class="input-field col s12" style="margin-bottom: 0;">
+            <h5 style="margin-bottom: 0;">App Permissions</h5>
           </div>
-        </div>
+          <div class="input-field col s12">
+            <div>Marketing:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Shop:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Forum:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Channel:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Promo:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Hosting:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantHosting} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+
+          <div class="input-field col s12" style="margin-bottom: 0;">
+            <h5 style="margin-bottom: 0;">Remove Branding</h5>
+          </div>
+          <div class="input-field col s12">
+            <div>White Label:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantWhiteLabel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+        {/if}
         
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
     <div style="text-align: right;">
-      <Delete appId={appId} slug={slugId} domain={domain} state={state} />
       <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>

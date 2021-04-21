@@ -16,6 +16,10 @@
       name: 'License Key Access'
     },
     {
+      slug: 'collection-access',
+      name: 'Collection Access'
+    },
+    {
       slug: 'playlist-access',
       name: 'Playlist Access'
     },

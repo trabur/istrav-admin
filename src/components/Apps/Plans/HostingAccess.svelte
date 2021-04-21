@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
 
-  import Delete from './Delete.svelte'
   import SidebarPlans from '../../SidebarPlans.svelte'
 
 	export let domain
@@ -60,7 +59,7 @@
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/plans`
+      window.location = `/apps/${domain}/${state}/plans/${slug}`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -135,100 +134,11 @@
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
+          coming soon...
         </div>
-        <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
-        </div>
-
-        <div class="input-field col s12">
-          {#if products.length}
-            <div class="label">Purchase</div>
-            <div class="choices">
-              <select id="purchaseId" class="choices" bind:value={purchaseId}></select>
-            </div>
-            <br />
-            <br />
-            <br />
-          {/if}
-        </div>
-
-        <div class="input-field col s12">
-          <textarea id="details" type="text" class="validate" bind:value={details}></textarea>
-          <label for="details">Details</label>
-        </div>
-        <div class="input-field col s12">
-          <div>Marketing:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Shop:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Forum:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Channel:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Promo:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
-        </div>
-        <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
     <div style="text-align: right;">
-      <Delete appId={appId} slug={slugId} domain={domain} state={state} />
       <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
@@ -241,19 +151,6 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
-  }
-
-  .choices {
-    position: absolute;
-    right: 0.75em;
-    left: 0.75em;
-    z-index: 10;
   }
 
 </style>
