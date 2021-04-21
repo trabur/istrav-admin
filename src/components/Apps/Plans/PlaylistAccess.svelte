@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
+
   import Delete from './Delete.svelte'
+  import SidebarPlans from '../../SidebarPlans.svelte'
 
 	export let domain
   export let state
@@ -124,9 +126,12 @@
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">CHANGE PLAN</h3>
+  <div class="col s12 m2"></div>
+  <div class="col s12 m3">
+    <SidebarPlans domain={domain} state={state} slug={slug} />
+  </div>
+  <div class="col s12 m5">
+    <h3 class="title">Playlist Access</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
@@ -227,7 +232,7 @@
       <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
-  <div class="col s12 m4"></div>
+  <div class="col s12 m2"></div>
 </div>
 
 <style>
