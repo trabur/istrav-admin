@@ -19,8 +19,8 @@
       name: 'Host Provider'
     })
     navigation.push({
-      slug: 'change-hosting-plan',
-      name: 'Change Hosting Plan'
+      slug: 'change-subscription-plan',
+      name: 'Change Subscription Plan'
     })
     navigation.push({
       slug: 'domain-name',
@@ -31,13 +31,13 @@
       name: 'DNS Records'
     })
     navigation.push({
-      slug: 'terminate-subscription',
-      name: 'Terminate Subscription'
+      slug: 'terminate-subscription-plan',
+      name: 'Terminate Subscription-plan'
     })
   } else {
     navigation.push({
-      slug: 'purchase-plan',
-      name: 'Purchase Plan'
+      slug: 'purchase-subscription-plan',
+      name: 'Purchase-subscription Plan'
     })
   }
 

@@ -115,7 +115,7 @@
   </div>
   <div class="col s12 m5">
     
-    <h3 class="title">Change Hosting Plan</h3>
+    <h3 class="title">Change Subscription Plan</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         {#if hostId}

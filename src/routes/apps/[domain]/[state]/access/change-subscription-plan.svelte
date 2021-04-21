@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import ChangeHostingPlan from '../../../../../components/Apps/Access/ChangeHostingPlan.svelte'
+  import ChangeSubscriptionPlan from '../../../../../components/Apps/Access/ChangeSubscriptionPlan.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../components/Footer.svelte'
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <ChangeHostingPlan domainId={domain} stateId={state} />
+      <ChangeSubscriptionPlan domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />
