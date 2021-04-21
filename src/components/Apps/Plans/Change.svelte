@@ -16,12 +16,12 @@
   let grantForum
   let grantChannel
   let grantPromo
-  let limitOnlineVisitors
-  let limitFileStorage
-  let limitEventSources
-  let limitDatabaseRecords
   let details
   let raw
+
+  let purchaseId = ''
+  let products = []
+  let purchaseIdChoices
 
   function isValidJson(string) {
     try {
@@ -37,6 +37,8 @@
     if (slug === '') return alert('Slug must be defined.')
     if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
     if (!isValidJson(details)) return alert('Details must be valid JSON.')
+    purchaseId = purchaseIdChoices.getValue(true)
+    console.log('purchaseId', purchaseId)
 
     let token = localStorage.getItem('token')
     let change = {
@@ -49,12 +51,9 @@
       grantForum,
       grantChannel,
       grantPromo,
-      limitOnlineVisitors,
-      limitFileStorage,
-      limitEventSources,
-      limitDatabaseRecords,
       raw,
-      details
+      details,
+      purchaseId,
     }
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -74,10 +73,10 @@
       appId = esOne.payload.data.id
 
       // fetch p
-      let esProduct = await scripts.subscription.plans.getOne(appId, slug)
-      console.log('esProduct', esProduct)
-      if (esProduct.payload.success === true) {
-        let data = esProduct.payload.data
+      let esPlan = await scripts.subscription.plans.getOne(appId, slug)
+      console.log('esPlan', esPlan)
+      if (esPlan.payload.success === true) {
+        let data = esPlan.payload.data
         name = data.name
         slug = data.slug
         price = data.price
@@ -87,16 +86,37 @@
         grantForum = data.grantForum
         grantChannel = data.grantChannel
         grantPromo = data.grantPromo
-        limitOnlineVisitors = data.limitOnlineVisitors
-        limitFileStorage = data.limitFileStorage
-        limitEventSources = data.limitEventSources
-        limitDatabaseRecords = data.limitDatabaseRecords
         raw = data.raw
         details = data.details
+        purchaseId = data.purchaseId
         setTimeout(() => M.updateTextFields(), 0)
       } else {
-        alert(esProduct.payload.reason)
+        alert(esPlan.payload.reason)
       }
+
+      // fetch products for dropdown
+      let esProducts = await scripts.store.products.getAll(appId)
+      console.log('esProducts', esProducts)
+      if (esProducts.payload.success === true) {
+        products = esProducts.payload.data
+      } else {
+        alert(esProducts.payload.reason)
+      }
+
+      setTimeout(() => {
+        const purchaseIdElement = document.querySelector('#purchaseId');
+        purchaseIdChoices = new Choices(purchaseIdElement);
+        products.forEach((value, index) => {
+          console.log(`${value.id} === ${purchaseId}`)
+          if (value.id === purchaseId) {
+            products[index].selected = true
+          }
+          products[index].value = value.id
+          products[index].label = value.name
+        })
+        console.log('products', products)
+        purchaseIdChoices.setChoices(products, 'value', 'label', false)
+      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
@@ -121,10 +141,20 @@
           <input id="price" type="number" step="0.01" class="validate" bind:value={price}>
           <label for="price">Price</label>
         </div>
+        
+
         <div class="input-field col s12">
-          <input id="purchaseUrl" type="text" class="validate" bind:value={purchaseUrl}>
-          <label for="purchaseUrl">Purchase Url</label>
+          {#if products.length}
+            <div class="label">Purchase</div>
+            <div class="choices">
+              <select id="purchaseId" class="choices" bind:value={purchaseId}></select>
+            </div>
+            <br />
+            <br />
+            <br />
+          {/if}
         </div>
+
         <div class="input-field col s12">
           <textarea id="details" type="text" class="validate" bind:value={details}></textarea>
           <label for="details">Details</label>
@@ -189,22 +219,7 @@
             </label>
           </div>
         </div>
-        <div class="input-field col s12">
-          <input id="limitOnlineVisitors" type="number" step="1" class="validate" bind:value={limitOnlineVisitors}>
-          <label for="limitOnlineVisitors">limitOnlineVisitors in #/mo</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="limitFileStorage" type="number" step="1" class="validate" bind:value={limitFileStorage}>
-          <label for="limitFileStorage">limitFileStorage in GB/mo</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="limitEventSources" type="number" step="1" class="validate" bind:value={limitEventSources}>
-          <label for="limitEventSources">limitEventSources in GB/mo</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="limitDatabaseRecords" type="number" step="1" class="validate" bind:value={limitDatabaseRecords}>
-          <label for="limitDatabaseRecords">limitDatabaseRecords in GB/mo</label>
-        </div>
+
         <div class="input-field col s12">
           <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
           <label for="raw">Raw</label>
@@ -233,4 +248,12 @@
     border: 1px solid #aaa;
     min-height: 10em;
   }
+
+  .choices {
+    position: absolute;
+    right: 0.75em;
+    left: 0.75em;
+    z-index: 10;
+  }
+
 </style>
