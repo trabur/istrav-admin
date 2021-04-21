@@ -84,7 +84,7 @@
     formData.append('folder', `categories/${slug}`)
     formData.append('sampleFile', files[0])
 
-    fetch('https://hacktracks.org/v1/files/upload', {
+    fetch('https://api.hacktracks.org/v1/files/upload', {
       method: 'POST',
       body: formData
     })
