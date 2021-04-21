@@ -37,7 +37,7 @@
   } else {
     navigation.push({
       slug: 'purchase-subscription-plan',
-      name: 'Purchase-subscription Plan'
+      name: 'Purchase Subscription Plan'
     })
   }
 
