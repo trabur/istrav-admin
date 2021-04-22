@@ -289,7 +289,7 @@
           <label for="url">URL</label>
         </div>
 
-        <div class="input-field col s12">
+        <div class="input-field col s12" style="z-index: 4;">
           {#if afterPurchases.length}
             <div class="label">After Purchase</div>
             <div class="choices">
@@ -300,7 +300,7 @@
             <br />
           {/if}
         </div>
-        <div class="input-field col s12" style={afterPurchase === '{SUBSCRIPTION_PLAN}' ? 'display: visible;' : 'display: none;'}>
+        <div class="input-field col s12 subscription-plan" style={afterPurchase === '{SUBSCRIPTION_PLAN}' ? 'display: visible;' : 'display: none;'}>
           <div class="label">Subscription Plan</div>
           <div class="choices">
             <select id="subscriptionPlanId" class="choices" bind:value={subscriptionPlanId}></select>
@@ -354,5 +354,9 @@
     background: #fff;
     border: 1px solid #aaa;
     min-height: 5em;
+  }
+
+  .subscription-plan {
+    z-index: 3;
   }
 </style>
