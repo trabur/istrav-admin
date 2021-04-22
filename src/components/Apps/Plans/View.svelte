@@ -46,11 +46,11 @@
               <tr>
                 <th>Name</th>
                 <th>Slug</th>
-                <th>Marketing</th>
-                <th>Shop</th>
-                <th>Forum</th>
-                <th>Channel</th>
-                <th>Promo</th>
+                <th>License Key</th>
+                <th>Collection</th>
+                <th>Playlist</th>
+                <th>Bulletin Board</th>
+                <th>Hosting</th>
                 <th style="text-align: right;">Change</th>
               </tr>
             </thead>
@@ -63,7 +63,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantMarketing} />
+                        <input type="checkbox" disabled bind:checked={row.grantApplicationAccess} />
                         <span></span>
                       </label>
                     </form>
@@ -71,7 +71,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantShop} />
+                        <input type="checkbox" disabled bind:checked={row.grantCollectionAccess} />
                         <span></span>
                       </label>
                     </form>
@@ -79,7 +79,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantForum} />
+                        <input type="checkbox" disabled bind:checked={row.grantPlaylistAccess} />
                         <span></span>
                       </label>
                     </form>
@@ -87,7 +87,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantChannel} />
+                        <input type="checkbox" disabled bind:checked={row.grantBulletinBoardAccess} />
                         <span></span>
                       </label>
                     </form>
@@ -95,7 +95,7 @@
                   <td>
                     <form action="#">
                       <label>
-                        <input type="checkbox" disabled bind:checked={row.grantPromo} />
+                        <input type="checkbox" disabled bind:checked={row.grantHostingAccess} />
                         <span></span>
                       </label>
                     </form>
@@ -127,5 +127,6 @@
 
   .list {
     margin: 0 1em;
+    overflow-x: auto;
   }
 </style>

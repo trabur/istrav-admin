@@ -9,7 +9,7 @@
 
   let slug = slugId
   let appId
-  let grantApplication
+  let grantApplicationAccess
   let grantMarketing
   let grantShop
   let grantForum
@@ -21,7 +21,7 @@
 	async function change() {
     let token = localStorage.getItem('token')
     let change = {
-      grantApplication,
+      grantApplicationAccess,
       grantMarketing,
       grantShop,
       grantForum,
@@ -52,7 +52,7 @@
       console.log('esPlan', esPlan)
       if (esPlan.payload.success === true) {
         let data = esPlan.payload.data
-        grantApplication = data.grantApplication
+        grantApplicationAccess = data.grantApplicationAccess
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
         grantForum = data.grantForum
@@ -88,14 +88,14 @@
             <label>
               deny
               <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantApplication} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <input type="checkbox" bind:checked={grantApplicationAccess} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
               <span class="lever"></span>
               grant
             </label>
           </div>
         </div>
 
-        {#if grantApplication}
+        {#if grantApplicationAccess}
           <div class="input-field col s12" style="margin-bottom: 0;">
             <h5 style="margin-bottom: 0;">App Permissions</h5>
           </div>
