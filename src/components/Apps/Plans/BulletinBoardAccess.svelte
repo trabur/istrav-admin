@@ -7,54 +7,28 @@
   export let state
   export let slugId = '';
 
-  let name = ''
   let slug = slugId
-  let price
-  let purchaseUrl
   let appId
+  let grantApplicationAccess
   let grantMarketing
   let grantShop
   let grantForum
   let grantChannel
   let grantPromo
-  let details
-  let raw
-
-  let purchaseId = ''
-  let products = []
-  let purchaseIdChoices
-
-  function isValidJson(string) {
-    try {
-      JSON.parse(string)
-    } catch (e) {
-      return false
-    }
-    return true
-  }
+  let grantHosting
+  let grantWhiteLabel
 
 	async function change() {
-    if (name === '') return alert('Name must be defined.')
-    if (slug === '') return alert('Slug must be defined.')
-    if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
-    if (!isValidJson(details)) return alert('Details must be valid JSON.')
-    purchaseId = purchaseIdChoices.getValue(true)
-    console.log('purchaseId', purchaseId)
-
     let token = localStorage.getItem('token')
     let change = {
-      name,
-      slug,
-      // price,
-      purchaseUrl,
+      grantApplicationAccess,
       grantMarketing,
       grantShop,
       grantForum,
       grantChannel,
       grantPromo,
-      raw,
-      details,
-      purchaseId,
+      grantHosting,
+      grantWhiteLabel
     }
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -73,51 +47,23 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
 
-      // fetch p
+      // fetch plan
       let esPlan = await scripts.subscription.plans.getOne(appId, slug)
       console.log('esPlan', esPlan)
       if (esPlan.payload.success === true) {
         let data = esPlan.payload.data
-        name = data.name
-        slug = data.slug
-        // price = data.price
-        purchaseUrl = data.purchaseUrl
+        grantApplicationAccess = data.grantApplicationAccess
         grantMarketing = data.grantMarketing
         grantShop = data.grantShop
         grantForum = data.grantForum
         grantChannel = data.grantChannel
         grantPromo = data.grantPromo
-        raw = data.raw
-        details = data.details
-        purchaseId = data.purchaseId
+        grantHosting = data.grantHosting
+        grantWhiteLabel = data.grantWhiteLabel
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esPlan.payload.reason)
       }
-
-      // fetch products for dropdown
-      let esProducts = await scripts.store.products.getAll(appId)
-      console.log('esProducts', esProducts)
-      if (esProducts.payload.success === true) {
-        products = esProducts.payload.data
-      } else {
-        alert(esProducts.payload.reason)
-      }
-
-      setTimeout(() => {
-        const purchaseIdElement = document.querySelector('#purchaseId');
-        purchaseIdChoices = new Choices(purchaseIdElement);
-        products.forEach((value, index) => {
-          console.log(`${value.id} === ${purchaseId}`)
-          if (value.id === purchaseId) {
-            products[index].selected = true
-          }
-          products[index].value = value.id
-          products[index].label = value.name
-        })
-        console.log('products', products)
-        purchaseIdChoices.setChoices(products, 'value', 'label', false)
-      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
@@ -133,96 +79,116 @@
     <h3 class="title">Bulletin Board Access</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
-        <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
+        <div class="input-field col s12" style="margin-bottom: 0;">
+          <h5 style="margin-bottom: 0;">On Demand Cloud</h5>
         </div>
         <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
+          <div>Application:</div>
+          <div class="switch">
+            <label>
+              deny
+              <!-- svelte-ignore M -->
+              <input type="checkbox" bind:checked={grantApplicationAccess} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <span class="lever"></span>
+              grant
+            </label>
+          </div>
         </div>
 
-        <div class="input-field col s12">
-          {#if products.length}
-            <div class="label">Purchase</div>
-            <div class="choices">
-              <select id="purchaseId" class="choices" bind:value={purchaseId}></select>
+        {#if grantApplicationAccess}
+          <div class="input-field col s12" style="margin-bottom: 0;">
+            <h5 style="margin-bottom: 0;">App Permissions</h5>
+          </div>
+          <div class="input-field col s12">
+            <div>Marketing:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
             </div>
-            <br />
-            <br />
-            <br />
-          {/if}
-        </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Shop:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Forum:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Channel:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Promo:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <div>Hosting:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantHosting} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
+          </div>
 
-        <div class="input-field col s12">
-          <textarea id="details" type="text" class="validate" bind:value={details}></textarea>
-          <label for="details">Details</label>
-        </div>
-        <div class="input-field col s12">
-          <div>Marketing:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
+          <div class="input-field col s12" style="margin-bottom: 0;">
+            <h5 style="margin-bottom: 0;">Remove Branding</h5>
           </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Shop:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
+          <div class="input-field col s12">
+            <div>White Label:</div>
+            <div class="switch">
+              <label>
+                deny
+                <!-- svelte-ignore M -->
+                <input type="checkbox" bind:checked={grantWhiteLabel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <span class="lever"></span>
+                grant
+              </label>
+            </div>
           </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Forum:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Channel:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-        <div class="input-field col s12">
-          <div>Promo:</div>
-          <div class="switch">
-            <label>
-              deny
-              <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
-              <span class="lever"></span>
-              grant
-            </label>
-          </div>
-        </div>
-
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
-        </div>
+        {/if}
+        
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -240,18 +206,4 @@
     font-size: 2rem;
     font-weight: 900;
   }
-
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
-  }
-
-  .choices {
-    position: absolute;
-    right: 0.75em;
-    left: 0.75em;
-    z-index: 10;
-  }
-
 </style>
