@@ -25,10 +25,10 @@
       slug,
       content
     }
-    let esUpdate = await scripts.app.pages.getUpdate(appId, token, slugId, change)
+    let esUpdate = await scripts.app.faq.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/pages`
+      window.location = `/apps/${domain}/${state}/faq`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -42,17 +42,17 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
 
-      // fetch page
-      let esPages = await scripts.app.pages.getOne(appId, slug)
-      console.log('esPages', esPages)
-      if (esPages.payload.success === true) {
-        let data = esPages.payload.data
-        name = data.name
+      // fetch faq
+      let esFAQ = await scripts.app.faq.getOne(appId, slug)
+      console.log('esFAQ', esFAQ)
+      if (esFAQ.payload.success === true) {
+        let data = esFAQ.payload.data
+        name = data.name // question
         slug = data.slug
-        content = data.content
+        content = data.content // answer
         setTimeout(() => M.updateTextFields(), 0)
       } else {
-        alert(esPages.payload.reason)
+        alert(esFAQ.payload.reason)
       }
     } else {
       alert(esOne.payload.reason)
@@ -73,19 +73,19 @@
 <div class="row">
   <div class="col s12 m2"></div>
   <div class="col s12 m8">
-    <h3 class="title">CHANGE PAGE</h3>
+    <h3 class="title">CHANGE FAQ</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
           <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
+          <label for="name">Question</label>
         </div>
         <div class="input-field col s12">
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
         </div>
         <div class="input-field col s12">
-          <div>Content:</div>
+          <div>Answer:</div>
           <Editor value={content || ''} {plugins} on:change={handleChange} />
         </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
@@ -93,7 +93,7 @@
     </div>
     <div style="text-align: right;">
       <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-      <a href={`/apps/${domain}/${state}/pages`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
+      <a href={`/apps/${domain}/${state}/faq`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
   <div class="col s12 m2"></div>

@@ -64,6 +64,7 @@
       istrav.tenant.apps.init({ host: backend })
       istrav.app.menus.init({ host: backend })
       istrav.app.pages.init({ host: backend })
+      istrav.app.faq.init({ host: backend })
       istrav.store.collections.init({ host: backend })
       istrav.store.categories.init({ host: backend })
       istrav.store.products.init({ host: backend })
