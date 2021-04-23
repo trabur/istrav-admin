@@ -9,7 +9,9 @@
     "start": "node __sapper__/build"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.9.1",
     "axios": "^0.21.1",
+    "bytemd": "^1.9.1",
     "compression": "^1.7.1",
     "is-valid-domain": "^0.0.17",
     "moment": "^2.29.1",

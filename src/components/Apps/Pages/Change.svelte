@@ -1,7 +1,11 @@
 <script>
   import { onMount } from 'svelte';
-  import slugify from 'slugify'
+
   import Delete from './Delete.svelte'
+
+  import 'bytemd/dist/index.min.css';
+  import { Editor, Viewer } from 'bytemd';
+  import gfm from '@bytemd/plugin-gfm';
 
 	export let domain = '';
   export let state = '';
@@ -9,17 +13,7 @@
 
   let name = ''
   let slug = slugId
-  let content = ''
   let appId
-
-  function isValidJson(string) {
-    try {
-      JSON.parse(string)
-    } catch (e) {
-      return false
-    }
-    return true
-  }
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -64,11 +58,21 @@
       alert(esOne.payload.reason)
     }
   })
+
+  let content
+  const plugins = [
+    gfm(),
+    // Add more plugins here
+  ];
+
+  function handleChange(e) {
+    content = e.detail.value;
+  }
 </script>
 
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
+  <div class="col s12 m2"></div>
+  <div class="col s12 m8">
     <h3 class="title">CHANGE PAGE</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
@@ -81,8 +85,8 @@
           <label for="slug">Slug</label>
         </div>
         <div class="input-field col s12">
-          <textarea id="content" type="textarea" class="validate" bind:value={content}></textarea>
-          <label for="content">Content</label>
+          <div>Content:</div>
+          <Editor value={content} {plugins} on:change={handleChange} />
         </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
@@ -92,7 +96,7 @@
       <a href={`/apps/${domain}/${state}/pages`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
     </div>
   </div>
-  <div class="col s12 m4"></div>
+  <div class="col s12 m2"></div>
 </div>
 
 <style>
@@ -101,11 +105,5 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
   }
 </style>

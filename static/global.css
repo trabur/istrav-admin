@@ -44,3 +44,7 @@ body,
 	left: 0;
 	background: #eee;
 }
+
+.bytemd-fullscreen.bytemd {
+	z-index: 1000;
+}
