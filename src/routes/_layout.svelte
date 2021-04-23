@@ -72,6 +72,7 @@
       istrav.subscription.plans.init({ host: backend })
       istrav.channel.videos.init({ host: backend })
       istrav.channel.guides.init({ host: backend })
+      istrav.channel.playlists.init({ host: backend })
       loading = false
     };
     
