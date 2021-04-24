@@ -135,7 +135,7 @@
       </div>
     </h3>
     <div class="card" style="padding: 1em; overflow: hidden; background-color: #ccc;">
-      <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ CANCEL</a>
+      <a href={`/apps/${domain}/${state}/plans`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ BACK</a>
       <h3 class="path">/{slugId}</h3>
       <div style="text-align: right;">
         <Delete appId={appId} slug={slugId} domain={domain} state={state} />
