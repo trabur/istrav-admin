@@ -95,11 +95,6 @@
     font-weight: 900;
   }
 
-  .list {
-    /* margin: 1em 0;
-    padding: 1em 0; */
-  }
-
   .list .image {
     height: 3em;
   }
