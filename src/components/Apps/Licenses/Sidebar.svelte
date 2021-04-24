@@ -34,7 +34,7 @@
 <h3 class="title">SETTINGS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
-    <a href={`/apps/${domain}/${state}/guides/${slug}/${nav.slug}`}>
+    <a href={`/apps/${domain}/${state}/licenses/${slug}/${nav.slug}`}>
       <li class="waves-effect" style="width: 100%;">
         <span class="name">{nav.name}</span>
       </li>
