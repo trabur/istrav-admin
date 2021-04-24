@@ -58,7 +58,7 @@
                     <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
                   </td>
                   <td>{row.name}</td>
-                  <td><a href={`https://${endpoint}.burnfort.com/browse/${row.slug}`} target="_blank">/browse/{row.slug}</a></td>
+                  <td><a href={`https://${endpoint}.burnfort.com/guides/${row.slug}`} target="_blank">/guides/{row.slug}</a></td>
                   <td style="text-align: right;"><a href={`/apps/${domain}/${state}/guides/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}
