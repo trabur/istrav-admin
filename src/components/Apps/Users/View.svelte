@@ -1,8 +1,18 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { Datatable, rows } from 'svelte-simple-datatables'
+
+  const settings = { 
+    columnFilter: true,
+    rowPerPage: 15,
+    scrollY: false,
+    css: false // we use static/table.css instead
+  }
+
   export let domain
   export let state
+
   let appId
   let endpoint
   let table = []
@@ -41,19 +51,19 @@
       <a href={`/apps/${domain}/${state}/users/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <div class="list">
         {#if table.length}
-          <table>
+          <Datatable settings={settings} data={table}>
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th style="text-align: right;">Change</th>
+                <th data-key="image">Image</th>
+                <th data-key="username">Username</th>
+                <th data-key="firstName">First Name</th>
+                <th data-key="lastName">Last Name</th>
+                <th data-key="id" style="text-align: right;">Change</th>
               </tr>
             </thead>
 
             <tbody>
-              {#each table as row (row.id)}
+              {#each $rows as row}
                 <tr>
                   <td>
                     <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
@@ -65,7 +75,7 @@
                 </tr>
               {/each}
             </tbody>
-          </table>
+          </Datatable>
         {/if}
       </div>
     </div>
@@ -84,10 +94,6 @@
     margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  .list {
-    margin: 0 1em;
   }
 
   .list .image {

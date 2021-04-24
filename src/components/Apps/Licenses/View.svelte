@@ -1,8 +1,18 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { Datatable, rows } from 'svelte-simple-datatables'
+
+  const settings = { 
+    columnFilter: true,
+    rowPerPage: 15,
+    scrollY: false,
+    css: false // we use static/table.css instead
+  }
+
   export let domain
   export let state
+
   let appId
   let endpoint
   let table = []
@@ -41,18 +51,18 @@
       <a href={`/apps/${domain}/${state}/licenses/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <div class="list">
         {#if table.length}
-          <table>
+          <Datatable settings={settings} data={table}>
             <thead>
               <tr>
-                <th>Key</th>
-                <th>Registered App</th>
-                <th>Subscription Plan</th>
-                <th style="text-align: right;">Change</th>
+                <th data-key="key">Key</th>
+                <th data-key="register">Registered App</th>
+                <th data-key="plan">Subscription Plan</th>
+                <th data-key="id" style="text-align: right;">Change</th>
               </tr>
             </thead>
 
             <tbody>
-              {#each table as row (row.id)}
+              {#each $rows as row}
                 <tr>
                   <td>{row.key.substring(0,8)}...</td>
                   {#if row.register}
@@ -69,7 +79,7 @@
                 </tr>
               {/each}
             </tbody>
-          </table>
+          </Datatable>
         {/if}
       </div>
     </div>
@@ -88,9 +98,5 @@
     margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  .list {
-    margin: 0 1em;
   }
 </style>

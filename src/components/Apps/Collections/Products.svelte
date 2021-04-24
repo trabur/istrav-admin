@@ -1,9 +1,19 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { Datatable, rows } from 'svelte-simple-datatables'
+
+  const settings = { 
+    columnFilter: true,
+    rowPerPage: 15,
+    scrollY: false,
+    css: false // we use static/table.css instead
+  }
+
   export let domain
   export let state
   export let slug
+
   let appId
   let endpoint
   let uploads
@@ -87,17 +97,17 @@
     <div class="card">
       <div class="list">
         {#if table.length}
-          <table>
+          <Datatable settings={settings} data={table}>
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Slug</th>
-                <th>Select</th>
+                <th data-key="image">Image</th>
+                <th data-key="slug">Slug</th>
+                <th data-key="id">Select</th>
               </tr>
             </thead>
 
             <tbody>
-              {#each table as row (row.id)}
+              {#each $rows as row}
                 <tr>
                   <td>
                     <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
@@ -114,7 +124,7 @@
                 </tr>
               {/each}
             </tbody>
-          </table>
+          </Datatable>
         {/if}
       </div>
     </div>
@@ -127,10 +137,6 @@
     margin: 0 0 0.5em; 
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  .list {
-    margin: 0 1em;
   }
   
   .list .image {
