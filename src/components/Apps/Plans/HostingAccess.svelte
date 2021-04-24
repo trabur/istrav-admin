@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   import Delete from './Delete.svelte'
-  import SidebarPlans from '../../SidebarPlans.svelte'
+  import SidebarPlans from './SidebarPlans.svelte'
 
 	export let domain
   export let state
@@ -20,6 +20,7 @@
   let grantPromo
   let details
   let raw
+  let endpoint
 
   let purchaseId = ''
   let products = []
@@ -73,6 +74,7 @@
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
+      endpoint = esOne.payload.data.endpoint
 
       // fetch p
       let esPlan = await scripts.subscription.plans.getOne(appId, slug)
@@ -139,6 +141,7 @@
       <h3 class="path">/{slugId}</h3>
       <div style="text-align: right;">
         <Delete appId={appId} slug={slugId} domain={domain} state={state} />
+        <a href={`http://${endpoint}.tyu67.com/plans/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
       </div>
     </div>
   </div>

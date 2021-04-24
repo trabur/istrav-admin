@@ -53,7 +53,6 @@
               <tr>
                 <th data-key="name">Name</th>
                 <th data-key="slug">Slug</th>
-                <th data-key="raw">Raw</th>
                 <th data-key="id" style="text-align: right;">Change</th>
               </tr>
             </thead>
@@ -62,8 +61,7 @@
               {#each $rows as row}
                 <tr>
                   <td>{row.name}</td>
-                  <td><a href={`https://${endpoint}.dimension.click/menus/${row.slug}`} target="_blank">/menus/{row.slug}</a></td>
-                  <td>{row.raw}</td>
+                  <td><a href={`http://${endpoint}.tyu67.com/menus/${row.slug}`} target="_blank">/menus/{row.slug}</a></td>
                   <td style="text-align: right;"><a href={`/apps/${domain}/${state}/menus/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}

@@ -47,7 +47,7 @@
     <br />
     <br />
     {#if load}
-      <Change domain={domain} state={state} username={slug}  />
+      <Change domain={domain} state={state}  slugId={slug}  />
     {/if}
     <br />
     <br />

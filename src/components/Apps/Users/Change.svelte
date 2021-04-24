@@ -1,19 +1,23 @@
 <script>
   import { onMount } from 'svelte';
-  import slugify from 'slugify'
+  
+  import Sidebar from './Sidebar.svelte'
   import Delete from './Delete.svelte'
 
 	export let domain = '';
   export let state = '';
-  export let username = '';
-
+  export let slugId = '';
+  
+  let username = slugId;
   let firstName
   let lastName
   let image = ''
+  let slug = slugId
   let appId
   let uploads
   let token
   let id
+  let endpoint
 
 	async function change() {
     if (username === '') return alert('Username must be defined.')
@@ -43,6 +47,7 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       uploads = esOne.payload.data.uploads
+      endpoint = esOne.payload.data.endpoint
 
       // fetch user
       let esUser = await scripts.account.users.getOne(appId, token, username)
@@ -106,10 +111,33 @@
   }
 </script>
 
-<div class="row" style="min-height: 100vh;">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">CHANGE USER</h3>
+<div class="row">
+  <div class="col s0 m1"></div>
+  <div class="col s12 m10">
+    <h3 class="header">
+      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/users</a>
+      <div class="right">
+        <i class="material-icons">flag</i> {state}
+      </div>
+    </h3>
+    <div class="card" style="padding: 1em; overflow: hidden; background-color: #ccc;">
+      <a href={`/apps/${domain}/${state}/users`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ BACK</a>
+      <h3 class="path">/{slugId}</h3>
+      <div style="text-align: right;">
+        <Delete appId={appId} slug={slugId} domain={domain} state={state} />
+        <a href={`http://${endpoint}.tyu67.com/users/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
+      </div>
+    </div>
+  </div>
+  <div class="col s0 m1"></div>
+</div>
+<div class="row">
+  <div class="col s12 m1"></div>
+  <div class="col s12 m3">
+    <Sidebar domain={domain} state={state} slug={slug} />
+  </div>
+  <div class="col s12 m7">
+    <h3 class="title">User</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
@@ -145,20 +173,30 @@
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
-    <div style="text-align: right;">
-      <Delete appId={appId} username={username} domain={domain} state={state} />
-      <a href={`/apps/${domain}/${state}/users`} class="waves-effect btn" style="margin-right: 0.5em;">CANCEL</a>
-    </div>
   </div>
-  <div class="col s12 m4"></div>
+  <div class="col s12 m1"></div>
 </div>
 
 <style>
+  .header {
+    margin: 0 0 0.5em; 
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .path {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    float: left;
+    color: #555;
+    line-height: 1.5em;
+  }
+
   .title {
     margin: 0; 
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
   }
-
 </style>
