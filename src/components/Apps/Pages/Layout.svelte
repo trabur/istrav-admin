@@ -80,7 +80,7 @@
     <Sidebar domain={domain} state={state} slug={slug} active="pages" />
   </div>
   <div class="col s12 m7">
-    <h3 class="title">Page</h3>
+    <h3 class="title">Layout</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">

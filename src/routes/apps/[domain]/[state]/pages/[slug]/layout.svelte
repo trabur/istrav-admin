@@ -4,7 +4,7 @@
 
 <script>
   import { onMount } from 'svelte'
-  import Change from '../../../../../../components/Apps/Plans/BulletinBoardAccess.svelte'
+  import Change from '../../../../../../components/Apps/Pages/Change.svelte'
   import Navigation from '../../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../../components/Footer.svelte'
@@ -38,7 +38,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state} active="plans">
+<Sidebar domain={domain} state={state} active="pages">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
