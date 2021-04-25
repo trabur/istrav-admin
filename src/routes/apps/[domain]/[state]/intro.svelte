@@ -36,8 +36,10 @@
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
-  {#if load === true}
-    <Intro domainId={domain} stateId={state} />
-  {/if}
+  <div style="min-height: 100vh;">
+    {#if load === true}
+      <Intro domainId={domain} stateId={state} />
+    {/if}
+  </div>
   <Footer />
 </Sidebar>

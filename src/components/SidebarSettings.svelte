@@ -19,10 +19,6 @@
       name: 'Chat'
     },
     {
-      slug: 'comments',
-      name: 'Comments'
-    },
-    {
       slug: 'email',
       name: 'Email'
     },
