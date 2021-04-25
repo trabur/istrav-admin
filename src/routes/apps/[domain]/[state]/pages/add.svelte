@@ -34,7 +34,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state}>
+<Sidebar domain={domain} state={state} active="pages">
   <Navigation />
   <div style="min-height: 100vh;">
     <br />

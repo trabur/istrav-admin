@@ -4,6 +4,7 @@
 
   export let domain
   export let state
+  export let active = ''
 
   let navigation = [
     {
@@ -102,8 +103,8 @@
       icon: 'person'
     },
     {
-      slug: 'collaborators',
-      name: 'Collaborators',
+      slug: 'groups',
+      name: 'Groups',
       icon: 'contacts'
     },
     {
@@ -169,7 +170,7 @@
     <ul class="sidenav">
       {#each navigation as nav}
         <a href={`/apps/${domain}/${state}/${nav.slug}`}>
-          <li class="waves-effect" style="width: 100%;">
+          <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
             <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
           </li>
         </a>

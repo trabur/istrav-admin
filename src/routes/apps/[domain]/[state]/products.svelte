@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state}>
+<Sidebar domain={domain} state={state} active="products">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>

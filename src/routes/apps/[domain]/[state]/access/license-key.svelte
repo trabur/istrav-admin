@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state}>
+<Sidebar domain={domain} state={state} active="access/license-key">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>

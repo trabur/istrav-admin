@@ -35,7 +35,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state}>
+<Sidebar domain={domain} state={state} active="collections">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
