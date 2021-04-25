@@ -16,20 +16,12 @@
       name: 'License Key Access'
     },
     {
-      slug: 'collection-access',
-      name: 'Collection Access'
+      slug: 'trigger-actions',
+      name: 'Trigger Actions'
     },
     {
-      slug: 'playlist-access',
-      name: 'Playlist Access'
-    },
-    {
-      slug: 'bulletin-board-access',
-      name: 'Bulletin Board Access'
-    },
-    {
-      slug: 'hosting-access',
-      name: 'Hosting Access'
+      slug: 'event-sources',
+      name: 'Event Sources'
     },
   ]
 

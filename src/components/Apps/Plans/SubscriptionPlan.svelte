@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   import Delete from './Delete.svelte'
-  import SidebarPlans from './SidebarPlans.svelte'
+  import Sidebar from './Sidebar.svelte'
 
 	export let domain
   export let state
@@ -129,7 +129,7 @@
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
-    <SidebarPlans domain={domain} state={state} slug={slug} />
+    <Sidebar domain={domain} state={state} slug={slug} />
   </div>
   <div class="col s12 m7">
     <h3 class="title">Subscription Plan</h3>
