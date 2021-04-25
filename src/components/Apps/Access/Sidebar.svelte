@@ -46,7 +46,7 @@
   })
 </script>
 
-<h3 class="title">ACCESS:</h3>
+<h3 class="title">SETTINGS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/access/${nav.slug}`}>

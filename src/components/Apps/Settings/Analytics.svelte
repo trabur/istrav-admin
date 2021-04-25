@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-  import SidebarSettings from '../../SidebarSettings.svelte'
+
+  import Header from './Header.svelte'
+  import Sidebar from './Sidebar.svelte'
 
   export let domain
   export let state  
@@ -40,12 +42,13 @@
   }
 </script>
 
+<Header domain={domain} state={state} />
 <div class="row">
-  <div class="col s12 m2"></div>
+  <div class="col s12 m1"></div>
   <div class="col s12 m3">
-    <SidebarSettings domain={domain} state={state} />
+    <Sidebar domain={domain} state={state} />
   </div>
-  <div class="col s12 m5">
+  <div class="col s12 m7">
     <h3 class="title">Analytics</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
@@ -57,9 +60,8 @@
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>
     </div>
-    <a href={`/apps/${domain}/${state}`} class="waves-effect btn right">CANCEL</a>
   </div>
-  <div class="col s12 m2"></div>
+  <div class="col s12 m1"></div>
 </div>
 
 <style>

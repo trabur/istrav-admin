@@ -42,7 +42,7 @@
 </script>
 
 
-<h3 class="title">CONFIG:</h3>
+<h3 class="title">SETTINGS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/settings/${nav.slug}`}>

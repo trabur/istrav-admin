@@ -105,7 +105,12 @@
     {
       slug: 'groups',
       name: 'Groups',
-      icon: 'contacts'
+      icon: 'group'
+    },
+    {
+      slug: 'permissions',
+      name: 'Permissions',
+      icon: 'done'
     },
     {
       slug: 'hosting',

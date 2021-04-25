@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-import { validate_each_argument } from 'svelte/internal';
-  import SidebarAccess from '../../SidebarAccess.svelte'
+
+  import Header from './Header.svelte'
+  import Sidebar from './Sidebar.svelte'
   
   export let domainId
   export let stateId
@@ -146,16 +147,17 @@ import { validate_each_argument } from 'svelte/internal';
   }
 </script>
 
+<Header domain={domainId} state={stateId} />
 <div class="row">
-  <div class="col s12 m2"></div>
+  <div class="col s12 m1"></div>
   <div class="col s12 m3">
     {#if hostId}
-      <SidebarAccess domain={domainId} state={stateId} hostId={hostId} />
+      <Sidebar domain={domainId} state={stateId} hostId={hostId} />
     {:else}
-      <SidebarAccess domain={domainId} state={stateId} />
+      <Sidebar domain={domainId} state={stateId} />
     {/if}
   </div>
-  <div class="col s12 m5">
+  <div class="col s12 m7">
     <h3 class="title">DNS Records</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
@@ -195,9 +197,8 @@ import { validate_each_argument } from 'svelte/internal';
         <button target="_blank" style="margin-left: 1em;" class="waves-effect btn" on:click={() => checkDNSRecords(getRecords())}>Check DNS Records</button>
       </div>
     </div>
-    <a href={`/apps/${domainId}/${stateId}`} class="waves-effect btn right">CANCEL</a>
   </div>
-  <div class="col s12 m2"></div>
+  <div class="col s12 m1"></div>
 </div>
 
 <style>
