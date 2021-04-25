@@ -32,6 +32,46 @@
       name: 'Variants'
     },
     {
+      slug: 'purchased-orders',
+      name: 'Purchased Orders'
+    },
+    {
+      slug: 'purchased-license-keys',
+      name: 'Purchased License Keys'
+    },
+    {
+      slug: 'related-collection',
+      name: 'Related Collection'
+    },
+    {
+      slug: 'related-subscription-plans',
+      name: 'Related Subscription Plans'
+    },
+    {
+      slug: 'related-playlist',
+      name: 'Related Playlist'
+    },
+    {
+      slug: 'related-bulletin-board',
+      name: 'Related Bulletin Board'
+    },
+    {
+      slug: 'related-faq',
+      name: 'Related FAQ'
+    },
+    {
+      slug: 'related-pages',
+      name: 'Related Pages'
+    },
+    {
+      slug: 'trigger-actions',
+      name: 'Trigger Actions'
+    },
+    {
+      slug: 'event-sources',
+      name: 'Event Sources'
+    },
+    {
       slug: 'tags',
       name: 'Tags'
     }

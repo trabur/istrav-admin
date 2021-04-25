@@ -48,6 +48,22 @@
       name: 'Related Bulletin Board'
     },
     {
+      slug: 'related-faq',
+      name: 'Related FAQ'
+    },
+    {
+      slug: 'related-pages',
+      name: 'Related Pages'
+    },
+    {
+      slug: 'trigger-actions',
+      name: 'Trigger Actions'
+    },
+    {
+      slug: 'event-sources',
+      name: 'Event Sources'
+    },
+    {
       slug: 'tags',
       name: 'Tags'
     }

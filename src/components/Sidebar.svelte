@@ -12,6 +12,11 @@
       icon: 'dashboard'
     },
     {
+      slug: 'appearance',
+      name: 'Appearance',
+      icon: 'brush'
+    },
+    {
       slug: 'intro',
       name: 'Introduction',
       icon: 'highlight'
