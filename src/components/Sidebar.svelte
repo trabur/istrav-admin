@@ -93,6 +93,11 @@
       icon: 'chat'
     },
     {
+      slug: 'comments',
+      name: 'Topic Comments',
+      icon: 'comment'
+    },
+    {
       slug: 'stored-media',
       name: 'Stored Media',
       icon: 'sd_storage'
@@ -144,7 +149,7 @@
     // },
     {
       slug: 'access/license-key',
-      name: 'Access Permissions',
+      name: 'Access',
       icon: 'power'
     },
     {
