@@ -20,6 +20,10 @@
       name: 'Price'
     },
     {
+      slug: 'image-gallery',
+      name: 'Image Gallery'
+    },
+    {
       slug: 'website-url',
       name: 'Website URL'
     },

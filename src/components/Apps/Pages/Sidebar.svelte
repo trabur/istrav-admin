@@ -16,44 +16,8 @@
       name: 'Layout'
     },
     {
-      slug: 'submit-form',
-      name: 'Submit Form'
-    },
-    {
-      slug: 'main-menu',
-      name: 'Main Menu'
-    },
-    {
-      slug: 'navigation-menu',
-      name: 'Navigation Menu'
-    },
-    {
-      slug: 'footer-menu',
-      name: 'Footer Menu'
-    },
-    {
-      slug: 'related-collection',
-      name: 'Related Collection'
-    },
-    {
-      slug: 'related-subscription-plans',
-      name: 'Related Subscription Plans'
-    },
-    {
-      slug: 'related-playlist',
-      name: 'Related Playlist'
-    },
-    {
-      slug: 'related-bulletin-board',
-      name: 'Related Bulletin Board'
-    },
-    {
-      slug: 'related-faq',
-      name: 'Related FAQ'
-    },
-    {
-      slug: 'related-pages',
-      name: 'Related Pages'
+      slug: 'plugins',
+      name: 'Plugins'
     },
     {
       slug: 'trigger-actions',

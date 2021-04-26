@@ -103,21 +103,6 @@
       icon: 'sd_storage'
     },
     {
-      slug: 'users',
-      name: 'Users',
-      icon: 'person'
-    },
-    {
-      slug: 'groups',
-      name: 'Groups',
-      icon: 'group'
-    },
-    {
-      slug: 'permissions',
-      name: 'Permissions',
-      icon: 'done'
-    },
-    {
       slug: 'hosting',
       name: 'Hosting',
       icon: 'dns'
@@ -148,17 +133,27 @@
     //   icon: 'storage'
     // },
     {
-      slug: 'access/license-key',
-      name: 'Access',
+      slug: 'identification-access-management',
+      name: 'IAM',
+      icon: 'security'
+    },
+    {
+      slug: 'open-source',
+      name: 'Open Source',
       icon: 'power'
     },
     {
-      slug: 'settings/application',
+      slug: 'settings',
       name: 'Settings',
       icon: 'settings'
     },
     {
-      slug: 'event-sources/notifications',
+      slug: 'notifications',
+      name: 'Notifications',
+      icon: 'notifications'
+    },
+    {
+      slug: 'event-sources',
       name: 'Event Sources',
       icon: 'event_note'
     },

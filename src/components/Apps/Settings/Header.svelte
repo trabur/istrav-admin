@@ -19,9 +19,9 @@
       <h3 class="path">/settings</h3>
       <div style="text-align: right;">
         <Delete domain={domain} state={state}/>
-        <a href={`/apps/${domain}/${state}/appearance`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">brush</i></a>
-        <a href={`/apps/${domain}/${state}/settings/application`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">settings</i></a>
-        <a href={`/apps/${domain}/${state}/access/license-key`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">power</i></a>
+        <a href={`/apps/${domain}/${state}/settings`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">settings</i></a>
+        <a href={`/apps/${domain}/${state}/open-source`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">power</i></a>
+        <a href={`/apps/${domain}/${state}/identification-access-management`} class="waves-effect btn right teal" style="margin-right: 1em;"><i class="navicon material-icons">security</i></a>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import HostProvider from '../../../../../components/Apps/Access/HostProvider.svelte'
+  import LicenseKey from '../../../../../components/Apps/OpenSource/LicenseKey.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../components/Footer.svelte'
@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state} active="access/license-key">
+<Sidebar domain={domain} state={state} active="open-source">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <HostProvider domainId={domain} stateId={state} />
+      <LicenseKey domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />

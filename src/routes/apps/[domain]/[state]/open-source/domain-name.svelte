@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import Application from '../../../../../components/Apps/Settings/Application.svelte'
+  import DomainName from '../../../../../components/Apps/OpenSource/DomainName.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../components/Footer.svelte'
@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state} active="settings/application">
+<Sidebar domain={domain} state={state} active="open-source">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <Application domainId={domain} stateId={state} />
+      <DomainName domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />

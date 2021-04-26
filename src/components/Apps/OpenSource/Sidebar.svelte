@@ -8,7 +8,7 @@
 
   let navigation = [
     {
-      slug: 'license-key',
+      slug: '',
       name: 'License Key'
     },
   ]
@@ -49,7 +49,7 @@
 <h3 class="title">SETTINGS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
-    <a href={`/apps/${domain}/${state}/access/${nav.slug}`}>
+    <a href={`/apps/${domain}/${state}/open-source/${nav.slug}`}>
       <li class="waves-effect" style="width: 100%;">
         <span class="name">{nav.name}</span>
       </li>

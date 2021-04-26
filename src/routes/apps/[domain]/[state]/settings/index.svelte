@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import DNSRecords from '../../../../../components/Apps/Access/DNSRecords.svelte'
+  import Application from '../../../../../components/Apps/Settings/Application.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../components/Footer.svelte'
@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state} active="access/license-key">
+<Sidebar domain={domain} state={state} active="settings">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <DNSRecords domainId={domain} stateId={state} />
+      <Application domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />

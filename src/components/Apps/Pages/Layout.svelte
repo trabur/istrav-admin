@@ -4,10 +4,6 @@
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
-  import 'bytemd/dist/index.min.css';
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
-
 	export let domain = '';
   export let state = '';
   export let slugId = '';
@@ -25,7 +21,6 @@
     let change = {
       name,
       slug,
-      content
     }
     let esUpdate = await scripts.app.pages.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -52,7 +47,6 @@
         let data = esPages.payload.data
         name = data.name
         slug = data.slug
-        content = data.content
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esPages.payload.reason)
@@ -61,16 +55,6 @@
       alert(esOne.payload.reason)
     }
   })
-
-  let content = ''
-  const plugins = [
-    gfm(),
-    // Add more plugins here
-  ];
-
-  function handleChange(e) {
-    content = e.detail.value;
-  }
 </script>
 
 <Header domain={domain} state={state} appId={appId} endpoint={endpoint} slugId={slug} />
@@ -83,18 +67,8 @@
     <h3 class="title">Layout</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
-        <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
-        </div>
-        <div class="input-field col s12">
-          <div>Content:</div>
-          <Editor value={content || ''} {plugins} on:change={handleChange} />
-        </div>
+
+
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -103,6 +77,7 @@
 </div>
 
 <style>
+
   .title {
     margin: 0; 
     text-align: center;

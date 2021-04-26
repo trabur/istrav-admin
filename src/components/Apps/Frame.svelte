@@ -8,7 +8,7 @@
     <iframe id="frame" title={state} src={`https://${domain}`} width="400" height="200"></iframe>
   </div>
 
-  <a href={`/apps/${domain}/${state}/settings/application`} class="waves-effect btn btn-large teal" style="width: 100%;">APP SETTINGS</a>
+  <a href={`/apps/${domain}/${state}/settings`} class="waves-effect btn btn-large teal" style="width: 100%;">APP SETTINGS</a>
 </div>
 
 <style>

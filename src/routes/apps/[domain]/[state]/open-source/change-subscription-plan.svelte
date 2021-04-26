@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import DomainName from '../../../../../components/Apps/Access/DomainName.svelte'
+  import ChangeSubscriptionPlan from '../../../../../components/Apps/OpenSource/ChangeSubscriptionPlan.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../components/Footer.svelte'
@@ -32,7 +32,7 @@
   })
 </script>
 
-<Sidebar domain={domain} state={state} active="access/license-key">
+<Sidebar domain={domain} state={state} active="open-source">
   <Navigation>
     <MainLinks domain={domain} state={state} />
   </Navigation>
@@ -41,7 +41,7 @@
     <br />
     <br />
     {#if load === true}
-      <DomainName domainId={domain} stateId={state} />
+      <ChangeSubscriptionPlan domainId={domain} stateId={state} />
     {/if}
     <br />
     <br />
