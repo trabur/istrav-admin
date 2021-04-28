@@ -5,31 +5,38 @@
   export let domain
   export let state
   export let slug
+  export let active
 
   let navigation = [
     {
       slug: '',
-      name: 'Page'
+      name: 'Page',
+      icon: ''
     },
     {
       slug: 'layout',
-      name: 'Layout'
+      name: 'Layout',
+      icon: ''
     },
     {
       slug: 'plugins',
-      name: 'Plugins'
+      name: 'Plugins',
+      icon: ''
     },
     {
       slug: 'trigger-actions',
-      name: 'Trigger Actions'
+      name: 'Trigger Actions',
+      icon: ''
     },
     {
       slug: 'event-sources',
-      name: 'Event Sources'
+      name: 'Event Sources',
+      icon: ''
     },
     {
       slug: 'tags',
-      name: 'Tags'
+      name: 'Tags',
+      icon: ''
     }
   ]
 
@@ -47,8 +54,8 @@
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/pages/${slug}/${nav.slug}`}>
-      <li class="waves-effect" style="width: 100%;">
-        <span class="name">{nav.name}</span>
+      <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
+        <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
       </li>
     </a>
   {/each}
@@ -68,8 +75,16 @@
   ul li {
     border-bottom: 1px solid #aaa;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 24px 1fr;
     padding: 0.5em;
+  }
+
+  ul li .active {
+    background-color: #aaa;
+  }
+  
+  .navicon {
+    margin-top: 0.1em;
   }
 
   .name {

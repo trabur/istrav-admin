@@ -5,39 +5,48 @@
   export let domain
   export let state
   export let slug
+  export let active
 
   let navigation = [
     {
       slug: '',
-      name: 'User'
+      name: 'User',
+      icon: ''
     },
     {
       slug: 'orders',
-      name: 'Orders'
+      name: 'Orders',
+      icon: ''
     },
     {
       slug: 'shopping-cart',
-      name: 'Shopping Cart'
+      name: 'Shopping Cart',
+      icon: ''
     },
     {
       slug: 'channel-videos',
-      name: 'Channel Videos'
+      name: 'Channel Videos',
+      icon: ''
     },
     {
       slug: 'message-topics',
-      name: 'Message Topics'
+      name: 'Message Topics',
+      icon: ''
     },
     {
       slug: 'reset-password',
-      name: 'Reset Password'
+      name: 'Reset Password',
+      icon: ''
     },
     {
       slug: 'send-email',
-      name: 'Send Email'
+      name: 'Send Email',
+      icon: ''
     },
     {
       slug: 'tags',
-      name: 'Tags'
+      name: 'Tags',
+      icon: ''
     }
   ]
 
@@ -55,8 +64,8 @@
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/users/${slug}/${nav.slug}`}>
-      <li class="waves-effect" style="width: 100%;">
-        <span class="name">{nav.name}</span>
+      <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
+        <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
       </li>
     </a>
   {/each}
@@ -76,8 +85,16 @@
   ul li {
     border-bottom: 1px solid #aaa;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 24px 1fr;
     padding: 0.5em;
+  }
+
+  ul li .active {
+    background-color: #aaa;
+  }
+  
+  .navicon {
+    margin-top: 0.1em;
   }
 
   .name {

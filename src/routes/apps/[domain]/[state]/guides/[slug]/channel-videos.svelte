@@ -1,7 +1,7 @@
 
 <script>
   import { onMount } from 'svelte';
-  import View from '../../../../../../components/Apps/Guides/Videos.svelte'
+  import View from '../../../../../../components/Apps/Guides/ChannelVideos.svelte'
   import Navigation from '../../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../../components/Footer.svelte'

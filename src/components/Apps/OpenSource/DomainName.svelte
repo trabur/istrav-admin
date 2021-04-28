@@ -67,9 +67,9 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
     {#if hostId}
-      <Sidebar domain={domainId} state={stateId} hostId={hostId} />
+      <Sidebar domain={domainId} state={stateId} hostId={hostId} active="domain-name" />
     {:else}
-      <Sidebar domain={domainId} state={stateId} />
+      <Sidebar domain={domainId} state={stateId} active="domain-name" />
     {/if}
   </div>
   <div class="col s12 m7">
@@ -91,13 +91,13 @@
           <label for="state">State</label>
         </div>
         <div style="padding: 0 1em;">Keep State set to "production" unless you know what you're doing. Make sure Domain Name is correct before moving on.</div>
-        <a href={`/apps/${domainId}/${stateId}/settings/application`} style="margin-left: 1em;" class="waves-effect btn">Application Settings</a>
+        <a href={`/apps/${domainId}/${stateId}/settings`} style="margin-left: 1em;" class="waves-effect btn">Application Settings</a>
         <br />
         <br />
         <br />
 
         <div style="padding: 0 1em;">We use Route53 by AWS to transfer, register, and manage our domain names. Then we point each domain name's nameservers to Cloudflare for managing DNS records. These records then point to an IP where our servers are located.</div>
-        <a href={`/apps/${domainId}/${stateId}/access/dns-records`} style="margin-left: 1em;" class="waves-effect btn">Point to servers</a>
+        <a href={`/apps/${domainId}/${stateId}/open-source/dns-records`} style="margin-left: 1em;" class="waves-effect btn">Point to servers</a>
       </div>
     </div>
   </div>

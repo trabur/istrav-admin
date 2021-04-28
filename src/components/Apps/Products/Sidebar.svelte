@@ -5,55 +5,68 @@
   export let domain
   export let state
   export let slug
+  export let active
 
   let navigation = [
     {
       slug: '',
-      name: 'Product'
+      name: 'Product',
+      icon: ''
     },
     {
       slug: 'category',
-      name: 'Category'
+      name: 'Category',
+      icon: ''
     },
     {
       slug: 'price',
-      name: 'Price'
+      name: 'Price',
+      icon: ''
     },
     {
       slug: 'image-gallery',
-      name: 'Image Gallery'
+      name: 'Image Gallery',
+      icon: ''
     },
     {
       slug: 'website-url',
-      name: 'Website URL'
+      name: 'Website URL',
+      icon: ''
     },
     {
       slug: 'content',
-      name: 'Content'
+      name: 'Content',
+      icon: ''
     },
     {
       slug: 'variants',
-      name: 'Variants'
+      name: 'Variants',
+      icon: ''
     },
     {
       slug: 'purchased-orders',
-      name: 'Purchased Orders'
+      name: 'Purchased Orders',
+      icon: ''
     },
     {
       slug: 'purchased-license-keys',
-      name: 'Purchased License Keys'
+      name: 'Purchased License Keys',
+      icon: ''
     },
     {
       slug: 'trigger-actions',
-      name: 'Trigger Actions'
+      name: 'Trigger Actions',
+      icon: ''
     },
     {
       slug: 'event-sources',
-      name: 'Event Sources'
+      name: 'Event Sources',
+      icon: ''
     },
     {
       slug: 'tags',
-      name: 'Tags'
+      name: 'Tags',
+      icon: ''
     }
   ]
 
@@ -71,8 +84,8 @@
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/products/${slug}/${nav.slug}`}>
-      <li class="waves-effect" style="width: 100%;">
-        <span class="name">{nav.name}</span>
+      <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
+        <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
       </li>
     </a>
   {/each}
@@ -92,8 +105,16 @@
   ul li {
     border-bottom: 1px solid #aaa;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 24px 1fr;
     padding: 0.5em;
+  }
+
+  ul li .active {
+    background-color: #aaa;
+  }
+  
+  .navicon {
+    margin-top: 0.1em;
   }
 
   .name {

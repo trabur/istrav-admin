@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
 
+  import Header from './Header.svelte'
+  import Sidebar from './Sidebar.svelte'
+
   import { Datatable, rows } from 'svelte-simple-datatables'
 
   const settings = { 
@@ -85,15 +88,14 @@
 </script>
 
 
+<Header {appId} {domain} {state} {endpoint} {slug} />
 <div class="row">
-  <div class="col s0 m1"></div>
-  <div class="col s12 m10">
-    <h3 class="title">
-      <a href={`/apps/${domain}/${state}/guides/${slug}`}><i class="material-icons">store</i> /guides/{slug}/videos</a>
-      <div class="right">
-        <i class="material-icons">flag</i> {state}
-      </div>
-    </h3>
+  <div class="col s12 m1"></div>
+  <div class="col s12 m3">
+    <Sidebar domain={domain} state={state} slug={slug} active="channel-videos" />
+  </div>
+  <div class="col s12 m7">
+    <h3 class="title">Channel Videos</h3>
     <div class="card">
       <div class="list">
         {#if table.length}
@@ -136,7 +138,8 @@
 
 <style>
   .title {
-    margin: 0 0 0.5em; 
+    margin: 0; 
+    text-align: center;
     font-size: 2rem;
     font-weight: 900;
   }

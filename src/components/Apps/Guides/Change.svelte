@@ -2,6 +2,7 @@
 <script>
   import { onMount } from 'svelte';
   
+  import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
   import Delete from './Delete.svelte'
 
@@ -105,30 +106,11 @@
   }
 </script>
 
-<div class="row">
-  <div class="col s0 m1"></div>
-  <div class="col s12 m10">
-    <h3 class="header">
-      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/guides</a>
-      <div class="right">
-        <i class="material-icons">flag</i> {state}
-      </div>
-    </h3>
-    <div class="card" style="padding: 1em; overflow: hidden; background-color: #ccc;">
-      <a href={`/apps/${domain}/${state}/guides`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ BACK</a>
-      <h3 class="path">/{slugId}</h3>
-      <div style="text-align: right;">
-        <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-        <a href={`http://${endpoint}.tyu67.com/guides/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
-      </div>
-    </div>
-  </div>
-  <div class="col s0 m1"></div>
-</div>
+<Header {appId} {domain} {state} {endpoint} {slug} />
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
-    <Sidebar domain={domain} state={state} slug={slug} active="guides" />
+    <Sidebar domain={domain} state={state} slug={slug} active="" />
   </div>
   <div class="col s12 m7">
     <h3 class="title">Channel Guide</h3>
@@ -161,7 +143,6 @@
 
         <br />
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
-        <a href={`/apps/${domain}/${state}/guides/${slugId}/videos`} style="margin-right: 1em;" class="right waves-effect btn"><i class="material-icons">videocam</i></a>
       </div>
     </div>
   </div>
@@ -169,21 +150,6 @@
 </div>
 
 <style>
-  .header {
-    margin: 0 0 0.5em; 
-    font-size: 2rem;
-    font-weight: 900;
-  }
-
-  .path {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    float: left;
-    color: #555;
-    line-height: 1.5em;
-  }
-
   .title {
     margin: 0; 
     text-align: center;

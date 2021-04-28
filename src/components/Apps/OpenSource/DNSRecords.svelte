@@ -152,9 +152,9 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
     {#if hostId}
-      <Sidebar domain={domainId} state={stateId} hostId={hostId} />
+      <Sidebar domain={domainId} state={stateId} hostId={hostId} active="dns-records" />
     {:else}
-      <Sidebar domain={domainId} state={stateId} />
+      <Sidebar domain={domainId} state={stateId} active="dns-records" />
     {/if}
   </div>
   <div class="col s12 m7">

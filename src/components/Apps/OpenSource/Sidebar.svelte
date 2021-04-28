@@ -5,39 +5,47 @@
   export let domain
   export let state
   export let hostId
+  export let active
 
   let navigation = [
     {
       slug: '',
-      name: 'License Key'
+      name: 'License Key',
+      icon: ''
     },
   ]
 
   if (hostId) {
     navigation.push({
       slug: 'host-provider',
-      name: 'Host Provider'
+      name: 'Host Provider',
+      icon: ''
     })
     navigation.push({
       slug: 'change-subscription-plan',
-      name: 'Change Subscription Plan'
+      name: 'Change Subscription Plan',
+      icon: ''
     })
     navigation.push({
       slug: 'domain-name',
-      name: 'Domain Name'
+      name: 'Domain Name',
+      icon: ''
     })
     navigation.push({
       slug: 'dns-records',
-      name: 'DNS Records'
+      name: 'DNS Records',
+      icon: ''
     })
     navigation.push({
       slug: 'terminate-subscription-plan',
-      name: 'Terminate Subscription Plan'
+      name: 'Terminate Subscription Plan',
+      icon: ''
     })
   } else {
     navigation.push({
       slug: 'purchase-subscription-plan',
-      name: 'Purchase Subscription Plan'
+      name: 'Purchase Subscription Plan',
+      icon: ''
     })
   }
 
@@ -50,8 +58,8 @@
 <ul class="sidenav">
   {#each navigation as nav}
     <a href={`/apps/${domain}/${state}/open-source/${nav.slug}`}>
-      <li class="waves-effect" style="width: 100%;">
-        <span class="name">{nav.name}</span>
+      <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
+        <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
       </li>
     </a>
   {/each}
@@ -71,8 +79,16 @@
   ul li {
     border-bottom: 1px solid #aaa;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 24px 1fr;
     padding: 0.5em;
+  }
+
+  ul li .active {
+    background-color: #aaa;
+  }
+  
+  .navicon {
+    margin-top: 0.1em;
   }
 
   .name {

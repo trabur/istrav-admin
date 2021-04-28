@@ -129,7 +129,7 @@
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
-    <Sidebar domain={domain} state={state} slug={slug} active="categories" />
+    <Sidebar domain={domain} state={state} slug={slug} active="" />
   </div>
   <div class="col s12 m7">
     <h3 class="title">Category</h3>

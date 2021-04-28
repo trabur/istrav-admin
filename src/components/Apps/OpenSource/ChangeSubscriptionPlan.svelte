@@ -111,9 +111,9 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
     {#if hostId}
-      <Sidebar domain={domainId} state={stateId} hostId={hostId} />
+      <Sidebar domain={domainId} state={stateId} hostId={hostId} active="change-subscription-plan" />
     {:else}
-      <Sidebar domain={domainId} state={stateId} />
+      <Sidebar domain={domainId} state={stateId} active="change-subscription-plan" />
     {/if}
   </div>
   <div class="col s12 m7">

@@ -58,7 +58,7 @@
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
-    <Sidebar domain={domain} state={state} />
+    <Sidebar domain={domain} state={state} active="payments" />
   </div>
   <div class="col s12 m7">
     <h3 class="title">Payments</h3>
