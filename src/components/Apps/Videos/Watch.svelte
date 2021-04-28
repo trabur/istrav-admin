@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
 
+  import Header from './Header.svelte'
+  import Sidebar from './Sidebar.svelte'
+
 	export let domain = '';
   export let state = '';
   export let slugId = '';
@@ -12,6 +15,7 @@
   let uploads
   let token
   let loading = false
+  let endpoint
 
 	async function change() {
 
@@ -36,6 +40,7 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       uploads = esOne.payload.data.uploads
+      endpoint = esOne.payload.data.endpoint
 
       // fetch video
       let esVideo = await scripts.channel.videos.getOne(appId, slug)
@@ -100,10 +105,14 @@
   }
 </script>
 
+<Header domain={domain} state={state} appId={appId} endpoint={endpoint} slugId={slug} />
 <div class="row">
-  <div class="col s12 m4"></div>
-  <div class="col s12 m4">
-    <h3 class="title">WATCH: {name}</h3>
+  <div class="col s12 m1"></div>
+  <div class="col s12 m3">
+    <Sidebar domain={domain} state={state} slug={slug} active="watch" />
+  </div>
+  <div class="col s12 m7">
+    <h3 class="title">Watch</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <button class="btn" on:click={(e)=>{e.preventDefault();fileinput.click();}}>Select Media</button>
@@ -122,7 +131,7 @@
         </div>
         {#if video}
           <!-- svelte-ignore a11y-media-has-caption -->
-          <video width="320" height="240" controls>
+          <video controls style="width: 100%;">
             <source src={`${uploads}/${video}`}>
           </video>
           <p>{`${uploads}/${video}`}</p>
@@ -130,9 +139,6 @@
 
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
-    </div>
-    <div style="text-align: right;">
-      <a href={`/apps/${domain}/${state}/videos/${slug}`} class="waves-effect btn">CANCEL</a>
     </div>
   </div>
   <div class="col s12 m4"></div>

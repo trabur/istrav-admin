@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   
+  import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
   import Delete from './Delete.svelte'
 
@@ -16,15 +17,12 @@
   let uploads
   let description
   let token
-  let contentCreatorId = ''
-  let users = []
-  let contentCreatorIdChoices
   let endpoint
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
-    
+
     let change = {
       name,
       slug,
@@ -62,34 +60,11 @@
         image = data.image
         video = data.video
         description = data.description
+
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esVideo.payload.reason)
       }
-
-      // fetch users for dropdown
-      let esUsers = await scripts.account.users.getAll(appId)
-      console.log('esUsers', esUsers)
-      if (esUsers.payload.success === true) {
-        users = esUsers.payload.data
-      } else {
-        alert(esUsers.payload.reason)
-      }
-      
-      setTimeout(() => {
-        const contentCreatorIdElement = document.querySelector('#contentCreatorId');
-        contentCreatorIdChoices = new Choices(contentCreatorIdElement);
-        users.forEach((value, index) => {
-          console.log(`${value.id} === ${contentCreatorId}`)
-          if (value.id === contentCreatorId) {
-            users[index].selected = true
-          }
-          users[index].value = value.id
-          users[index].label = value.username
-        })
-        console.log('users', users)
-        contentCreatorIdChoices.setChoices(users, 'value', 'label', false)
-      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
@@ -138,26 +113,7 @@
   }
 </script>
 
-<div class="row">
-  <div class="col s0 m1"></div>
-  <div class="col s12 m10">
-    <h3 class="header">
-      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/videos</a>
-      <div class="right">
-        <i class="material-icons">flag</i> {state}
-      </div>
-    </h3>
-    <div class="card" style="padding: 1em; overflow: hidden; background-color: #ccc;">
-      <a href={`/apps/${domain}/${state}/videos`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ BACK</a>
-      <h3 class="path">/{slugId}</h3>
-      <div style="text-align: right;">
-        <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-        <a href={`http://${endpoint}.tyu67.com/videos/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
-      </div>
-    </div>
-  </div>
-  <div class="col s0 m1"></div>
-</div>
+<Header domain={domain} state={state} appId={appId} endpoint={endpoint} slugId={slug} />
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m3">
@@ -175,18 +131,6 @@
           <input id="slug" type="text" class="validate" bind:value={slug}>
           <label for="slug">Slug</label>
         </div>
-
-        <div class="input-field col s12">
-          {#if users.length}
-            <div class="label">Content Creator</div>
-            <div class="choices">
-              <select id="contentCreatorId" class="choices" bind:value={contentCreatorId}></select>
-            </div>
-            <br />
-            <br />
-          {/if}
-        </div>
-
         {#if preview}
           <img class="preview" src="{preview}" alt="d" style="max-width: 100%;" />
         {/if}
@@ -203,8 +147,6 @@
         <img src={`${uploads}/${image}`} alt="" style="width: 100%;" />
         <p>{`${uploads}/${image}`}</p>
 
-        <a href={`/apps/${domain}/${state}/videos/${slug}/watch`} class="waves-effect btn btn-large" style="width: 100%;">GOTO VIDEO</a>
-
         <div class="input-field col s12">
           <textarea id="description" type="text" class="validate" bind:value={description}></textarea>
           <label for="description">Description</label>
@@ -217,21 +159,6 @@
 </div>
 
 <style>
-  .header {
-    margin: 0 0 0.5em; 
-    font-size: 2rem;
-    font-weight: 900;
-  }
-
-  .path {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    float: left;
-    color: #555;
-    line-height: 1.5em;
-  }
-
   .title {
     margin: 0; 
     text-align: center;
@@ -243,18 +170,5 @@
     background: #fff;
     border: 1px solid #aaa;
     min-height: 5em;
-  }
-
-  .choices {
-    position: absolute;
-    right: 0.75em;
-    left: 0.75em;
-    z-index: 10;
-  }
-
-  .label {
-    color: #9E9E99;
-    font-size: 0.7em;
-    margin-top: -1em;
   }
 </style>

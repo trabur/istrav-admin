@@ -11,12 +11,12 @@
     {
       slug: '',
       name: 'Playlist',
-      icon: ''
+      icon: 'playlist_play'
     },
     {
       slug: 'channel-guides',
       name: 'Channel Guides',
-      icon: ''
+      icon: 'ondemand_video'
     }
   ]
 

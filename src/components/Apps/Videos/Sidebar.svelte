@@ -11,27 +11,27 @@
     {
       slug: '',
       name: 'Video',
-      icon: ''
+      icon: 'videocam'
     },
     {
       slug: 'content-creator',
       name: 'Content Creator',
-      icon: ''
+      icon: 'person'
     },
     {
       slug: 'watch',
       name: 'Watch',
-      icon: ''
+      icon: 'play_arrow'
     },
     {
       slug: 'channel-guides',
       name: 'Channel Guides',
-      icon: ''
+      icon: 'ondemand_video'
     },
     {
       slug: 'tags',
       name: 'Tags',
-      icon: ''
+      icon: 'tag'
     }
   ]
 
