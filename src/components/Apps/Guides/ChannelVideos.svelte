@@ -116,7 +116,7 @@
                     <img src={`${uploads}/${row.image}`} class="image" alt={row.image} />
                   </td>
                   <!-- <td>{row.name}</td> -->
-                  <td><a href={`https://${endpoint}.burnfort.com/watch/${row.slug}`} target="_blank">/watch/{row.slug}</a></td>
+                  <td><a href={`http://${endpoint}.burnfort.com/watch/${row.slug}`} target="_blank">/watch/{row.slug}</a></td>
                   <td>
                     <form action="#">
                       <label>

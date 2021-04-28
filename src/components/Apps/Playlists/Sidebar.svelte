@@ -14,7 +14,7 @@
       icon: 'playlist_play'
     },
     {
-      slug: 'channel-guides',
+      slug: 'guides',
       name: 'Channel Guides',
       icon: 'ondemand_video'
     }

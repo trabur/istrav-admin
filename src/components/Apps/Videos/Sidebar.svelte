@@ -23,11 +23,11 @@
       name: 'Watch',
       icon: 'play_arrow'
     },
-    {
-      slug: 'channel-guides',
-      name: 'Channel Guides',
-      icon: 'ondemand_video'
-    },
+    // {
+    //   slug: 'channel-guides',
+    //   name: 'Channel Guides',
+    //   icon: 'ondemand_video'
+    // },
     {
       slug: 'tags',
       name: 'Tags',
