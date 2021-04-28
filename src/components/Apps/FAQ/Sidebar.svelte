@@ -11,17 +11,7 @@
     {
       slug: '',
       name: 'FAQ',
-      icon: ''
-    },
-    {
-      slug: 'order-items',
-      name: 'Order Items',
-      icon: ''
-    },
-    {
-      slug: 'edit-items',
-      name: 'Edit Items',
-      icon: ''
+      icon: 'help'
     }
   ]
 

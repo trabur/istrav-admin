@@ -11,17 +11,12 @@
     {
       slug: '',
       name: 'Collection',
-      icon: ''
+      icon: 'apps'
     },
     {
-      slug: 'order-items',
-      name: 'Order Items',
-      icon: ''
-    },
-    {
-      slug: 'edit-items',
-      name: 'Edit Items',
-      icon: ''
+      slug: 'products',
+      name: 'Products',
+      icon: 'stop'
     }
   ]
 

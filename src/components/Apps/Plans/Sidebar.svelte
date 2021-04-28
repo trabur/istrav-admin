@@ -11,22 +11,22 @@
     {
       slug: '',
       name: 'Subscription Plan',
-      icon: ''
+      icon: 'card_membership'
     },
     {
       slug: 'license-key-access',
       name: 'License Key Access',
-      icon: ''
+      icon: 'cloud'
     },
     {
       slug: 'trigger-actions',
       name: 'Trigger Actions',
-      icon: ''
+      icon: 'plus_one'
     },
     {
       slug: 'event-sources',
       name: 'Event Sources',
-      icon: ''
+      icon: 'event_note'
     },
   ]
 

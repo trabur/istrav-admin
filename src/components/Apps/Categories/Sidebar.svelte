@@ -11,18 +11,13 @@
     {
       slug: '',
       name: 'Category',
-      icon: ''
+      icon: 'widgets'
     },
     {
-      slug: 'order-items',
-      name: 'Order Items',
-      icon: ''
+      slug: 'products',
+      name: 'Products',
+      icon: 'stop'
     },
-    {
-      slug: 'edit-items',
-      name: 'Edit Items',
-      icon: ''
-    }
   ]
 
   onMount(() => {

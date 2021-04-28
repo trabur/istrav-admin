@@ -10,18 +10,18 @@
   let navigation = [
     {
       slug: '',
-      name: 'License',
-      icon: ''
+      name: 'License Key',
+      icon: 'vpn_key'
     },
     {
       slug: 'plan',
-      name: 'Plan',
-      icon: ''
+      name: 'Subscription Plan',
+      icon: 'card_membership'
     },
     {
       slug: 'register',
-      name: 'Register',
-      icon: ''
+      name: 'Register Application',
+      icon: 'store'
     },
   ]
 

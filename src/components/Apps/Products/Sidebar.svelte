@@ -11,62 +11,57 @@
     {
       slug: '',
       name: 'Product',
-      icon: ''
+      icon: 'stop'
     },
     {
       slug: 'category',
       name: 'Category',
-      icon: ''
+      icon: 'widgets'
     },
     {
       slug: 'price',
       name: 'Price',
-      icon: ''
+      icon: 'attach_money'
     },
     {
       slug: 'image-gallery',
       name: 'Image Gallery',
-      icon: ''
+      icon: 'image'
     },
     {
       slug: 'website-url',
       name: 'Website URL',
-      icon: ''
-    },
-    {
-      slug: 'content',
-      name: 'Content',
-      icon: ''
+      icon: 'public'
     },
     {
       slug: 'variants',
       name: 'Variants',
-      icon: ''
+      icon: 'tune'
     },
     {
       slug: 'purchased-orders',
       name: 'Purchased Orders',
-      icon: ''
+      icon: 'markunread_mailbox'
     },
     {
       slug: 'purchased-license-keys',
       name: 'Purchased License Keys',
-      icon: ''
+      icon: 'vpn_key'
     },
     {
       slug: 'trigger-actions',
       name: 'Trigger Actions',
-      icon: ''
+      icon: 'plus_one'
     },
     {
       slug: 'event-sources',
       name: 'Event Sources',
-      icon: ''
+      icon: 'event_note'
     },
     {
       slug: 'tags',
       name: 'Tags',
-      icon: ''
+      icon: 'tag'
     }
   ]
 

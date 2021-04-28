@@ -11,32 +11,32 @@
     {
       slug: '',
       name: 'Page',
-      icon: ''
+      icon: 'note'
     },
     {
       slug: 'layout',
       name: 'Layout',
-      icon: ''
+      icon: 'crop'
     },
     {
       slug: 'plugins',
       name: 'Plugins',
-      icon: ''
+      icon: 'extension'
     },
     {
       slug: 'trigger-actions',
       name: 'Trigger Actions',
-      icon: ''
+      icon: 'plus_one'
     },
     {
       slug: 'event-sources',
       name: 'Event Sources',
-      icon: ''
+      icon: 'event_note'
     },
     {
       slug: 'tags',
       name: 'Tags',
-      icon: ''
+      icon: 'tag'
     }
   ]
 

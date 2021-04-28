@@ -11,17 +11,17 @@
     {
       slug: '',
       name: 'Menu',
-      icon: ''
+      icon: 'menu'
     },
     {
       slug: 'order-items',
       name: 'Order Items',
-      icon: ''
+      icon: 'low_priority'
     },
     {
       slug: 'edit-items',
       name: 'Edit Items',
-      icon: ''
+      icon: 'playlist_add'
     }
   ]
 
@@ -70,6 +70,11 @@
   
   .navicon {
     margin-top: 0.1em;
+  }
+
+  .name {
+    margin-top: 0.1em;
+    margin-left: 0.5em;
   }
 
   .sidenav {
