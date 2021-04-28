@@ -11,7 +11,7 @@
     {
       slug: '',
       name: 'License Key',
-      icon: ''
+      icon: 'vpn_key'
     },
   ]
 
@@ -19,33 +19,33 @@
     navigation.push({
       slug: 'host-provider',
       name: 'Host Provider',
-      icon: ''
+      icon: 'domain'
     })
     navigation.push({
       slug: 'change-subscription-plan',
       name: 'Change Subscription Plan',
-      icon: ''
+      icon: 'card_membership'
     })
     navigation.push({
       slug: 'domain-name',
       name: 'Domain Name',
-      icon: ''
+      icon: 'store'
     })
     navigation.push({
       slug: 'dns-records',
       name: 'DNS Records',
-      icon: ''
+      icon: 'golf_course'
     })
     navigation.push({
       slug: 'terminate-subscription-plan',
       name: 'Terminate Subscription Plan',
-      icon: ''
+      icon: 'card_travel'
     })
   } else {
     navigation.push({
       slug: 'purchase-subscription-plan',
       name: 'Purchase Subscription Plan',
-      icon: ''
+      icon: 'card_giftcard'
     })
   }
 

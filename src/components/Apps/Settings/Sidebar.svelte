@@ -10,32 +10,32 @@
     {
       slug: '',
       name: 'Application',
-      icon: ''
+      icon: 'store'
     },
     {
       slug: 'analytics',
       name: 'Analytics',
-      icon: ''
+      icon: 'show_chart'
     },
     {
       slug: 'chat',
       name: 'Chat',
-      icon: ''
+      icon: 'chat_bubble'
     },
     {
       slug: 'email',
       name: 'Email',
-      icon: ''
+      icon: 'email'
     },
     {
       slug: 'payments',
       name: 'Payments',
-      icon: ''
+      icon: 'attach_money'
     },
     {
       slug: 'hosting',
       name: 'Hosting',
-      icon: ''
+      icon: 'dns'
     },
   ]
 
