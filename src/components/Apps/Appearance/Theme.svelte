@@ -10,9 +10,14 @@
 
   let domain = domainId
   let state = stateId
-  let endpoint = ''
-  let raw = ''
-  let uploads = ''
+  
+  let introBackColor
+  let introTextColor
+  let primaryBtnBackColor
+  let primaryBtnTextColor
+  let secondaryBtnBackColor
+  let secondaryBtnTextColor
+
 
   onMount(async () => {
     M.updateTextFields();
@@ -22,9 +27,12 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      endpoint = app.endpoint || ''
-      raw = app.raw
-      uploads = app.uploads
+      introBackColor = app.introBackColor
+      introTextColor = app.introTextColor
+      primaryBtnBackColor = app.primaryBtnBackColor
+      primaryBtnTextColor = app.primaryBtnTextColor
+      secondaryBtnBackColor = app.secondaryBtnBackColor
+      secondaryBtnTextColor = app.secondaryBtnTextColor
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -35,11 +43,12 @@
     loading = true
     let token = localStorage.getItem('token')
     let change = {
-      domain,
-      state,
-      endpoint,
-      raw,
-      uploads
+      introBackColor,
+      introTextColor,
+      primaryBtnBackColor,
+      primaryBtnTextColor,
+      secondaryBtnBackColor,
+      secondaryBtnTextColor
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
@@ -63,38 +72,56 @@
   <div class="col s12 m7">
     <h3 class="title">Theme</h3>
     <div class="card" style="padding: 1em;">
+      <p>Use the CSS selectors from <a href="https://materializecss.com/color.html" target="_blank" style="text-decoration: underline;">these available colors</a>; such as: "teal lighten-2" for using the color #4db6ac.</p>
+      <hr>
       <div class="row">
         <div class="input-field col s12">
-          <i class="material-icons prefix">store</i>
-          <input id="domain" type="text" class="validate" bind:value={domain}>
-          <label for="domain">Domain Name</label>
+          <nav style={`background-color: ${introBackColor}`}>
+            <div class="nav-wrapper">
+              <a href="#/" class="brand-logo" style={`color: ${introTextColor};`}>Intro Example Colors</a>
+            </div>
+          </nav>
         </div>
         <div class="input-field col s12">
-          <i class="material-icons prefix">flag</i>
-          <input id="state" type="text" class="validate" bind:value={state}>
-          <label for="state">State</label>
+          <input id="introBackColor" type="text" class="validate" bind:value={introBackColor}>
+          <label for="introBackColor">Intro Background Color</label>
         </div>
         <div class="input-field col s12">
-          <i class="material-icons prefix">cloud</i>
-          <input id="endpoint" type="text" class="validate" bind:value={endpoint}>
-          <label for="endpoint">Endpoint</label>
+          <input id="introTextColor" type="text" class="validate" bind:value={introTextColor}>
+          <label for="introTextColor">Intro Text Color</label>
+          <br />
+          <br />
         </div>
-        <ul style="margin-left: 3.5em;">
-          <li>http://{endpoint}.tyu67.com</li>
-          <li>http://{endpoint}.dimension.click</li>
-          <li>http://{endpoint}.burnfort.com</li>
-          <li>http://{endpoint}.aaghc.com</li>
-          <li>http://{endpoint}.printedbasics.com</li>
-        </ul>
+        
         <div class="input-field col s12">
-          <i class="material-icons prefix">file_upload</i>
-          <input id="uploads" type="text" class="validate" bind:value={uploads}>
-          <label for="uploads">Uploads</label>
+          <button class={`btn ${primaryBtnBackColor} ${primaryBtnTextColor}`}>Primary Button Example Colors</button>
         </div>
         <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
+          <input id="primaryBtnBackColor" type="text" class="validate" bind:value={primaryBtnBackColor}>
+          <label for="primaryBtnBackColor">Primary Button Background Color</label>
         </div>
+        <div class="input-field col s12">
+          <input id="primaryBtnTextColor" type="text" class="validate" bind:value={primaryBtnTextColor}>
+          <label for="primaryBtnTextColor">Primary Button Text Color</label>
+          <br />
+          <br />
+        </div>
+
+
+        <div class="input-field col s12">
+          <button class={`btn ${secondaryBtnBackColor} ${secondaryBtnTextColor}`}>Secondary Button Example Colors</button>
+        </div>
+        <div class="input-field col s12">
+          <input id="secondaryBtnBackColor" type="text" class="validate" bind:value={secondaryBtnBackColor}>
+          <label for="secondaryBtnBackColor">Secondary Button Background Color</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="secondaryBtnTextColor" type="text" class="validate" bind:value={secondaryBtnTextColor}>
+          <label for="secondaryBtnTextColor">Secondary Button Text Color</label>
+          <br />
+          <br />
+        </div>
+
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>
     </div>
@@ -108,11 +135,5 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
-  }
-
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
   }
 </style>
