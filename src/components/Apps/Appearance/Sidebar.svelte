@@ -13,6 +13,11 @@
       icon: 'color_lens'
     },
     {
+      slug: 'logo',
+      name: 'Logo',
+      icon: 'image'
+    },
+    {
       slug: 'labels',
       name: 'Labels',
       icon: 'label'
