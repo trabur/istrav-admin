@@ -10,9 +10,7 @@
 
   let domain = domainId
   let state = stateId
-  let endpoint = ''
-  let raw = ''
-  let uploads = ''
+  let share
 
   onMount(async () => {
     M.updateTextFields();
@@ -22,31 +20,36 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      endpoint = app.endpoint || ''
-      raw = app.raw
-      uploads = app.uploads
+      share = app.share
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
     }
   })
 
-  async function submit() {
+  function isValidJson (string) {
+    try {
+      JSON.parse(string)
+    } catch (e) {
+      return false
+    }
+    return true
+  }
+
+  async function submit () {
+    if (!isValidJson(share)) return alert('Share must be valid JSON.')
+
     loading = true
     let token = localStorage.getItem('token')
     let change = {
-      domain,
-      state,
-      endpoint,
-      raw,
-      uploads
+      share
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
       let app = esUpdate.payload.data
       console.log('app', app)
-      window.location.href = `/apps/${app.domain}/${app.state}`
+      window.location.href = `/apps/${app.domain}/${app.state}/appearance`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -65,35 +68,8 @@
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <i class="material-icons prefix">store</i>
-          <input id="domain" type="text" class="validate" bind:value={domain}>
-          <label for="domain">Domain Name</label>
-        </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">flag</i>
-          <input id="state" type="text" class="validate" bind:value={state}>
-          <label for="state">State</label>
-        </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">cloud</i>
-          <input id="endpoint" type="text" class="validate" bind:value={endpoint}>
-          <label for="endpoint">Endpoint</label>
-        </div>
-        <ul style="margin-left: 3.5em;">
-          <li>http://{endpoint}.tyu67.com</li>
-          <li>http://{endpoint}.dimension.click</li>
-          <li>http://{endpoint}.burnfort.com</li>
-          <li>http://{endpoint}.aaghc.com</li>
-          <li>http://{endpoint}.printedbasics.com</li>
-        </ul>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">file_upload</i>
-          <input id="uploads" type="text" class="validate" bind:value={uploads}>
-          <label for="uploads">Uploads</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
+          <textarea id="share" type="text" class="validate" bind:value={share}></textarea>
+          <label for="share">Share</label>
         </div>
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>

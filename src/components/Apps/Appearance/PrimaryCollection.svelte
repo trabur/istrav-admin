@@ -10,9 +10,11 @@
 
   let domain = domainId
   let state = stateId
-  let endpoint = ''
-  let raw = ''
-  let uploads = ''
+  let appId
+
+  let collectionId = ''
+  let collections = []
+  let collectionIdChoices
 
   onMount(async () => {
     M.updateTextFields();
@@ -22,31 +24,53 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      endpoint = app.endpoint || ''
-      raw = app.raw
-      uploads = app.uploads
+      appId = app.id
+      collectionId = app.shopId
       setTimeout(() => M.updateTextFields(), 0)
+
+      // fetch collections for dropdown
+      let esCollections = await scripts.store.collections.getAll(appId)
+      console.log('esCollections', esCollections)
+      if (esCollections.payload.success === true) {
+        collections = esCollections.payload.data
+      } else {
+        alert(esCollections.payload.reason)
+      }
+      
+      setTimeout(() => {
+        const collectionIdElement = document.querySelector('#collectionId');
+        collectionIdChoices = new Choices(collectionIdElement);
+        collections.forEach((value, index) => {
+          console.log(`${value.id} === ${collectionId}`)
+          if (value.id === collectionId) {
+            collections[index].selected = true
+          }
+          collections[index].value = value.id
+          collections[index].label = value.name
+        })
+        console.log('collections', collections)
+        collectionIdChoices.setChoices(collections, 'value', 'label', false)
+      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
   })
 
   async function submit() {
+    collectionId = collectionIdChoices.getValue(true)
+    console.log('collectionId', collectionId)
+
     loading = true
     let token = localStorage.getItem('token')
     let change = {
-      domain,
-      state,
-      endpoint,
-      raw,
-      uploads
+      shopId: collectionId
     }
     let esUpdate = await scripts.tenant.apps.getUpdate(token, domainId, stateId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
       let app = esUpdate.payload.data
       console.log('app', app)
-      window.location.href = `/apps/${app.domain}/${app.state}`
+      window.location.href = `/apps/${app.domain}/${app.state}/appearance`
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -64,37 +88,18 @@
     <h3 class="title">Primary Collection</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
+
         <div class="input-field col s12">
-          <i class="material-icons prefix">store</i>
-          <input id="domain" type="text" class="validate" bind:value={domain}>
-          <label for="domain">Domain Name</label>
+          {#if collections.length}
+            <div class="label">Storefront Landing Collection</div>
+            <div class="choices">
+              <select id="collectionId" class="choices" bind:value={collectionId}></select>
+            </div>
+            <br />
+            <br />
+          {/if}
         </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">flag</i>
-          <input id="state" type="text" class="validate" bind:value={state}>
-          <label for="state">State</label>
-        </div>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">cloud</i>
-          <input id="endpoint" type="text" class="validate" bind:value={endpoint}>
-          <label for="endpoint">Endpoint</label>
-        </div>
-        <ul style="margin-left: 3.5em;">
-          <li>http://{endpoint}.tyu67.com</li>
-          <li>http://{endpoint}.dimension.click</li>
-          <li>http://{endpoint}.burnfort.com</li>
-          <li>http://{endpoint}.aaghc.com</li>
-          <li>http://{endpoint}.printedbasics.com</li>
-        </ul>
-        <div class="input-field col s12">
-          <i class="material-icons prefix">file_upload</i>
-          <input id="uploads" type="text" class="validate" bind:value={uploads}>
-          <label for="uploads">Uploads</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
-        </div>
+
         <button style="margin-left: 1em;" type="submit" class="waves-effect btn" on:click={() => submit()}>SUBMIT</button>
       </div>
     </div>
@@ -110,9 +115,10 @@
     font-weight: 900;
   }
 
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
+  .choices {
+    position: absolute;
+    right: 0.75em;
+    left: 0.75em;
+    z-index: 10;
   }
 </style>

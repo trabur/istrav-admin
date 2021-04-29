@@ -11,8 +11,8 @@
   let domain = domainId
   let state = stateId
   
-  let introBackColor
-  let introTextColor
+  let coverBackColor
+  let coverTextColor
   let primaryBtnBackColor
   let primaryBtnTextColor
   let secondaryBtnBackColor
@@ -27,8 +27,8 @@
     if (esOne.payload.success === true) {
       let app = esOne.payload.data
       console.log('app', app)
-      introBackColor = app.introBackColor
-      introTextColor = app.introTextColor
+      coverBackColor = app.coverBackColor
+      coverTextColor = app.coverTextColor
       primaryBtnBackColor = app.primaryBtnBackColor
       primaryBtnTextColor = app.primaryBtnTextColor
       secondaryBtnBackColor = app.secondaryBtnBackColor
@@ -43,8 +43,8 @@
     loading = true
     let token = localStorage.getItem('token')
     let change = {
-      introBackColor,
-      introTextColor,
+      coverBackColor,
+      coverTextColor,
       primaryBtnBackColor,
       primaryBtnTextColor,
       secondaryBtnBackColor,
@@ -76,19 +76,19 @@
       <hr>
       <div class="row">
         <div class="input-field col s12">
-          <nav style={`background-color: ${introBackColor}`}>
+          <nav style={`background-color: ${coverBackColor}`}>
             <div class="nav-wrapper">
-              <a href="#/" class="brand-logo" style={`color: ${introTextColor};`}>Intro Example Colors</a>
+              <a href="#/" class="brand-logo" style={`color: ${coverTextColor};`}>Cover Example Colors</a>
             </div>
           </nav>
         </div>
         <div class="input-field col s12">
-          <input id="introBackColor" type="text" class="validate" bind:value={introBackColor}>
-          <label for="introBackColor">Intro Background Color</label>
+          <input id="coverBackColor" type="text" class="validate" bind:value={coverBackColor}>
+          <label for="coverBackColor">Cover Background Color</label>
         </div>
         <div class="input-field col s12">
-          <input id="introTextColor" type="text" class="validate" bind:value={introTextColor}>
-          <label for="introTextColor">Intro Text Color</label>
+          <input id="coverTextColor" type="text" class="validate" bind:value={coverTextColor}>
+          <label for="coverTextColor">Cover Text Color</label>
           <br />
           <br />
         </div>
