@@ -71,7 +71,7 @@
     if (esUpdate.payload.success === true) {
       let app = esUpdate.payload.data
       console.log('app', app)
-      window.location.href = `/apps/${app.domain}/${app.state}/access/host-provider`
+      window.location.href = `/apps/${app.domain}/${app.state}/open-source`
     } else {
       alert(esUpdate.payload.reason)
     }
