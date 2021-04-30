@@ -22,7 +22,7 @@
       <h3 class="path">/{slugId}</h3>
       <div style="text-align: right;">
         <Delete appId={appId} slug={slugId} domain={domain} state={state} />
-        <a href={`http://${endpoint}.tyu67.com/pages/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
+        <a href={`http://${endpoint}.tyu67.com/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
       </div>
     </div>
   </div>

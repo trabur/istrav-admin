@@ -61,7 +61,7 @@
               {#each $rows as row}
                 <tr>
                   <td>{row.name}</td>
-                  <td><a href={`http://${endpoint}.tyu67.com/pages/${row.slug}`} target="_blank">/pages/{row.slug}</a></td>
+                  <td><a href={`http://${endpoint}.tyu67.com/${row.slug}`} target="_blank">/{row.slug}</a></td>
                   <td style="text-align: right;"><a href={`/apps/${domain}/${state}/pages/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}
