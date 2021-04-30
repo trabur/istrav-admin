@@ -50,7 +50,7 @@
         <hr />
         <Totals domain={domain} state={state} totals={totals} />
         <hr />
-        <code>{JSON.stringify(JSON.parse(app.raw), null, 2)}</code>
+        <code>{app.raw}</code>
       </div>
     {/if}
     <!-- <a href={`/apps/${domain}/${state}/edit`} class="waves-effect btn right">EDIT</a> -->

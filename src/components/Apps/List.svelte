@@ -41,7 +41,7 @@
             updated at: {moment(item.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
           </p> -->
           <hr>
-          <code>{JSON.stringify(JSON.parse(item.raw), null, 2)}</code>
+          <code>{item.raw}</code>
         </div>
       {/each}
     {:else}

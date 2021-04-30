@@ -31,7 +31,18 @@
     }
   })
 
+  function isValidJson (string) {
+    try {
+      JSON.parse(string)
+    } catch (e) {
+      return false
+    }
+    return true
+  }
+
   async function submit() {
+    if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
+
     loading = true
     let token = localStorage.getItem('token')
     let change = {
