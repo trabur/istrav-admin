@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>APPS ::: ISTRAV</title>
+	<title>METAHEAP: Applications</title>
 </svelte:head>
 
 <script>

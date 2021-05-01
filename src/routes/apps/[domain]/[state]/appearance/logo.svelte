@@ -4,7 +4,7 @@
   import Change from '../../../../../components/Apps/Appearance/Logo.svelte'
   import Navigation from '../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../components/Header/MainLinks.svelte'
-  import Footer from '../../../../../components/Footer.svelte'
+  import Footer from '../../../../../components/Footer/Main.svelte'
   import Sidebar from '../../../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"

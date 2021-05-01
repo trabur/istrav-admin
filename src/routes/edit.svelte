@@ -1,12 +1,12 @@
 <svelte:head>
-	<title>ADMIN ::: ISTRAV</title>
+	<title>METAHEAP: Change my profile.</title>
 </svelte:head>
 
 <script>
   import { onMount } from 'svelte';
 	import Edit from '../components/Auth/Edit.svelte'
 	import Navigation from '../components/Header/Navigation.svelte'
-  import Footer from '../components/Footer.svelte'
+  import Footer from '../components/Footer/Main.svelte'
 </script>
 
 <Navigation />

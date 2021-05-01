@@ -4,7 +4,7 @@
   import Navigation from '../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../components/Header/MainLinks.svelte'
   import View from '../../../components/Apps/View.svelte'
-  import Footer from '../../../components/Footer.svelte'
+  import Footer from '../../../components/Footer/Main.svelte'
   import Sidebar from '../../../components/Sidebar.svelte'
 
   import { stores } from "@sapper/app"
@@ -32,6 +32,9 @@
   })
 </script>
 
+<svelte:head>
+	<title>Admin Control Panel - METAHEAP</title>
+</svelte:head>
 
 <Sidebar domain={domain} state={state}>
   <Navigation>

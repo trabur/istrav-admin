@@ -1,3 +1,9 @@
+<script>
+  import GoogleAnalytics from './GoogleAnalytics.svelte'
+</script>
+
+<GoogleAnalytics measurementId='G-EVMYL6B45R' />
+
 <footer class="page-footer">
   <div class="container">
     <div class="row">

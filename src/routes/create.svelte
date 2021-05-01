@@ -1,12 +1,12 @@
 <svelte:head>
-	<title>CREATE ::: ISTRAV</title>
+	<title>METAHEAP: Create a new application.</title>
 </svelte:head>
 
 <script>
   import { onMount } from 'svelte'
   import Create from '../components/Apps/Create.svelte'
   import Navigation from '../components/Header/Navigation.svelte'
-  import Footer from '../components/Footer.svelte'
+  import Footer from '../components/Footer/Main.svelte'
   
   let display = false
   onMount(() =>{

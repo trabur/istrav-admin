@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>ADMIN ::: ISTRAV</title>
+	<title>METAHEAP: Get started by registering an account today!</title>
 </svelte:head>
 
 <script>
