@@ -7,6 +7,8 @@
 	import Register from '../components/Auth/Register.svelte'
 	import Welcome from '../components/Auth/Welcome.svelte'
 	
+  import GoogleAnalytics from '../components/Footer/GoogleAnalytics.svelte'
+
 	onMount(() => {
 		// if already logged in then direct to main
 		if (localStorage.getItem('token')) {
@@ -25,6 +27,8 @@
 		</div>
 	</div>
 </div>
+
+<GoogleAnalytics measurementId='G-EVMYL6B45R' />
 
 <style>
 	.masonry {

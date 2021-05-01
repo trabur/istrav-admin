@@ -8,6 +8,8 @@
   import MyProfile from '../components/Apps/MyProfile.svelte'
 	import Welcome from '../components/Auth/Welcome.svelte'
   
+  import GoogleAnalytics from '../components/Footer/GoogleAnalytics.svelte'
+
   let display = false
   onMount(() =>{
     let loader = setInterval(() => {
@@ -43,6 +45,8 @@
 		</div>
 	</div>
 </div>
+
+<GoogleAnalytics measurementId='G-EVMYL6B45R' />
 
 <style>
 	.masonry {
