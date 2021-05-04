@@ -215,7 +215,7 @@
     formData.append('folder', `products/${slug}`)
     formData.append('sampleFile', files[0])
 
-    fetch('https://api.hacktracks.org/v1/files/upload', {
+    fetch(`${window.backend}/v1/files/upload`, {
       method: 'POST',
       body: formData
     })

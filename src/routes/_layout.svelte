@@ -50,6 +50,11 @@
       console.log('production settings:', appDomain, backend, headless, io)
     }
 
+    // expose vars for use within app
+    window.backend = backend
+    window.io = io
+    window.headless = headless
+
     // headless.istrav.com scripts
     var code = document.createElement('script');
     code.onload = function (event) {
