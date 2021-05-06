@@ -19,14 +19,14 @@
       icon: 'crop'
     },
     {
-      slug: 'plugins',
-      name: 'Plugins',
+      slug: 'components',
+      name: 'Components',
       icon: 'extension'
     },
     {
-      slug: 'trigger-actions',
-      name: 'Trigger Actions',
-      icon: 'plus_one'
+      slug: 'trigger-scripts',
+      name: 'Trigger Scripts',
+      icon: 'restore_page'
     },
     {
       slug: 'event-sources',

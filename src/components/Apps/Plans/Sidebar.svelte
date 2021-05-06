@@ -19,9 +19,9 @@
       icon: 'cloud'
     },
     {
-      slug: 'trigger-actions',
-      name: 'Trigger Actions',
-      icon: 'plus_one'
+      slug: 'trigger-scripts',
+      name: 'Trigger Scripts',
+      icon: 'restore_page'
     },
     {
       slug: 'event-sources',
