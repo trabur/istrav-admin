@@ -22,7 +22,7 @@
     let esSave = await scripts.channel.guides.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/guides`
+      window.location = `/apps/${domain}/${state}/guides/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

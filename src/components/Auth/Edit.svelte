@@ -51,7 +51,7 @@
     console.log('getUpdate', getUpdate)
 
     if (getUpdate.payload.success === true) {
-      window.location = '/apps'
+      M.toast({html: `Successfuly updated: ${email}`})
     } else {
       alert(getUpdate.payload.reason)
     }

@@ -24,7 +24,7 @@
     let esSave = await scripts.account.users.getRegister(appId, email, username, password, firstName, lastName)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/users`
+      window.location = `/apps/${domain}/${state}/users/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

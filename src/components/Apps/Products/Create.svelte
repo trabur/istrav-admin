@@ -22,7 +22,7 @@
     let esSave = await scripts.store.products.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/products`
+      window.location = `/apps/${domain}/${state}/products/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

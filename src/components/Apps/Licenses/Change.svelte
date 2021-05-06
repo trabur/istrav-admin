@@ -34,7 +34,7 @@
     let esUpdate = await scripts.subscription.licenses.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/licenses`
+      M.toast({html: `Successfuly updated: /${key}`})
     } else {
       alert(esUpdate.payload.reason)
     }

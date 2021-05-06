@@ -30,7 +30,7 @@
     let esUpdate = await scripts.store.categories.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/categories`
+      M.toast({html: `Successfuly updated: /${slug}`})
     } else {
       alert(esUpdate.payload.reason)
     }

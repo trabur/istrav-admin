@@ -19,7 +19,7 @@
     let esSave = await scripts.subscription.licenses.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/licenses`
+      window.location = `/apps/${domain}/${state}/licenses/${key}`
     } else {
       alert(esSave.payload.reason)
     }

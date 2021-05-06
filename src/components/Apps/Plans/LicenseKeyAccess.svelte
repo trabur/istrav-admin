@@ -35,7 +35,7 @@
     let esUpdate = await scripts.subscription.plans.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/plans/${slug}`
+      M.toast({html: `Successfuly updated: /${slug}`})
     } else {
       alert(esUpdate.payload.reason)
     }

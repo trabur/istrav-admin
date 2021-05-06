@@ -22,7 +22,7 @@
     let esSave = await scripts.app.menus.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/menus`
+      window.location = `/apps/${domain}/${state}/menus/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

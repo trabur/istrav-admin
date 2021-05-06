@@ -22,7 +22,7 @@
     let esSave = await scripts.channel.playlists.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/playlists`
+      window.location = `/apps/${domain}/${state}/playlists/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

@@ -32,7 +32,7 @@
     let esUpdate = await scripts.account.users.getUpdate(appId, token, username, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/users`
+      M.toast({html: `Successfuly updated: /${slug}`})
     } else {
       alert(esUpdate.payload.reason)
     }
