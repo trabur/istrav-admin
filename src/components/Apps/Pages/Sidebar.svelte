@@ -14,14 +14,14 @@
       icon: 'note'
     },
     {
-      slug: 'layout',
-      name: 'Layout',
+      slug: 'wireframe',
+      name: 'Wireframe',
       icon: 'crop'
     },
     {
-      slug: 'components',
-      name: 'Components',
-      icon: 'extension'
+      slug: 'blocks',
+      name: 'Blocks',
+      icon: 'crop_square'
     },
     {
       slug: 'trigger-scripts',

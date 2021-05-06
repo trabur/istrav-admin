@@ -4,7 +4,7 @@
 
 <script>
   import { onMount } from 'svelte'
-  import Change from '../../../../../../components/Apps/Pages/Layout.svelte'
+  import Change from '../../../../../../components/Apps/Pages/Wireframe.svelte'
   import Navigation from '../../../../../../components/Header/Navigation.svelte'
   import MainLinks from '../../../../../../components/Header/MainLinks.svelte'
   import Footer from '../../../../../../components/Footer/Main.svelte'
