@@ -28,6 +28,11 @@
       icon: 'format_list_numbered'
     },
     {
+      slug: 'blocks',
+      name: 'Blocks',
+      icon: 'crop_square'
+    },
+    {
       slug: 'pages',
       name: 'Pages',
       icon: 'note'

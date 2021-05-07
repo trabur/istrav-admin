@@ -35,7 +35,7 @@
     if (esUpdate.payload.success === true) {
       let app = esUpdate.payload.data
       console.log('app', app)
-      window.location.href = `/apps/${app.domain}/${app.state}`
+      M.toast({html: `Successfuly updated: ${domain}/${state}`})
     } else {
       alert(esUpdate.payload.reason)
     }

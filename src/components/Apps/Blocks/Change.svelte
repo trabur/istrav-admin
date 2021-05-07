@@ -34,7 +34,7 @@
       slug,
       raw
     }
-    let esUpdate = await scripts.app.menus.getUpdate(appId, token, slugId, change)
+    let esUpdate = await scripts.app.blocks.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
       M.toast({html: `Successfuly updated: /${slug}`})
@@ -53,7 +53,7 @@
       endpoint = esOne.payload.data.endpoint
 
       // fetch menu
-      let esMenu = await scripts.app.menus.getOne(appId, slug)
+      let esMenu = await scripts.app.blocks.getOne(appId, slug)
       console.log('esMenu', esMenu)
       if (esMenu.payload.success === true) {
         let data = esMenu.payload.data

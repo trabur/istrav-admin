@@ -1,7 +1,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import slugify from 'slugify'
 
 	export let domain = '';
   export let state = '';

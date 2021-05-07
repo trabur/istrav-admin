@@ -8,7 +8,7 @@
   let name = ''
   let slug = ''
   let appId
-  
+
 	async function create() {
     if (name === '') return alert('Name must be defined.')
     if (slug === '') return alert('Slug must be defined.')
@@ -18,10 +18,10 @@
       name,
       slug
     }
-    let esSave = await scripts.store.collections.getSave(appId, token, change)
+    let esSave = await scripts.app.blocks.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/collections/${slug}`
+      window.location = `/apps/${domain}/${state}/blocks/${slug}`
     } else {
       alert(esSave.payload.reason)
     }
@@ -41,7 +41,7 @@
 <div class="row">
   <div class="col s12 m4"></div>
   <div class="col s12 m4">
-    <h3 class="title">CREATE COLLECTION</h3>
+    <h3 class="title">CREATE BLOCK</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
@@ -57,7 +57,7 @@
       </div>
     </div>
     <div style="text-align: right;">
-      <a href={`/apps/${domain}/${state}/collections`} class="waves-effect red lighten-2 btn">Cancel</a>
+      <a href={`/apps/${domain}/${state}/blocks`} class="waves-effect red lighten-2 btn">Cancel</a>
     </div>
   </div>
   <div class="col s12 m4"></div>

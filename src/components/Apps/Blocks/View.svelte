@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
 
-  import Header from './Header.svelte'
   import { Datatable, rows } from 'svelte-simple-datatables'
 
   const settings = { 
@@ -24,7 +23,7 @@
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
-      let esAll = await scripts.app.menus.getAll(appId)
+      let esAll = await scripts.app.blocks.getAll(appId)
       if (esAll.payload.success === true) {
         table = esAll.payload.data
       } else {
@@ -40,13 +39,13 @@
   <div class="col s0 m1"></div>
   <div class="col s12 m10">
     <h3 class="title">
-      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/menus</a>
+      <a href={`/apps/${domain}/${state}`}><i class="material-icons">store</i> {domain}/blocks</a>
       <div class="right">
         <i class="material-icons">flag</i> {state}
       </div>
     </h3>
     <div class="card">
-      <a href={`/apps/${domain}/${state}/menus/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
+      <a href={`/apps/${domain}/${state}/blocks/add`} class="floating-add btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
       <div class="list">
         {#if table.length}
           <Datatable settings={settings} data={table}>
@@ -62,8 +61,8 @@
               {#each $rows as row}
                 <tr>
                   <td>{row.name}</td>
-                  <td><a href={`http://${endpoint}.tyu67.com/menus/${row.slug}`} target="_blank">/menus/{row.slug}</a></td>
-                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/menus/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
+                  <td><a href={`http://${endpoint}.tyu67.com/blocks/${row.slug}`} target="_blank">/blocks/{row.slug}</a></td>
+                  <td style="text-align: right;"><a href={`/apps/${domain}/${state}/blocks/${row.slug}`} class="btn  waves-effect waves-light"><i class="material-icons">edit</i></a></td>
                 </tr>
               {/each}
             </tbody>

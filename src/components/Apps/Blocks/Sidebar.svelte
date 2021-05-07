@@ -10,38 +10,18 @@
   let navigation = [
     {
       slug: '',
-      name: 'Page',
-      icon: 'note'
+      name: 'Menu',
+      icon: 'menu'
     },
     {
-      slug: 'wireframe',
-      name: 'Wireframe',
-      icon: 'crop'
+      slug: 'order-items',
+      name: 'Order Items',
+      icon: 'low_priority'
     },
     {
-      slug: 'blocks',
-      name: 'Blocks',
-      icon: 'crop_square'
-    },
-    {
-      slug: 'place-into-slots',
-      name: 'Place Into Slots',
-      icon: 'content_paste'
-    },
-    {
-      slug: 'trigger-scripts',
-      name: 'Trigger Scripts',
-      icon: 'restore_page'
-    },
-    {
-      slug: 'event-sources',
-      name: 'Event Sources',
-      icon: 'event_note'
-    },
-    {
-      slug: 'tags',
-      name: 'Tags',
-      icon: 'tag'
+      slug: 'edit-items',
+      name: 'Edit Items',
+      icon: 'playlist_add'
     }
   ]
 
@@ -58,7 +38,7 @@
 <h3 class="title">SETTINGS:</h3>
 <ul class="sidenav">
   {#each navigation as nav}
-    <a href={`/apps/${domain}/${state}/pages/${slug}/${nav.slug}`}>
+    <a href={`/apps/${domain}/${state}/blocks/${slug}/${nav.slug}`}>
       <li class={`waves-effect ${nav.slug === active ? 'active' : null}`} style="width: 100%;">
         <i class="navicon material-icons">{nav.icon}</i> <span class="name">{nav.name}</span>
       </li>
