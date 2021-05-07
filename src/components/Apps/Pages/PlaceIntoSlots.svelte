@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
 
+  import {flip} from "svelte/animate";
+  import {dndzone} from "svelte-dnd-action";
+
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
   import Browser from '../../Browser.svelte'
@@ -8,6 +11,11 @@
   import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
   import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
   import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
+	const views = {
+    SplashPage1,
+    SplashPage2,
+    MasterDetail1
+  }
 
   const settings = { 
     columnFilter: true,
@@ -24,7 +32,8 @@
   let endpoint
   let uploads
   let wireframeId
-  let blocks = []
+  let blocks = null
+  let logoSlot = []
 
 	async function change() {
     let token = localStorage.getItem('token')
@@ -43,6 +52,7 @@
   onMount(async () => {
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
+
     if (esOne.payload.success === true) {
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
@@ -55,6 +65,7 @@
         let data = esPages.payload.data
         slug = data.slug
         wireframeId = data.wireframe
+        updateViewportComponent(wireframeId)
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esPages.payload.reason)
@@ -72,8 +83,28 @@
     } else {
       alert(esOne.payload.reason)
     }
-
   })
+
+  // load wireframe component
+	let viewportComponent = null
+	function updateViewportComponent(wireframeId) {
+		viewportComponent = views[wireframeId]
+	}
+
+  // dnd
+  const flipDurationMs = 300;
+  function handleDndConsider(e) {
+    blocks = e.detail.items;
+  }
+  function handleDndFinalize(e) {
+    blocks = e.detail.items;
+  }
+  function handleDndConsiderLogoSlot(e) {
+    logoSlot = e.detail.items;
+  }
+  function handleDndFinalizeLogoSlot(e) {
+    logoSlot = e.detail.items;
+  }
 </script>
 
 
@@ -87,10 +118,12 @@
     <h3 class="title">Place Into Slots</h3>
     <div class="card">
       <div class="list">
-        {#if blocks.length}
-          {#each blocks as block}
-            {block.name}
-          {/each}
+        {#if blocks !== null}
+          <section class="slot" use:dndzone="{{items: blocks, flipDurationMs}}" on:consider="{handleDndConsider}" on:finalize="{handleDndFinalize}">
+            {#each blocks as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
         {/if}
       </div>
     </div>
@@ -102,21 +135,13 @@
   <div class="col s12 m10">
     {#if wireframeId}
       <Browser url={"https://"}>
-        {#if wireframeId === 'SplashPage1'}
-          <SplashPage1 showWiring={true}>
-            <span slot="logo">hello world</span>
-          </SplashPage1>
-        {/if}
-        {#if wireframeId === 'SplashPage2'}
-          <SplashPage2 showWiring={true}>
-            <span slot="logo">hello world</span>
-          </SplashPage2>
-        {/if}
-        {#if wireframeId === 'MasterDetail1'}
-          <MasterDetail1 showWiring={true}>
-            <span slot="logo">hello world</span>
-          </MasterDetail1>
-        {/if}
+        <svelte:component this={viewportComponent} showWiring={true}>
+          <section slot="logo" class="slot" use:dndzone="{{items: logoSlot, flipDurationMs}}" on:consider="{handleDndConsiderLogoSlot}" on:finalize="{handleDndFinalizeLogoSlot}">
+            {#each logoSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+        </svelte:component>
       </Browser>
     {/if}
   </div>
@@ -129,5 +154,21 @@
     text-align: center;
     font-size: 2rem;
     font-weight: 900;
+  }
+
+  .list {
+    padding: 1em;
+  }
+
+  .slot {
+    min-height: 80px;
+    display: list-item;
+    list-style: none;
+    padding: 0.2em;
+  }
+
+  .block {
+    border: 1px solid #333;
+    padding: 0.2em;
   }
 </style>

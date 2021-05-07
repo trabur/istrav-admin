@@ -8,6 +8,11 @@
   import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
   import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
   import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
+	const views = {
+    SplashPage1,
+    SplashPage2,
+    MasterDetail1
+  }
   
 	export let domain = '';
   export let state = '';
@@ -26,6 +31,7 @@
     if (slug === '') return alert('Slug must be defined.')
     wireframeId = wireframeIdChoices.getValue(true)
     console.log('wireframeId', wireframeId)
+    updateViewportComponent(wireframeId)
 
     let token = localStorage.getItem('token')
     let change = {
@@ -59,6 +65,7 @@
         name = data.name
         slug = data.slug
         wireframeId = data.wireframe
+        updateViewportComponent(wireframeId)
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esPages.payload.reason)
@@ -97,6 +104,12 @@
       alert(esOne.payload.reason)
     }
   })
+
+  // load wireframe component
+	let viewportComponent = null
+	function updateViewportComponent(wireframeId) {
+		viewportComponent = views[wireframeId]
+	}
 </script>
 
 <Header domain={domain} state={state} appId={appId} endpoint={endpoint} slugId={slug} />
@@ -131,21 +144,9 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
     <Browser url={"https://"}>
-      {#if wireframeId === 'SplashPage1'}
-        <SplashPage1 showWiring={true}>
-          <span slot="logo">hello world</span>
-        </SplashPage1>
-      {/if}
-      {#if wireframeId === 'SplashPage2'}
-        <SplashPage2 showWiring={true}>
-          <span slot="logo">hello world</span>
-        </SplashPage2>
-      {/if}
-      {#if wireframeId === 'MasterDetail1'}
-        <MasterDetail1 showWiring={true}>
-          <span slot="logo">hello world</span>
-        </MasterDetail1>
-      {/if}
+      <svelte:component this={viewportComponent} showWiring={true}>
+        <!-- hello world -->
+      </svelte:component>
     </Browser>
   </div>
   <div class="col s12 m1"></div>

@@ -11,7 +11,7 @@
       {#if showWiring}
         <div class="name">logo</div>
       {/if}
-      <slot name="logo">hello logo</slot>
+      <slot name="logo"></slot>
     </div>
     <div class={showWiring ? 'slogan wire' : 'slogan'}>
       {#if showWiring}
