@@ -10,18 +10,18 @@
   let navigation = [
     {
       slug: '',
-      name: 'Menu',
-      icon: 'menu'
+      name: 'Block',
+      icon: 'crop_square'
     },
     {
-      slug: 'order-items',
-      name: 'Order Items',
-      icon: 'low_priority'
+      slug: 'component',
+      name: 'Component',
+      icon: 'filter_b_and_w'
     },
     {
-      slug: 'edit-items',
-      name: 'Edit Items',
-      icon: 'playlist_add'
+      slug: 'load-data',
+      name: 'Load Data',
+      icon: 'exposure'
     }
   ]
 
