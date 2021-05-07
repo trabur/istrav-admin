@@ -4,6 +4,10 @@
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
   import Browser from '../../Browser.svelte'
+
+  import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
+  import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
+  import MasterDetail from '../../Wireframes/MasterDetail.svelte'
   
 	export let domain = '';
   export let state = '';
@@ -127,7 +131,21 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
     <Browser url={"https://"}>
-      <p>hello world</p>
+      {#if wireframeId === 'SplashPage1'}
+        <SplashPage1 showWiring={true}>
+          <span slot="logo">hello world</span>
+        </SplashPage1>
+      {/if}
+      {#if wireframeId === 'SplashPage2'}
+        <SplashPage2 showWiring={true}>
+          <span slot="logo">hello world</span>
+        </SplashPage2>
+      {/if}
+      {#if wireframeId === 'MasterDetail'}
+        <MasterDetail showWiring={true}>
+          <span slot="logo">hello world</span>
+        </MasterDetail>
+      {/if}
     </Browser>
   </div>
   <div class="col s12 m1"></div>
