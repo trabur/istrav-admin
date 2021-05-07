@@ -30,7 +30,7 @@
     {
       slug: 'blocks',
       name: 'Blocks',
-      icon: 'crop_square'
+      icon: 'picture_in_picture'
     },
     {
       slug: 'pages',

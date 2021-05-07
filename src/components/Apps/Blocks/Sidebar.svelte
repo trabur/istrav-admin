@@ -11,7 +11,7 @@
     {
       slug: '',
       name: 'Block',
-      icon: 'crop_square'
+      icon: 'picture_in_picture'
     },
     {
       slug: 'component',
