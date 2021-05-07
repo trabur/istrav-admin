@@ -3,8 +3,7 @@
 
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
-
-  import { Datatable, rows } from 'svelte-simple-datatables'
+  import Browser from '../../Browser.svelte'
 
   const settings = { 
     columnFilter: true,
@@ -80,6 +79,15 @@
     </div>
   </div>
   <div class="col s0 m1"></div>
+</div>
+<div class="row">
+  <div class="col s12 m1"></div>
+  <div class="col s12 m10">
+    <Browser url={"https://"}>
+      <p>hello world</p>
+    </Browser>
+  </div>
+  <div class="col s12 m1"></div>
 </div>
 
 <style>

@@ -3,7 +3,8 @@
   
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
-
+  import Browser from '../../Browser.svelte'
+  
 	export let domain = '';
   export let state = '';
   export let slugId = '';
@@ -119,6 +120,15 @@
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
+  </div>
+  <div class="col s12 m1"></div>
+</div>
+<div class="row">
+  <div class="col s12 m1"></div>
+  <div class="col s12 m10">
+    <Browser url={"https://"}>
+      <p>hello world</p>
+    </Browser>
   </div>
   <div class="col s12 m1"></div>
 </div>
