@@ -5,6 +5,10 @@
   import Sidebar from './Sidebar.svelte'
   import Browser from '../../Browser.svelte'
 
+  import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
+  import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
+  import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
+
   const settings = { 
     columnFilter: true,
     rowPerPage: 15,
@@ -19,6 +23,7 @@
   let appId
   let endpoint
   let uploads
+  let wireframeId
   let blocks = []
 
 	async function change() {
@@ -43,6 +48,18 @@
       endpoint = esOne.payload.data.endpoint
       uploads = esOne.payload.data.uploads
   
+      // fetch page
+      let esPages = await scripts.app.pages.getOne(appId, slug)
+      console.log('esPages', esPages)
+      if (esPages.payload.success === true) {
+        let data = esPages.payload.data
+        slug = data.slug
+        wireframeId = data.wireframe
+        setTimeout(() => M.updateTextFields(), 0)
+      } else {
+        alert(esPages.payload.reason)
+      }
+
       // fetch blocks that are already in page
       let esBlocks = await scripts.app.pages.getBlocks(appId, slug)
       console.log('esBlocks', esBlocks)
@@ -83,9 +100,25 @@
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
-    <Browser url={"https://"}>
-      <p>hello world</p>
-    </Browser>
+    {#if wireframeId}
+      <Browser url={"https://"}>
+        {#if wireframeId === 'SplashPage1'}
+          <SplashPage1 showWiring={true}>
+            <span slot="logo">hello world</span>
+          </SplashPage1>
+        {/if}
+        {#if wireframeId === 'SplashPage2'}
+          <SplashPage2 showWiring={true}>
+            <span slot="logo">hello world</span>
+          </SplashPage2>
+        {/if}
+        {#if wireframeId === 'MasterDetail1'}
+          <MasterDetail1 showWiring={true}>
+            <span slot="logo">hello world</span>
+          </MasterDetail1>
+        {/if}
+      </Browser>
+    {/if}
   </div>
   <div class="col s12 m1"></div>
 </div>
