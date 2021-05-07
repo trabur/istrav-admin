@@ -7,7 +7,7 @@
 
   import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
   import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
-  import MasterDetail from '../../Wireframes/MasterDetail.svelte'
+  import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
   
 	export let domain = '';
   export let state = '';
@@ -141,10 +141,10 @@
           <span slot="logo">hello world</span>
         </SplashPage2>
       {/if}
-      {#if wireframeId === 'MasterDetail'}
-        <MasterDetail showWiring={true}>
+      {#if wireframeId === 'MasterDetail1'}
+        <MasterDetail1 showWiring={true}>
           <span slot="logo">hello world</span>
-        </MasterDetail>
+        </MasterDetail1>
       {/if}
     </Browser>
   </div>

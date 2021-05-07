@@ -6,30 +6,48 @@
   {#if showWiring}
     <div class="name">header</div>
   {/if}
-  <div class="middle">
-    <div class={showWiring ? 'logo wire' : 'logo'}>
-      {#if showWiring}
-        <div class="name">logo</div>
-      {/if}
-      <slot name="logo">hello logo</slot>
+  <div class="row wrapper">
+    <div class="col wrapper s12 m6">
+      <div class={showWiring ? 'logo wire' : 'logo'}>
+        {#if showWiring}
+          <div class="name">logo</div>
+        {/if}
+        <slot name="logo"></slot>
+      </div>
+      <div class={showWiring ? 'slogan wire' : 'slogan'}>
+        {#if showWiring}
+          <div class="name">slogan</div>
+        {/if}
+        <slot name="slogan"></slot>
+      </div>
     </div>
-    <div class={showWiring ? 'slogan wire' : 'slogan'}>
-      {#if showWiring}
-        <div class="name">slogan</div>
-      {/if}
-      <slot name="slogan"></slot>
+    <div class="col wrapper s12 m6">
+      <div class={showWiring ? 'controls wire' : 'controls'}>
+        {#if showWiring}
+          <div class="name">controls</div>
+        {/if}
+        <slot name="controls"></slot>
+      </div>
     </div>
   </div>
 </header>
-<div class={showWiring ? 'wire navigation' : 'navigation'}>
+<div class={showWiring ? 'navigation wire' : 'navigation'}>
   {#if showWiring}
     <div class="name">navigation</div>
   {/if}
   <slot name="navigation"></slot>
 </div>
 <div class="row wrapper">
-  <div class="col s12 m2"></div>
-  <div class="col s12 m8">
+  <div class="col wrapper s12 m1"></div>
+  <div class="col wrapper s12 m3">
+    <aside class={showWiring ? 'wire' : ''}>
+      {#if showWiring}
+        <div class="name">aside</div>
+      {/if}
+      <slot name="aside"></slot>
+    </aside>
+  </div>
+  <div class="col wrapper s12 m7">
     <article class={showWiring ? 'wire' : ''}>
       {#if showWiring}
         <div class="name">article</div>
@@ -37,7 +55,7 @@
       <slot name="article"></slot>
     </article>
   </div>
-  <div class="col s12 m2"></div>
+  <div class="col wrapper s12 m1"></div>
 </div>
 <main class={showWiring ? 'wire' : ''}>
   {#if showWiring}
@@ -53,11 +71,6 @@
 </footer>
 
 <style>
-  header {
-    min-height: 100vh !important;
-    position: relative;
-  }
-
   .wire {
     border: 3px dashed #ccc;
     padding: 0.1em;
@@ -68,6 +81,7 @@
 
   .wrapper {
     margin: 0;
+    padding: 0;
   }
 
   .name {
@@ -83,22 +97,13 @@
     font-weight: 500;
   }
 
-  .middle {
-    right: 0;
-    left: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    text-align: center;
-  }
-
   header.wire,
+  .controls.wire,
   .logo.wire,
   .slogan.wire,
   article.wire,
   footer.wire,
-  main.wire {
+  .navigation.wire {
     padding-top: 2.2em;
   }
 </style>
