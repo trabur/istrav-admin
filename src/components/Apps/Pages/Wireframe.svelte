@@ -26,7 +26,7 @@
     let change = {
       name,
       slug,
-      wireframeId,
+      wireframe: wireframeId,
     }
     let esUpdate = await scripts.app.pages.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -53,7 +53,7 @@
         let data = esPages.payload.data
         name = data.name
         slug = data.slug
-        wireframeId = data.wireframeId
+        wireframeId = data.wireframe
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esPages.payload.reason)
