@@ -57,7 +57,7 @@
     if (esUpdate.payload.success === true) {
       let app = esUpdate.payload.data
       console.log('app', app)
-      M.toast({html: `Successfuly updated: ${domain}/${state}`})
+      M.toast({html: `Successfuly updated application: ${domain} (${state})`})
     } else {
       alert(esUpdate.payload.reason)
     }
