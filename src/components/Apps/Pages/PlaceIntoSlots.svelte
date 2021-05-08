@@ -101,7 +101,10 @@
 
   // fill slots
   function fillSlots(slots) {
-    if (!slots) return
+    if (!slots) {
+      loading = false // need this for init setup to work
+      return
+    }
 
     // pull from blocks and place into slots
     blocks.forEach((block) => {
