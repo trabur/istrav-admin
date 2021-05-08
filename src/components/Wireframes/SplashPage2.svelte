@@ -58,6 +58,7 @@
     position: relative;
     height: 100%;
     padding: 0;
+    min-height: 0;
   }
 
   .contain {

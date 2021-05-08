@@ -68,6 +68,7 @@
 
   .wrapper {
     margin: 0;
+    min-height: 0;
   }
 
   .name {
