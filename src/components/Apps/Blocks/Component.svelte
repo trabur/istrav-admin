@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
 
+  import components from './components.json'
+
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
@@ -8,31 +10,19 @@
   export let state = '';
   export let slugId = '';
 
-  let name = ''
   let slug = slugId
-  let raw = ''
   let appId
   let endpoint
-
-  function isValidJson(string) {
-    try {
-      JSON.parse(string)
-    } catch (e) {
-      return false
-    }
-    return true
-  }
+  let componentId = ''
+  let componentIdChoices
 
 	async function change() {
-    if (name === '') return alert('Name must be defined.')
-    if (slug === '') return alert('Slug must be defined.')
-    if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
+    componentId = componentIdChoices.getValue(true)
+    console.log('componentId', componentId)
 
     let token = localStorage.getItem('token')
     let change = {
-      name,
-      slug,
-      raw
+      component: componentId
     }
     let esUpdate = await scripts.app.blocks.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -52,18 +42,40 @@
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
 
-      // fetch menu
-      let esMenu = await scripts.app.blocks.getOne(appId, slug)
-      console.log('esMenu', esMenu)
-      if (esMenu.payload.success === true) {
-        let data = esMenu.payload.data
-        name = data.name
-        slug = data.slug
-        raw = data.raw
+      // fetch block
+      let esBlock = await scripts.app.blocks.getOne(appId, slug)
+      console.log('esBlock', esBlock)
+      if (esBlock.payload.success === true) {
+        let data = esBlock.payload.data
+        componentId = data.component
         setTimeout(() => M.updateTextFields(), 0)
       } else {
-        alert(esMenu.payload.reason)
+        alert(esBlock.payload.reason)
       }
+
+      // fetch components
+      // let esWireframes = await scripts.page.wireframes.getAll(appId)
+      // console.log('esWireframes', esWireframes)
+      // if (esWireframes.payload.success === true) {
+      //   wireframes = esWireframes.payload.data
+      // } else {
+      //   alert(esWireframes.payload.reason)
+      // }
+      
+      setTimeout(() => {
+        const componentIdElement = document.querySelector('#componentId');
+        componentIdChoices = new Choices(componentIdElement);
+        components.forEach((value, index) => {
+          console.log(`${value.id} === ${componentId}`)
+          if (value.id === componentId) {
+            components[index].selected = true
+          }
+          components[index].value = value.id
+          components[index].label = value.name
+        })
+        console.log('components', components)
+        componentIdChoices.setChoices(components, 'value', 'label', false)
+      }, 0)
     } else {
       alert(esOne.payload.reason)
     }
@@ -81,17 +93,16 @@
     <div class="card" style="padding: 1em;">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
+          {#if components.length}
+            <div class="label">Component</div>
+            <div class="choices">
+              <select id="componentId" class="choices" bind:value={componentId}></select>
+            </div>
+            <br />
+            <br />
+          {/if}
         </div>
-        <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
-        </div>
+
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -107,9 +118,10 @@
     font-weight: 900;
   }
 
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
+  .choices {
+    position: absolute;
+    right: 0.75em;
+    left: 0.75em;
+    z-index: 10;
   }
 </style>

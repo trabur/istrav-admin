@@ -1,0 +1,9 @@
+[
+  { "id": "GetStarted", "name": "Get Started (1)", "application": true },
+  { "id": "Logo", "name": "Logo (1)", "application": true },
+  { "id": "MainFooter", "name": "Main Footer (1)", "menu": true },
+  { "id": "Nav", "name": "Navigation (1)", "menu": true },
+  { "id": "OpenSource", "name": "Open Source (1)" },
+  { "id": "SlideShow", "name": "Slide Show (1)", "guide": true },
+  { "id": "Solutions", "name": "Solutions (1)" }
+]
