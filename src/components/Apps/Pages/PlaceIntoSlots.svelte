@@ -31,26 +31,31 @@
   let appId
   let endpoint
   let uploads
+  let loading = true
   let wireframeId
+  let slots
   let blocks = null
-  let logoSlot = []
-  let sloganSlot = []
-  let controlsSlot = []
-  let navigationSlot = []
-  let articleSlot = []
-  let asideSlot = []
-  let mainSlot = []
-  let footerSlot = []
+  let place = {
+    logoSlot: [],
+    sloganSlot: [],
+    controlsSlot: [],
+    navigationSlot: [],
+    articleSlot: [],
+    asideSlot: [],
+    mainSlot: [],
+    footerSlot: []
+  }
 
 	async function change() {
     let token = localStorage.getItem('token')
+
     let change = {
-      // blocks: blocks
+      slots: place
     }
     let esUpdate = await scripts.app.pages.getUpdate(appId, token, slug, change)
     console.log('esUpdate', esUpdate)
     if (esUpdate.payload.success === true) {
-      M.toast({html: `Successfuly updated: "${esUpdate.payload.data.name}"`})
+      M.toast({html: `Successfuly updated: /${slug}`})
     } else {
       alert(esUpdate.payload.reason)
     }
@@ -72,6 +77,7 @@
         let data = esPages.payload.data
         slug = data.slug
         wireframeId = data.wireframe
+        slots = data.slots
         updateViewportComponent(wireframeId)
         setTimeout(() => M.updateTextFields(), 0)
       } else {
@@ -83,6 +89,7 @@
       console.log('esBlocks', esBlocks)
       if (esBlocks.payload.success === true) {
         blocks = esBlocks.payload.data
+        fillSlots(slots)
       } else {
         alert(esBlocks.payload.reason)
       }
@@ -91,6 +98,33 @@
       alert(esOne.payload.reason)
     }
   })
+
+  // fill slots
+  function fillSlots(slots) {
+    if (!slots) return
+
+    // pull from blocks and place into slots
+    blocks.forEach((block) => {
+      // does the block belong in any of the slots?
+      ['logoSlot', 'sloganSlot', 'controlsSlot', 'navigationSlot', 'articleSlot', 'asideSlot', 'mainSlot', 'footerSlot'].forEach((id) => {
+        let s = slots[id].find((slot) => {
+          return slot.id === block.id
+        })
+        console.log('s', s)
+        if (s) {
+          // push to list
+          place[id].push(s)
+          // delete from blocks
+          blocks = blocks.filter((b) => {
+            return b.id !== block.id
+          })
+        }
+      })
+    })
+
+    // need this to rerender page
+    loading = false
+  }
 
   // load wireframe component
 	let viewportComponent = null
@@ -105,54 +139,63 @@
   }
   function handleDndFinalize(e) {
     blocks = e.detail.items;
+    change()
   }
   function handleDndConsiderLogoSlot(e) {
-    logoSlot = e.detail.items;
+    place.logoSlot = e.detail.items;
   }
   function handleDndFinalizeLogoSlot(e) {
-    logoSlot = e.detail.items;
+    place.logoSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderSloganSlot(e) {
-    sloganSlot = e.detail.items;
+    place.sloganSlot = e.detail.items;
   }
   function handleDndFinalizeSloganSlot(e) {
-    sloganSlot = e.detail.items;
+    place.sloganSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderControlsSlot(e) {
-    controlsSlot = e.detail.items;
+    place.controlsSlot = e.detail.items;
   }
   function handleDndFinalizeControlsSlot(e) {
-    controlsSlot = e.detail.items;
+    place.controlsSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderNavigationSlot(e) {
-    navigationSlot = e.detail.items;
+    place.navigationSlot = e.detail.items;
   }
   function handleDndFinalizeNavigationSlot(e) {
-    navigationSlot = e.detail.items;
+    place.navigationSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderArticleSlot(e) {
-    articleSlot = e.detail.items;
+    place.articleSlot = e.detail.items;
   }
   function handleDndFinalizeArticleSlot(e) {
-    articleSlot = e.detail.items;
+    place.articleSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderAsideSlot(e) {
-    asideSlot = e.detail.items;
+    place.asideSlot = e.detail.items;
   }
   function handleDndFinalizeAsideSlot(e) {
-    asideSlot = e.detail.items;
+    place.asideSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderMainSlot(e) {
-    mainSlot = e.detail.items;
+    place.mainSlot = e.detail.items;
   }
   function handleDndFinalizeMainSlot(e) {
-    mainSlot = e.detail.items;
+    place.mainSlot = e.detail.items;
+    change()
   }
   function handleDndConsiderFooterSlot(e) {
-    footerSlot = e.detail.items;
+    place.footerSlot = e.detail.items;
   }
   function handleDndFinalizeFooterSlot(e) {
-    footerSlot = e.detail.items;
+    place.footerSlot = e.detail.items;
+    change()
   }
 </script>
 
@@ -182,46 +225,46 @@
 <div class="row">
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
-    {#if wireframeId}
+    {#if wireframeId && loading === false}
       <Browser url={"https://"}>
         <svelte:component this={viewportComponent} showWiring={true}>
-          <section slot="logo" class="slot" use:dndzone="{{items: logoSlot, flipDurationMs}}" on:consider="{handleDndConsiderLogoSlot}" on:finalize="{handleDndFinalizeLogoSlot}">
-            {#each logoSlot as item(item.id)}
+          <section slot="logo" class="slot" use:dndzone="{{items: place.logoSlot, flipDurationMs}}" on:consider="{handleDndConsiderLogoSlot}" on:finalize="{handleDndFinalizeLogoSlot}">
+            {#each place.logoSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="slogan" class="slot" use:dndzone="{{items: sloganSlot, flipDurationMs}}" on:consider="{handleDndConsiderSloganSlot}" on:finalize="{handleDndFinalizeSloganSlot}">
-            {#each sloganSlot as item(item.id)}
+          <section slot="slogan" class="slot" use:dndzone="{{items: place.sloganSlot, flipDurationMs}}" on:consider="{handleDndConsiderSloganSlot}" on:finalize="{handleDndFinalizeSloganSlot}">
+            {#each place.sloganSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="controls" class="slot" use:dndzone="{{items: controlsSlot, flipDurationMs}}" on:consider="{handleDndConsiderControlsSlot}" on:finalize="{handleDndFinalizeControlsSlot}">
-            {#each controlsSlot as item(item.id)}
+          <section slot="controls" class="slot" use:dndzone="{{items: place.controlsSlot, flipDurationMs}}" on:consider="{handleDndConsiderControlsSlot}" on:finalize="{handleDndFinalizeControlsSlot}">
+            {#each place.controlsSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="navigation" class="slot" use:dndzone="{{items: navigationSlot, flipDurationMs}}" on:consider="{handleDndConsiderNavigationSlot}" on:finalize="{handleDndFinalizeNavigationSlot}">
-            {#each navigationSlot as item(item.id)}
+          <section slot="navigation" class="slot" use:dndzone="{{items: place.navigationSlot, flipDurationMs}}" on:consider="{handleDndConsiderNavigationSlot}" on:finalize="{handleDndFinalizeNavigationSlot}">
+            {#each place.navigationSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="article" class="slot" use:dndzone="{{items: articleSlot, flipDurationMs}}" on:consider="{handleDndConsiderArticleSlot}" on:finalize="{handleDndFinalizeArticleSlot}">
-            {#each articleSlot as item(item.id)}
+          <section slot="article" class="slot" use:dndzone="{{items: place.articleSlot, flipDurationMs}}" on:consider="{handleDndConsiderArticleSlot}" on:finalize="{handleDndFinalizeArticleSlot}">
+            {#each place.articleSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="aside" class="slot" use:dndzone="{{items: asideSlot, flipDurationMs}}" on:consider="{handleDndConsiderAsideSlot}" on:finalize="{handleDndFinalizeAsideSlot}">
-            {#each asideSlot as item(item.id)}
+          <section slot="aside" class="slot" use:dndzone="{{items: place.asideSlot, flipDurationMs}}" on:consider="{handleDndConsiderAsideSlot}" on:finalize="{handleDndFinalizeAsideSlot}">
+            {#each place.asideSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="main" class="slot" use:dndzone="{{items: mainSlot, flipDurationMs}}" on:consider="{handleDndConsiderMainSlot}" on:finalize="{handleDndFinalizeMainSlot}">
-            {#each mainSlot as item(item.id)}
+          <section slot="main" class="slot" use:dndzone="{{items: place.mainSlot, flipDurationMs}}" on:consider="{handleDndConsiderMainSlot}" on:finalize="{handleDndFinalizeMainSlot}">
+            {#each place.mainSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
-          <section slot="footer" class="slot" use:dndzone="{{items: footerSlot, flipDurationMs}}" on:consider="{handleDndConsiderFooterSlot}" on:finalize="{handleDndFinalizeFooterSlot}">
-            {#each footerSlot as item(item.id)}
+          <section slot="footer" class="slot" use:dndzone="{{items: place.footerSlot, flipDurationMs}}" on:consider="{handleDndConsiderFooterSlot}" on:finalize="{handleDndFinalizeFooterSlot}">
+            {#each place.footerSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
