@@ -73,8 +73,8 @@
 <style>
   .wire {
     border: 3px dashed #ccc;
-    padding: 0.1em;
-    margin: 0.1em;
+    padding: 0.2em;
+    margin: 0.2em;
     min-height: 5em;
     position: relative;
   }
