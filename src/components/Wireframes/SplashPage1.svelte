@@ -96,6 +96,7 @@
   header.wire,
   .logo.wire,
   .slogan.wire,
+  .navigation.wire,
   article.wire,
   footer.wire,
   main.wire {

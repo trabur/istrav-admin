@@ -34,6 +34,13 @@
   let wireframeId
   let blocks = null
   let logoSlot = []
+  let sloganSlot = []
+  let controlsSlot = []
+  let navigationSlot = []
+  let articleSlot = []
+  let asideSlot = []
+  let mainSlot = []
+  let footerSlot = []
 
 	async function change() {
     let token = localStorage.getItem('token')
@@ -105,6 +112,48 @@
   function handleDndFinalizeLogoSlot(e) {
     logoSlot = e.detail.items;
   }
+  function handleDndConsiderSloganSlot(e) {
+    sloganSlot = e.detail.items;
+  }
+  function handleDndFinalizeSloganSlot(e) {
+    sloganSlot = e.detail.items;
+  }
+  function handleDndConsiderControlsSlot(e) {
+    controlsSlot = e.detail.items;
+  }
+  function handleDndFinalizeControlsSlot(e) {
+    controlsSlot = e.detail.items;
+  }
+  function handleDndConsiderNavigationSlot(e) {
+    navigationSlot = e.detail.items;
+  }
+  function handleDndFinalizeNavigationSlot(e) {
+    navigationSlot = e.detail.items;
+  }
+  function handleDndConsiderArticleSlot(e) {
+    articleSlot = e.detail.items;
+  }
+  function handleDndFinalizeArticleSlot(e) {
+    articleSlot = e.detail.items;
+  }
+  function handleDndConsiderAsideSlot(e) {
+    asideSlot = e.detail.items;
+  }
+  function handleDndFinalizeAsideSlot(e) {
+    asideSlot = e.detail.items;
+  }
+  function handleDndConsiderMainSlot(e) {
+    mainSlot = e.detail.items;
+  }
+  function handleDndFinalizeMainSlot(e) {
+    mainSlot = e.detail.items;
+  }
+  function handleDndConsiderFooterSlot(e) {
+    footerSlot = e.detail.items;
+  }
+  function handleDndFinalizeFooterSlot(e) {
+    footerSlot = e.detail.items;
+  }
 </script>
 
 
@@ -141,6 +190,41 @@
               <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
             {/each}
           </section>
+          <section slot="slogan" class="slot" use:dndzone="{{items: sloganSlot, flipDurationMs}}" on:consider="{handleDndConsiderSloganSlot}" on:finalize="{handleDndFinalizeSloganSlot}">
+            {#each sloganSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="controls" class="slot" use:dndzone="{{items: controlsSlot, flipDurationMs}}" on:consider="{handleDndConsiderControlsSlot}" on:finalize="{handleDndFinalizeControlsSlot}">
+            {#each controlsSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="navigation" class="slot" use:dndzone="{{items: navigationSlot, flipDurationMs}}" on:consider="{handleDndConsiderNavigationSlot}" on:finalize="{handleDndFinalizeNavigationSlot}">
+            {#each navigationSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="article" class="slot" use:dndzone="{{items: articleSlot, flipDurationMs}}" on:consider="{handleDndConsiderArticleSlot}" on:finalize="{handleDndFinalizeArticleSlot}">
+            {#each articleSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="aside" class="slot" use:dndzone="{{items: asideSlot, flipDurationMs}}" on:consider="{handleDndConsiderAsideSlot}" on:finalize="{handleDndFinalizeAsideSlot}">
+            {#each asideSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="main" class="slot" use:dndzone="{{items: mainSlot, flipDurationMs}}" on:consider="{handleDndConsiderMainSlot}" on:finalize="{handleDndFinalizeMainSlot}">
+            {#each mainSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
+          <section slot="footer" class="slot" use:dndzone="{{items: footerSlot, flipDurationMs}}" on:consider="{handleDndConsiderFooterSlot}" on:finalize="{handleDndFinalizeFooterSlot}">
+            {#each footerSlot as item(item.id)}
+              <div class="block" animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
+            {/each}
+          </section>
         </svelte:component>
       </Browser>
     {/if}
@@ -170,5 +254,9 @@
   .block {
     border: 1px solid #333;
     padding: 0.2em;
+  }
+
+  .list .block {
+    float: left;
   }
 </style>

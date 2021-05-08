@@ -102,6 +102,8 @@
   .logo.wire,
   .slogan.wire,
   article.wire,
+  aside.wire,
+  main.wire,
   footer.wire,
   .navigation.wire {
     padding-top: 2.2em;
