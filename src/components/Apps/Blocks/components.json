@@ -5,5 +5,7 @@
   { "id": "Nav", "name": "Navigation (1)", "menu": true },
   { "id": "OpenSource", "name": "Open Source (1)" },
   { "id": "SlideShow", "name": "Slide Show (1)", "guide": true },
-  { "id": "Solutions", "name": "Solutions (1)" }
+  { "id": "Solutions", "name": "Solutions (1)" },
+  { "id": "Slogan", "name": "Slogan (1)" },
+  { "id": "Markdown", "name": "Markdown (1)" }
 ]
