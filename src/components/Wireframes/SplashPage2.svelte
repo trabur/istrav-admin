@@ -1,65 +1,122 @@
 <script>
+  import { onMount } from "svelte";
+  
+  // export let app
+  // export let page
   export let showWiring
+
+	onMount(() => {
+		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+		particlesJS.load('particles-js', './particles.json', function() {
+			console.log('callback - particles.js config loaded');
+		});
+	})
 </script>
 
-<header class={showWiring ? 'wire' : ''}>
-  {#if showWiring}
-    <div class="name">header</div>
-  {/if}
-  <div class="row wrapper">
-    <div class="contain col s12 m6">
-      <div class="middle">
-        <div class={showWiring ? 'logo wire' : 'logo'}>
-          {#if showWiring}
-            <div class="name">logo</div>
-          {/if}
-          <slot name="logo"></slot>
+<div class="dotted">
+  <header class={showWiring ? 'wire' : ''}>
+    {#if showWiring}
+      <div class="name">header</div>
+    {/if}
+    <div class="row wrapper">
+      <div class="contain col s12 m6">
+        <div id="particles-js">
+          <div style="position: absolute; overflow: auto; bottom: 0; top: 0; width: 100%;">
+            <br />
+            <br />
+            <br />
+            <div class={showWiring ? 'logo wire' : 'logo'}>
+              {#if showWiring}
+                <div class="name">logo</div>
+              {/if}
+              <slot name="logo"></slot>
+            </div>
+            <div class={showWiring ? 'slogan wire' : 'slogan'}>
+              {#if showWiring}
+                <div class="name">slogan</div>
+              {/if}
+              <slot name="slogan"></slot>
+            </div>
+            <article class={showWiring ? 'wire' : ''}>
+              {#if showWiring}
+                <div class="name">article</div>
+              {/if}
+              <div class="card" style="margin: 1em; padding: 1em;">
+                <slot name="article"></slot>
+              </div>
+            </article>
+            <footer class={showWiring ? 'wire' : ''}>
+              {#if showWiring}
+                <div class="name">footer</div>
+              {/if}
+              <slot name="footer"></slot>
+            </footer>
+          </div>
         </div>
-        <div class={showWiring ? 'slogan wire' : 'slogan'}>
-          {#if showWiring}
-            <div class="name">slogan</div>
-          {/if}
-          <slot name="slogan"></slot>
+      </div>
+      <div class="contain col s12 m6">
+        <div id="right">
+          <br />
+          <br />
+          <br />
+          <aside class={showWiring ? 'wire' : ''}>
+            {#if showWiring}
+              <div class="name">main</div>
+            {/if}
+            <slot name="main"></slot>
+          </aside>
         </div>
-        <article class={showWiring ? 'wire' : ''}>
-          {#if showWiring}
-            <div class="name">article</div>
-          {/if}
-          <slot name="article"></slot>
-        </article>
-        <footer class={showWiring ? 'wire' : ''}>
-          {#if showWiring}
-            <div class="name">footer</div>
-          {/if}
-          <slot name="footer"></slot>
-        </footer>
       </div>
     </div>
-    <div class="contain col s12 m6">
-      <div class="middle">
-        <aside class={showWiring ? 'wire' : ''}>
-          {#if showWiring}
-            <div class="name">main</div>
-          {/if}
-          <slot name="main"></slot>
-        </aside>
-      </div>
-    </div>
-  </div>
-</header>
+  </header>
+</div>
+
 
 <style>
+  :global(body) {
+    overflow: hidden;
+  }
+
   header {
     height: 100vh;
+    overflow: hidden;
+  }
+
+  #particles-js {
+		background-color: #ee6e73;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+  #right {
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   
   .wrapper {
-    margin: 0;
-    position: relative;
+    position: absolute;
     height: 100%;
-    padding: 0;
-    min-height: 0;
+    right: 0;
+    left: 0;
+    margin: 0;
   }
+
+	.dotted {
+		background-image: radial-gradient(#ddd 20%, transparent 20%), radial-gradient(#ddd 20%, transparent 20%);
+    background-color: #eee;
+    background-position: 0 0, 50px 50px;
+    background-size: 100px 100px;
+	}
 
   .contain {
     position: relative;
@@ -78,7 +135,7 @@
     position: relative;
   }
 
-  .middle {
+  /* .middle {
     right: 0;
     left: 0;
     position: absolute;
@@ -86,7 +143,7 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     text-align: center;
-  }
+  } */
 
   .name {
     position: absolute;

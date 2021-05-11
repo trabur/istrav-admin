@@ -1,6 +1,6 @@
 [
-  { "id": "GetStarted", "name": "Get Started (1)", "application": true },
-  { "id": "Logo", "name": "Logo (1)", "application": true },
+  { "id": "GetStarted", "name": "Get Started (1)" },
+  { "id": "Logo", "name": "Logo (1)" },
   { "id": "MainFooter", "name": "Main Footer (1)", "menu": true },
   { "id": "Navigation", "name": "Navigation (1)", "menu": true },
   { "id": "OpenSource", "name": "Open Source (1)" },

@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
 
+  // export let app
+  // export let page
   export let showWiring
 
 	onMount(() => {

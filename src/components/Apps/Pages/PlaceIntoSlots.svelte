@@ -29,6 +29,8 @@
   export let state
   export let slug
 
+  let app
+  let page
   let appId
   let endpoint
   let uploads
@@ -67,6 +69,7 @@
     console.log('esOne', esOne)
 
     if (esOne.payload.success === true) {
+      app = esOne.payload.data
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
       uploads = esOne.payload.data.uploads
@@ -75,10 +78,10 @@
       let esPages = await scripts.app.pages.getOne(appId, slug)
       console.log('esPages', esPages)
       if (esPages.payload.success === true) {
-        let data = esPages.payload.data
-        slug = data.slug
-        wireframeId = data.wireframe
-        slots = data.slots
+        page = esPages.payload.data
+        slug = page.slug
+        wireframeId = page.wireframe
+        slots = page.slots
         updateViewportComponent(wireframeId)
         setTimeout(() => M.updateTextFields(), 0)
       } else {
@@ -231,7 +234,7 @@
   <div class="col s12 m10">
     {#if wireframeId && loading === false}
       <Browser url={"https://"}>
-        <svelte:component this={viewportComponent} showWiring={true}>
+        <svelte:component this={viewportComponent} {app} {page} showWiring={true}>
           <section slot="logo" class="slot" use:dndzone="{{items: place.logoSlot, flipDurationMs}}" on:consider="{handleDndConsiderLogoSlot}" on:finalize="{handleDndFinalizeLogoSlot}">
             {#each place.logoSlot as item(item.id)}
               <div class="block" animate:flip="{{duration: flipDurationMs}}"><Block {item} {domain} {state} /></div>
