@@ -82,7 +82,7 @@
 
 <style>
   .wire {
-    border: 3px dashed #ccc;
+    border: 1px dashed #000;
     padding: 0.2em;
     margin: 0.2em;
     min-height: 5em;
@@ -98,8 +98,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: #ccc;
-    border: 3px dashed #ccc;
+    color: #000;
+    border: 1px dashed #000;
     border-left: 0;
     border-top: 0;
     padding: 0.2em;

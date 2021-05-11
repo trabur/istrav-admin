@@ -35,15 +35,16 @@
   
   /* The browser window */
   .browser {
-    border: 3px solid #ccc;
+    border: 3px solid #888;
     border-top-left-radius: 0.5em;
     border-top-right-radius: 0.5em;
+    box-shadow: 0 0 20px grey;
   }
   
   /* Container for columns and the top "toolbar" */
   .browser-row {
     padding: 10px;
-    background: #ccc;
+    background: #888;
   }
   
   /* Create three unequal columns that floats next to each other */
@@ -85,7 +86,7 @@
     width: 100%;
     border-radius: 3px;
     border: none;
-    background-color: #eee;
+    background-color: #fff;
     margin: -0.1em 0 0;
     height: 25px;
     color: #666;
@@ -96,7 +97,7 @@
   .bar {
     width: 25px;
     height: 3px;
-    background-color: #aaa;
+    background-color: #333;
     margin: 5px 0;
     display: block;
   }
@@ -104,6 +105,6 @@
   /* Page content */
   .content {
     padding: 10px;
-    background: #fff;
+    background: #eee;
   }
 </style>
