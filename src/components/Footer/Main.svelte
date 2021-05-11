@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col l6 s12">
         <h5 class="white-text">ISTRAV</h5>
-        <p class="grey-text text-lighten-4">Complete custom & white label web solutions. Includes admin control panel (metaheap.io). Built headless (farmerless.com) with CQRS in mind so you can detach any part of the system and roll your own at any time. Underneath the hood (hacktracks.org) our backend REST API is "event source" driven; the same system used by banks to keep track of records. We are doing some amazing things around here at ISTRAV, so stick around, and feel free to give us feeback along the way.</p>
+        <p class="grey-text text-lighten-4">Complete custom & white label web solutions. Includes admin control panel (metaheap.io). Built headless (farmerless.com) with CQRS in mind so you can detach any part of the system and roll your own at any time. Underneath the hood (hacktracks.org) our backend REST API is "event source" driven; the same system used by banks to keep track of records. We are doing some amazing things around here at ISTRAV, so stick around, and feel free to give us feedback along the way.</p>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Web Solutions</h5>
