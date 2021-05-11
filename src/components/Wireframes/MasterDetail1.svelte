@@ -17,18 +17,18 @@
   <div id="particles-js">
     <div class="row wrapper middle">
       <div class="col wrapper s12 m6">
-          <div class={showWiring ? 'logo wire' : 'logo'}>
-            {#if showWiring}
-              <div class="name">logo</div>
-            {/if}
-            <slot name="logo"></slot>
-          </div>
-          <div class={showWiring ? 'slogan wire' : 'slogan'}>
-            {#if showWiring}
-              <div class="name">slogan</div>
-            {/if}
-            <slot name="slogan"></slot>
-          </div>
+        <div class={showWiring ? 'logo wire' : 'logo'}>
+          {#if showWiring}
+            <div class="name">logo</div>
+          {/if}
+          <slot name="logo"></slot>
+        </div>
+        <div class={showWiring ? 'slogan wire' : 'slogan'}>
+          {#if showWiring}
+            <div class="name">slogan</div>
+          {/if}
+          <slot name="slogan"></slot>
+        </div>
       </div>
       <div class="col wrapper s12 m6">
         <div class={showWiring ? 'controls wire' : 'controls'}>
@@ -47,6 +47,9 @@
   {/if}
   <slot name="navigation"></slot>
 </div>
+<br />
+<br />
+<br />
 <div class="row wrapper" style="display: flex;">
   <div class="col wrapper s12 m1"></div>
   <div class="col wrapper s12 m3">
@@ -69,6 +72,9 @@
   </div>
   <div class="col wrapper s12 m1"></div>
 </div>
+<br />
+<br />
+<br />
 <main class={showWiring ? 'wire' : ''}>
   {#if showWiring}
     <div class="name">main</div>

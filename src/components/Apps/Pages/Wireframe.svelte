@@ -18,6 +18,8 @@
   export let state = '';
   export let slugId = '';
 
+  let app
+  let page
   let name = ''
   let slug = slugId
   let appId
@@ -54,17 +56,18 @@
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {
-      appId = esOne.payload.data.id
-      endpoint = esOne.payload.data.endpoint
+      app = esOne.payload.data
+      appId = app.id
+      endpoint = app.endpoint
 
       // fetch page
       let esPages = await scripts.app.pages.getOne(appId, slug)
       console.log('esPages', esPages)
       if (esPages.payload.success === true) {
-        let data = esPages.payload.data
-        name = data.name
-        slug = data.slug
-        wireframeId = data.wireframe
+        page = esPages.payload.data
+        name = page.name
+        slug = page.slug
+        wireframeId = page.wireframe
         updateViewportComponent(wireframeId)
         setTimeout(() => M.updateTextFields(), 0)
       } else {
@@ -144,7 +147,7 @@
   <div class="col s12 m1"></div>
   <div class="col s12 m10">
     <Browser url={"https://"}>
-      <svelte:component this={viewportComponent} showWiring={true}>
+      <svelte:component this={viewportComponent} {app} {page} showWiring={true}>
         <!-- hello world -->
       </svelte:component>
     </Browser>
