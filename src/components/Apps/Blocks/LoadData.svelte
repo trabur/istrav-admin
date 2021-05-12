@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte';
 
+  import components from './components.json'
+
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
@@ -13,26 +15,32 @@
   let raw = ''
   let appId
   let endpoint
-
-  function isValidJson(string) {
-    try {
-      JSON.parse(string)
-    } catch (e) {
-      return false
-    }
-    return true
+  let component
+  let loadComponent = {
+    menu: true,
+    guides: true,
   }
+  let menuId = ''
+  let menus = []
+  let menuIdChoices
+  let guideId = ''
+  let guides = []
+  let guideIdChoices
 
 	async function change() {
-    if (name === '') return alert('Name must be defined.')
-    if (slug === '') return alert('Slug must be defined.')
-    if (!isValidJson(raw)) return alert('Raw must be valid JSON.')
+    if (loadComponent.menu === true) {
+      menuId = menuIdChoices.getValue(true)
+      console.log('menuId', menuId)
+    }
+    if (loadComponent.guide === true) {
+      guideId = guideIdChoices.getValue(true)
+      console.log('guideId', guideId)
+    }
 
     let token = localStorage.getItem('token')
     let change = {
-      name,
-      slug,
-      raw
+      menuId,
+      guideId
     }
     let esUpdate = await scripts.app.blocks.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -52,17 +60,77 @@
       appId = esOne.payload.data.id
       endpoint = esOne.payload.data.endpoint
 
-      // fetch menu
-      let esMenu = await scripts.app.blocks.getOne(appId, slug)
-      console.log('esMenu', esMenu)
-      if (esMenu.payload.success === true) {
-        let data = esMenu.payload.data
+      // fetch block
+      let esBlock = await scripts.app.blocks.getOne(appId, slug)
+      console.log('esBlock', esBlock)
+      if (esBlock.payload.success === true) {
+        let data = esBlock.payload.data
         name = data.name
         slug = data.slug
         raw = data.raw
+        component = data.component
+        loadComponent = components.filter((value) => {
+          return value.id === component
+        })[0]
+        console.log('loadComponent', loadComponent)
+        menuId = data.menuId
+        guideId = data.guideId
         setTimeout(() => M.updateTextFields(), 0)
       } else {
-        alert(esMenu.payload.reason)
+        alert(esBlock.payload.reason)
+      }
+
+      
+      // fetch menus for dropdown
+      if (loadComponent.menu === true) {
+        let esMenus = await scripts.app.menus.getAll(appId)
+        console.log('esMenus', esMenus)
+        if (esMenus.payload.success === true) {
+          menus = esMenus.payload.data
+        } else {
+          alert(esMenus.payload.reason)
+        }
+        
+        setTimeout(() => {
+          const menuIdElement = document.querySelector('#menuId');
+          menuIdChoices = new Choices(menuIdElement);
+          menus.forEach((value, index) => {
+            console.log(`${value.id} === ${menuId}`)
+            if (value.id === menuId) {
+              menus[index].selected = true
+            }
+            menus[index].value = value.id
+            menus[index].label = value.name
+          })
+          console.log('menus', menus)
+          menuIdChoices.setChoices(menus, 'value', 'label', false)
+        }, 0)
+      }
+
+      // fetch guides for dropdown
+      if (loadComponent.guide === true) {
+        let esGuides = await scripts.channel.guides.getAll(appId)
+        console.log('esGuides', esGuides)
+        if (esGuides.payload.success === true) {
+          guides = esGuides.payload.data
+        } else {
+          alert(esGuides.payload.reason)
+        }
+
+        setTimeout(() => {
+          const guideIdElement = document.querySelector('#guideId');
+          guideIdChoices = new Choices(guideIdElement);
+          guides.forEach((value, index) => {
+            console.log(`${value.id} === ${guideId}`)
+            if (value.id === guideId) {
+              guides[index].selected = true
+            }
+            guides[index].value = value.id
+            guides[index].label = value.name
+          })
+          console.log('guides', guides)
+          guideIdChoices.setChoices(guides, 'value', 'label', false)
+        }, 0)
       }
     } else {
       alert(esOne.payload.reason)
@@ -80,18 +148,26 @@
     <h3 class="title">Load Data</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
-        <div class="input-field col s12">
-          <input id="name" type="text" class="validate" bind:value={name}>
-          <label for="name">Name</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="slug" type="text" class="validate" bind:value={slug}>
-          <label for="slug">Slug</label>
-        </div>
-        <div class="input-field col s12">
-          <textarea id="raw" type="text" class="validate" bind:value={raw}></textarea>
-          <label for="raw">Raw</label>
-        </div>
+        {#if loadComponent.menu === true}
+          <div class="input-field col s12">
+            <div class="label">Menu</div>
+            <div class="choices">
+              <select id="menuId" class="choices" bind:value={menuId}></select>
+            </div>
+            <br />
+            <br />
+          </div>
+        {/if}
+        {#if loadComponent.guide === true}
+          <div class="`input-field col s12">
+            <div class="label">Guide</div>
+            <div class="choices">
+              <select id="guideId" class="choices" bind:value={guideId}></select>
+            </div>
+            <br />
+            <br />
+          </div>`
+        {/if}
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
@@ -107,9 +183,10 @@
     font-weight: 900;
   }
 
-  textarea {
-    background: #fff;
-    border: 1px solid #aaa;
-    min-height: 10em;
+  .choices {
+    position: absolute;
+    right: 0.75em;
+    left: 0.75em;
+    z-index: 10;
   }
 </style>
