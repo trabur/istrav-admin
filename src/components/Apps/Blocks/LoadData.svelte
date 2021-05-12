@@ -159,16 +159,16 @@
           </div>
         {/if}
         {#if loadComponent.guide === true}
-          <div class="`input-field col s12">
+          <div class="input-field col s12">
             <div class="label">Guide</div>
             <div class="choices">
               <select id="guideId" class="choices" bind:value={guideId}></select>
             </div>
             <br />
             <br />
-          </div>`
+          </div>
         {/if}
-        <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
+        <button style="margin-left: 0.75em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>
     </div>
   </div>
