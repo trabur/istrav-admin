@@ -3,6 +3,7 @@
   { "id": "MainFooter", "name": "Main Footer (1)", "menu": true },
   { "id": "Navigation", "name": "Navigation (1)", "menu": true },
   { "id": "OpenSource", "name": "Open Source (1)" },
+  { "id": "SideNavigation", "name": "Side Navigation (1)", "menu": true },
   { "id": "FeaturedGuide", "name": "Featured Guide (1)", "guide": true },
   { "id": "Solutions", "name": "Solutions (1)" },
   { "id": "Slogan", "name": "Slogan (1)" },
