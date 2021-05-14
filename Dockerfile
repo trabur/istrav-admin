@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY src ./src
 COPY static ./static
-COPY rollup.config.js ./
+COPY svelte.config.js ./
 
 RUN npm install
 RUN npm run build
