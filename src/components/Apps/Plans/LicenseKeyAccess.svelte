@@ -7,6 +7,9 @@
 	export let domain
   export let state
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let slug = slugId
   let appId
@@ -111,7 +114,7 @@
             <label>
               deny
               <!-- svelte-ignore M -->
-              <input type="checkbox" bind:checked={grantApplicationAccess} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <input type="checkbox" bind:checked={grantApplicationAccess} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
               <span class="lever"></span>
               grant
             </label>
@@ -128,7 +131,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantMarketing} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -140,7 +143,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantShop} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -152,7 +155,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantForum} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -164,7 +167,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantChannel} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -176,7 +179,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantPromo} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -188,7 +191,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantHosting} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantHosting} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>
@@ -204,7 +207,7 @@
               <label>
                 deny
                 <!-- svelte-ignore M -->
-                <input type="checkbox" bind:checked={grantWhiteLabel} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+                <input type="checkbox" bind:checked={grantWhiteLabel} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
                 <span class="lever"></span>
                 grant
               </label>

@@ -4,6 +4,9 @@
 
 	export let domain = '';
   export let state = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let name = ''
   let slug = ''
@@ -21,7 +24,7 @@
     let esSave = await scripts.app.faq.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/faq/${slug}`
+      window.location.href = `/apps/${domain}/${state}/faq/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

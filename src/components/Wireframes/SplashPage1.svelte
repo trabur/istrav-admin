@@ -4,10 +4,10 @@
   export let showWiring
   export let app
   // export let page
-
+  
 	onMount(() => {
 		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-		particlesJS.load('particles-js', './particles.json', function() {
+		window['particlesJS'].load('particles-js', './particles.json', function() {
 			console.log('callback - particles.js config loaded');
 		});
 	})
@@ -78,7 +78,7 @@
 </footer>
 
 <style>
-  :global(#sapper) {
+  :global(#svelte) {
     overflow: auto;
   }
 

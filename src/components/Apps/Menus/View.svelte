@@ -13,6 +13,9 @@
 
   export let domain
   export let state
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let appId
   let endpoint

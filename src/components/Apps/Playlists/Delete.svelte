@@ -1,10 +1,12 @@
 
 <script>
-
   export let state;
   export let domain;
 	export let appId;
   export let slug;
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" playlist? Please renter quotation to confirm.`, "");
@@ -21,7 +23,7 @@
     let esDelete = await scripts.channel.playlists.getRemove(appId, token, slug)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/playlists`
+      window.location.href = `/apps/${domain}/${state}/playlists`
     } else {
       alert(esDelete.payload.reason)
     }

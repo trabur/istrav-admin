@@ -9,6 +9,7 @@
   export let state;
   let app
   let totals
+  let scripts = window['scripts']
 
   onMount(async () => {
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
@@ -45,7 +46,7 @@
       <div class="card" style="padding: 1em;">
         <div class="masonry">
           <Frame domain={domain} state={state} />
-          <Status domain={domain} state={state} endpoint={app.endpoint} uploads={app.uploads} />
+          <Status domain={domain} endpoint={app.endpoint} uploads={app.uploads} />
         </div>
         <hr />
         <Totals domain={domain} state={state} totals={totals} />

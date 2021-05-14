@@ -21,7 +21,7 @@
     let esSave = await scripts.store.collections.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/collections/${slug}`
+      window.location.href = `/apps/${domain}/${state}/collections/${slug}`
     } else {
       alert(esSave.payload.reason)
     }

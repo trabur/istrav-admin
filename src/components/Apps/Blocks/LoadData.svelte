@@ -9,6 +9,9 @@
 	export let domain = '';
   export let state = '';
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let name = ''
   let slug = slugId
@@ -16,10 +19,7 @@
   let appId
   let endpoint
   let component
-  let loadComponent = {
-    menu: true,
-    guides: true,
-  }
+  let loadComponent
   let menuId = ''
   let menus = []
   let menuIdChoices
@@ -148,7 +148,7 @@
     <h3 class="title">Load Data</h3>
     <div class="card" style="padding: 1em;">
       <div class="row">
-        {#if loadComponent.menu === true}
+        {#if loadComponent && loadComponent.menu === true}
           <div class="input-field col s12">
             <div class="label">Menu</div>
             <div class="choices">
@@ -158,7 +158,7 @@
             <br />
           </div>
         {/if}
-        {#if loadComponent.guide === true}
+        {#if loadComponent && loadComponent.guide === true}
           <div class="input-field col s12">
             <div class="label">Guide</div>
             <div class="choices">

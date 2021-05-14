@@ -4,18 +4,23 @@
   import Sidebar from './Sidebar.svelte'
   import Delete from './Delete.svelte'
 
-  import 'bytemd/dist/index.min.css';
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
+  // import 'bytemd/dist/index.min.css';
+  // import { Editor, Viewer } from 'bytemd';
+  // import gfm from '@bytemd/plugin-gfm';
 
 	export let domain = '';
   export let state = '';
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let name = ''
   let slug = slugId
   let appId
   let endpoint
+  let content
+  var contentMD
 
 	async function change() {
     if (name === '') return alert('Name must be defined.')
@@ -25,7 +30,7 @@
     let change = {
       name,
       slug,
-      content
+      content: contentMD.value()
     }
     let esUpdate = await scripts.app.faq.getUpdate(appId, token, slugId, change)
     console.log('esUpdate', esUpdate)
@@ -37,6 +42,8 @@
   }
 
   onMount(async () => {
+    contentMD = new window['SimpleMDE']({ element: document.getElementById("contentMD") })
+
     M.updateTextFields();
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
@@ -53,6 +60,7 @@
         name = data.name // question
         slug = data.slug
         content = data.content // answer
+        contentMD.value(content || '')
         setTimeout(() => M.updateTextFields(), 0)
       } else {
         alert(esFAQ.payload.reason)
@@ -61,16 +69,6 @@
       alert(esOne.payload.reason)
     }
   })
-
-  let content = ''
-  const plugins = [
-    gfm(),
-    // Add more plugins here
-  ];
-
-  function handleChange(e) {
-    content = e.detail.value;
-  }
 </script>
 
 <div class="row">
@@ -112,7 +110,7 @@
         </div>
         <div class="input-field col s12">
           <div>Answer:</div>
-          <Editor value={content || ''} {plugins} on:change={handleChange} />
+          <textarea id="contentMD" type="text" class="validate" bind:value={content}></textarea>
         </div>
         <button style="margin-left: 1em;" type='submit' class="waves-effect btn" on:click={() => change()}>Submit</button>
       </div>

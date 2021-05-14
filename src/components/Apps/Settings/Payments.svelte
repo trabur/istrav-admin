@@ -6,6 +6,9 @@
   
   export let domain
   export let state  
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let isProduction
   let stripePublishableKeyTest
@@ -68,7 +71,7 @@
           <div class="switch">
             <label>
               TEST
-              <input type="checkbox" bind:checked={isProduction} on:change={() => setTimeout(() => window.M.updateTextFields(), 0)}>
+              <input type="checkbox" bind:checked={isProduction} on:change={() => setTimeout(() => M.updateTextFields(), 0)}>
               <span class="lever"></span>
               LIVE
             </label>

@@ -4,6 +4,9 @@
   export let domain;
 	export let appId;
   export let slug;
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" FAQ? Please renter quotation to confirm.`, "");
@@ -20,7 +23,7 @@
     let esDelete = await scripts.app.faq.getRemove(appId, token, slug)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/faq`
+      window.location.href = `/apps/${domain}/${state}/faq`
     } else {
       alert(esDelete.payload.reason)
     }

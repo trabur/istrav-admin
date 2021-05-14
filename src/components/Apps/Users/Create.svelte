@@ -4,6 +4,9 @@
 
 	export let domain = '';
   export let state = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let email
   let username
@@ -23,7 +26,7 @@
     let esSave = await scripts.account.users.getRegister(appId, email, username, password, firstName, lastName)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/users/${slug}`
+      window.location.href = `/apps/${domain}/${state}/users/${username}`
     } else {
       alert(esSave.payload.reason)
     }

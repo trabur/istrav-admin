@@ -7,6 +7,9 @@
 	export let domain = '';
   export let state = '';
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let name = ''
   let slug = slugId
@@ -215,7 +218,7 @@
     formData.append('folder', `products/${slug}`)
     formData.append('sampleFile', files[0])
 
-    fetch(`${window.backend}/v1/files/upload`, {
+    fetch(`${window['backend']}/v1/files/upload`, {
       method: 'POST',
       body: formData
     })

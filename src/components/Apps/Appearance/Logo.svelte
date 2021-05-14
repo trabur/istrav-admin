@@ -4,13 +4,11 @@
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
-  import 'bytemd/dist/index.min.css';
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
-
   export let domainId
   export let stateId
   let loading = false
+  let scripts = window['scripts']
+  let M = window['M']
 
   let domain = domainId
   let state = stateId
@@ -79,7 +77,7 @@
     formData.append('folder', `logo`)
     formData.append('sampleFile', files[0])
 
-    fetch(`${window.backend}/v1/files/upload`, {
+    fetch(`${window['backend']}/v1/files/upload`, {
       method: 'POST',
       body: formData
     })

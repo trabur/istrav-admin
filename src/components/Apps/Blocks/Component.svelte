@@ -9,6 +9,9 @@
 	export let domain = '';
   export let state = '';
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let slug = slugId
   let appId
@@ -68,10 +71,10 @@
         components.forEach((value, index) => {
           console.log(`${value.id} === ${componentId}`)
           if (value.id === componentId) {
-            components[index].selected = true
+            components[index]['selected'] = true
           }
-          components[index].value = value.id
-          components[index].label = value.name
+          components[index]['value'] = value.id
+          components[index]['label'] = value.name
         })
         console.log('components', components)
         componentIdChoices.setChoices(components, 'value', 'label', false)

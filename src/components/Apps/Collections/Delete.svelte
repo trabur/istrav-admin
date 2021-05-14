@@ -21,7 +21,7 @@
     let esDelete = await scripts.store.collections.getRemove(appId, token, slug)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/collections`
+      window.location.href = `/apps/${domain}/${state}/collections`
     } else {
       alert(esDelete.payload.reason)
     }

@@ -7,6 +7,9 @@
 	export let domain = '';
   export let state = '';
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
   
   let username = slugId;
   let firstName
@@ -92,7 +95,7 @@
     formData.append('folder', `users/${username}`)
     formData.append('sampleFile', files[0])
 
-    fetch(`${window.backend}/v1/files/upload`, {
+    fetch(`${window['backend']}/v1/files/upload`, {
       method: 'POST',
       body: formData
     })
@@ -124,7 +127,7 @@
       <a href={`/apps/${domain}/${state}/users`} class="waves-effect btn" style="float: left; margin-right: 0.5em;">⟵ BACK</a>
       <h3 class="path">/{slugId}</h3>
       <div style="text-align: right;">
-        <Delete appId={appId} slug={slugId} domain={domain} state={state} />
+        <Delete appId={appId} domain={domain} state={state} />
         <a href={`http://${endpoint}.tyu67.com/users/${slugId}`} class="waves-effect btn right teal" style="margin-right: 1em;" target="_blank"><i class="navicon material-icons">public</i></a>
       </div>
     </div>

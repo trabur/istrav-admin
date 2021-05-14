@@ -7,6 +7,9 @@
 	export let domain
   export let state
   export let slugId = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let name = ''
   let slug = slugId

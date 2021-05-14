@@ -6,6 +6,9 @@
   
   export let domainId
   export let stateId
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let appId
   let loading = false

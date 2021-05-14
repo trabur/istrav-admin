@@ -7,6 +7,8 @@
   export let domainId
   export let stateId
   let loading = false
+  let scripts = window['scripts']
+  let M = window['M']
 
   let domain = domainId
   let state = stateId

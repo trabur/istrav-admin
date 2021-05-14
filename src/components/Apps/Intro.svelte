@@ -6,6 +6,8 @@
   let appId
   let uploads
   let token
+  let scripts = window['scripts']
+  let M = window['M']
 
   // intro
   let image = "heic1901a.jpg"
@@ -80,7 +82,7 @@
     formData.append('folder', `intro`)
     formData.append('sampleFile', files[0])
 
-    fetch(`${window.backend}/v1/files/upload`, {
+    fetch(`${window['backend']}/v1/files/upload`, {
       method: 'POST',
       body: formData
     })

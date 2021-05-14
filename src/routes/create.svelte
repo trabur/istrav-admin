@@ -11,7 +11,7 @@
   let display = false
   onMount(() =>{
     let loader = setInterval(() => {
-      if (window.scripts) {
+      if (window['scripts']) {
         display = true
         clearInterval(loader)
       }

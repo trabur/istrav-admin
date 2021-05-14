@@ -5,6 +5,7 @@
   export let domain
   export let state
   export let active
+  let M = window['M']
 
   let navigation = [
     {

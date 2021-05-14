@@ -9,8 +9,7 @@
   import Footer from '../../../../../components/Footer/Main.svelte'
   import Sidebar from '../../../../../components/Sidebar.svelte'
   
-  import { stores } from "@sapper/app"
-  const { page } = stores()
+  import { getStores, navigating, page, session } from '$app/stores';
 
   // When this is true, show the component
   let load = false
@@ -19,7 +18,7 @@
 
   $: { reMount($page.params.domain) }
   $: { reMount($page.params.state) }
-  function reMount() {
+  function reMount(update) {
     load = false
     setTimeout(() => load = true, 0)
     domain = $page.params.domain

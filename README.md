@@ -3,7 +3,7 @@ METAHEAP.IO
 
 ```bash
 # development
-export PORT=5280; npm run dev
+$ npm run dev
 ```
 
 ```bash

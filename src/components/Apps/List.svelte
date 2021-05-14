@@ -5,6 +5,7 @@
 
   let list = []
   let loading = true
+  let scripts = window['scripts']
 
   onMount(async () => {
     let token = localStorage.getItem('token')

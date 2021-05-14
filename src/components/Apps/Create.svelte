@@ -5,6 +5,7 @@
 	let domain = '';
   let state = '';
   let endpoint = ''
+  let scripts = window['scripts']
 
 	async function create() {
     if (domain === '') return alert('Domain Name must be defined.')
@@ -19,7 +20,7 @@
     let esSave = await scripts.tenant.apps.getSave(token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}`
+      window.location.href = `/apps/${domain}/${state}`
     } else {
       alert(esSave.payload.reason)
     }

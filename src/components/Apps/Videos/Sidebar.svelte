@@ -6,6 +6,9 @@
   export let state
   export let slug
   export let active
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let navigation = [
     {
@@ -37,7 +40,6 @@
 
   onMount(() => {
     setTimeout(() => {
-
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems, {});
     }, 1000)

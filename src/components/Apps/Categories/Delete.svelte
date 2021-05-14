@@ -5,6 +5,9 @@
   export let domain;
 	export let appId;
   export let slug;
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" category? Please renter quotation to confirm.`, "");
@@ -21,7 +24,7 @@
     let esDelete = await scripts.store.categories.getRemove(appId, token, slug)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/categories`
+      window.location.href = `/apps/${domain}/${state}/categories`
     } else {
       alert(esDelete.payload.reason)
     }

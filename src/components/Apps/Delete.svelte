@@ -2,6 +2,7 @@
 <script>
 	export let domain;
   export let state;
+  let scripts = window['scripts']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${domain}:${state}" application? Please renter quotation to confirm.`, "");
@@ -18,7 +19,7 @@
     let esDelete = await scripts.tenant.apps.getRemove(token, domain, state)
     console.log('esDelete', esDelete)
     if (esDelete.payload.success === true) {
-      window.location = '/apps'
+      window.location.href = '/apps'
     } else {
       alert(esDelete.payload.reason)
     }

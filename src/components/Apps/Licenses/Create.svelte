@@ -4,6 +4,9 @@
 
 	export let domain = '';
   export let state = '';
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let key = ''
   let appId
@@ -18,7 +21,7 @@
     let esSave = await scripts.subscription.licenses.getSave(appId, token, change)
     console.log('esSave', esSave)
     if (esSave.payload.success === true) {
-      window.location = `/apps/${domain}/${state}/licenses/${key}`
+      window.location.href = `/apps/${domain}/${state}/licenses/${key}`
     } else {
       alert(esSave.payload.reason)
     }

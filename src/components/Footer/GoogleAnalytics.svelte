@@ -14,8 +14,8 @@
       s0.parentNode.insertBefore(s1, s0)
     })()
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    window['dataLayer'] = window['dataLayer'] || [];
+    function gtag(){window['dataLayer'].push(arguments);}
     gtag('js', new Date());
     
     gtag('config', measurementId);

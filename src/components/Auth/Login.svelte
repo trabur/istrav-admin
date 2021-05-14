@@ -3,6 +3,8 @@
 
 	let email = '';
   let password = '';
+  let scripts = window['scripts']
+  let M = window['M']
 
 	async function auth() {
     if (email === '') return alert('Email must be defined.')
@@ -12,7 +14,7 @@
     console.log('esLogin', esLogin)
     if (esLogin.payload.success === true) {
       localStorage.setItem('token', esLogin.payload.data.token)
-      window.location = '/apps'
+      window.location.href = '/apps'
     } else {
       alert(esLogin.payload.reason)
     }

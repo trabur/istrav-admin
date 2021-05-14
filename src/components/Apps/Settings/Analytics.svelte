@@ -5,7 +5,10 @@
   import Sidebar from './Sidebar.svelte'
 
   export let domain
-  export let state  
+  export let state
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let googleAnalyticsMeasurementId
 

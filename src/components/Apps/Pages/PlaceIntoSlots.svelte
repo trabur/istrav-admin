@@ -28,6 +28,9 @@
   export let domain
   export let state
   export let slug
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let app
   let page

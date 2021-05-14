@@ -11,6 +11,8 @@
   let username = '';
   let firstName = '';
   let lastName = '';
+  let scripts = window['scripts']
+  let M = window['M']
 
   onMount(async () => {
     M.updateTextFields();

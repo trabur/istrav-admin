@@ -6,6 +6,9 @@
   export let appId
   export let slugId
   export let endpoint
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 </script>
 
 <div class="row">

@@ -4,19 +4,23 @@
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
-  import 'bytemd/dist/index.min.css';
-  import { Editor, Viewer } from 'bytemd';
-  import gfm from '@bytemd/plugin-gfm';
+  // import 'bytemd/dist/index.min.css';
+  // import { Editor, Viewer } from 'bytemd';
+  // import gfm from '@bytemd/plugin-gfm';
 
   export let domainId
   export let stateId
   let loading = false
+  let scripts = window['scripts']
+  let M = window['M']
 
   let domain = domainId
   let state = stateId
   let labelName
   let labelShort
   let labelEmail
+  let labelAbout
+  let labelShipping
   let labelSloganLine1
   let labelSloganLine2
   let labelWelcome
@@ -25,8 +29,13 @@
   let labelAddressLine1
   let labelAddressLine2
   let labelPrimaryOffering
+  var labelAboutMD
+  var labelShippingMD
 
   onMount(async () => {
+    labelAboutMD = new window['SimpleMDE']({ element: document.getElementById("labelAbout") })
+    labelShippingMD = new window['SimpleMDE']({ element: document.getElementById("labelShipping") })
+    
     M.updateTextFields();
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
@@ -47,6 +56,8 @@
       labelAddressLine1 = app.labelAddressLine1
       labelAddressLine2 = app.labelAddressLine2
       labelPrimaryOffering = app.labelPrimaryOffering
+      labelAboutMD.value(labelAbout || '')
+      labelShippingMD.value(labelShipping || '')
       setTimeout(() => M.updateTextFields(), 0)
     } else {
       alert(esOne.payload.reason)
@@ -60,8 +71,8 @@
       labelName,
       labelShort,
       labelEmail,
-      labelAbout,
-      labelShipping,
+      labelAbout: labelAboutMD.value(),
+      labelShipping: labelShippingMD.value(),
       labelSloganLine1,
       labelSloganLine2,
       labelWelcome,
@@ -81,21 +92,6 @@
       alert(esUpdate.payload.reason)
     }
     loading = false
-  }
-
-  let labelAbout = ''
-  const plugins = [
-    gfm(),
-    // Add more plugins here
-  ];
-
-  function handleAboutChange(e) {
-    labelAbout = e.detail.value;
-  }
-
-  let labelShipping = ''
-  function handleShippingChange(e) {
-    labelShipping = e.detail.value;
   }
 </script>
 
@@ -138,12 +134,14 @@
 
         <div class="input-field col s12">
           <div>About:</div>
-          <Editor value={labelAbout || ''} {plugins} on:change={handleAboutChange} />
+          <textarea id="labelAbout" type="text" class="validate" bind:value={labelAbout}></textarea>
+          <!-- <Editor value={labelAbout || ''} {plugins} on:change={handleAboutChange} /> -->
         </div>
 
         <div class="input-field col s12">
           <div>Shipping:</div>
-          <Editor value={labelShipping || ''} {plugins} on:change={handleShippingChange} />
+          <textarea id="labelShipping" type="text" class="validate" bind:value={labelShipping}></textarea>
+          <!-- <Editor value={labelShipping || ''} {plugins} on:change={handleShippingChange} /> -->
         </div>
 
         <div class="input-field col s12">

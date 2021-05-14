@@ -6,6 +6,9 @@
   
   export let domainId
   export let stateId
+  let scripts = window['scripts']
+  let M = window['M']
+  let Choices = window['Choices']
 
   let appId
   let loading = false
@@ -14,6 +17,7 @@
   let token
   let key
   let hostId
+  let hostDomain
 
   onMount(async () => {
     M.updateTextFields();
