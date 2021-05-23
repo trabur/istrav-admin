@@ -4,6 +4,7 @@
 
 <script>
   import { onMount } from 'svelte';
+	
 	import Login from '../components/Auth/Login.svelte'
 	import Welcome from '../components/Auth/Welcome.svelte'
 

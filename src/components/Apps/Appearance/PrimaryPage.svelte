@@ -1,15 +1,16 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { istrav, scripts } from '../../../../farmerless/api'
+  
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
   export let domainId
   export let stateId
   let loading = false
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
+  let Choices
 
   let domain = domainId
   let state = stateId
@@ -20,6 +21,8 @@
   let pageIdChoices
 
   onMount(async () => {
+    M = window['M']
+    Choices = window['Choices']
     M.updateTextFields();
 
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)

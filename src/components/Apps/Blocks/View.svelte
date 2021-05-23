@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import { Datatable, rows } from 'svelte-simple-datatables'
 

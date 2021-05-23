@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
@@ -7,9 +9,7 @@
 	export let domain = '';
   export let state = '';
   export let slugId = '';
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
 
   let name = ''
   let slug = slugId
@@ -35,6 +35,7 @@
   }
 
   onMount(async () => {
+    M = window['M']
     M.updateTextFields();
     token = localStorage.getItem('token')
 

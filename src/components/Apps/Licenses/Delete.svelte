@@ -1,13 +1,11 @@
 
 <script>
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   export let state;
   export let domain;
 	export let appId;
   export let slug;
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${slug}" product? Please renter quotation to confirm.`, "");

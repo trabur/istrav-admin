@@ -5,7 +5,7 @@
   export let domain
   export let state
   export let active
-  let M = window['M']
+  let M
 
   let navigation = [
     {
@@ -46,8 +46,9 @@
   ]
 
   onMount(() => {
+    M = window['M']
+    
     setTimeout(() => {
-
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems, {});
     }, 1000)

@@ -1,14 +1,14 @@
 
 <script>
   import { onMount } from "svelte";
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   export let domain
   export let state
   export let slug
   export let active
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
 
   let navigation = [
     {
@@ -24,8 +24,9 @@
   ]
 
   onMount(() => {
-    setTimeout(() => {
+    M = window['M']
 
+    setTimeout(() => {
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems, {});
     }, 1000)

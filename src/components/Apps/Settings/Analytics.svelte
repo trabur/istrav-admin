@@ -1,18 +1,19 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import Header from './Header.svelte'
   import Sidebar from './Sidebar.svelte'
 
   export let domain
   export let state
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
 
   let googleAnalyticsMeasurementId
 
   onMount(async () => {
+    M = window['M']
     M.updateTextFields();
     let token = localStorage.getItem('token')
 

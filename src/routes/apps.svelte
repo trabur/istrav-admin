@@ -10,15 +10,7 @@
   
   import GoogleAnalytics from '../components/Footer/GoogleAnalytics.svelte'
 
-  let display = false
   onMount(() =>{
-    let loader = setInterval(() => {
-      if (window['scripts']) {
-        display = true
-        clearInterval(loader)
-      }
-    }, 100)
-
 		// if not already logged in then direct to login
 		if (!localStorage.getItem('token')) {
 			window.location.href = '/'
@@ -35,10 +27,8 @@
       <br class="hide-on-med-and-down" />
       <br class="hide-on-med-and-down" />
       <br />
-      {#if display}
-        <MyProfile />
-        <List />
-      {/if}
+      <MyProfile />
+      <List />
       <br class="hide-on-med-and-down" />
       <br class="hide-on-med-and-down" />
       <br />

@@ -1,12 +1,11 @@
 
 <script>
+  import { istrav, scripts } from '../../../../farmerless/api'
+
   export let state;
   export let domain;
 	export let appId;
   export let username;
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${username}" user? Please renter quotation to confirm.`, "");

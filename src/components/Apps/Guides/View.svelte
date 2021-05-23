@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import { Datatable, rows } from 'svelte-simple-datatables'
 
@@ -12,9 +14,6 @@
 
   export let domain
   export let state
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
 
   let appId
   let endpoint

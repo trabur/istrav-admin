@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
 
-  
 	onMount(async () => {
 		/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
 		window['particlesJS'].load('particles-js', './particles.json', function() {

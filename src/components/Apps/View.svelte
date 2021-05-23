@@ -1,6 +1,9 @@
 
 <script>
   import { onMount } from 'svelte';
+
+  import { istrav, scripts } from '../../../farmerless/api'
+  
   import Frame from './Frame.svelte'
   import Status from './Status.svelte'
   import Totals from './Totals.svelte'
@@ -9,7 +12,6 @@
   export let state;
   let app
   let totals
-  let scripts = window['scripts']
 
   onMount(async () => {
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)

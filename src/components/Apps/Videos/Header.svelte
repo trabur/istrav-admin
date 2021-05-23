@@ -1,14 +1,11 @@
 <script>
   import Delete from './Delete.svelte'
-
+  
   export let domain
   export let state
   export let appId
   export let slugId
   export let endpoint
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
 </script>
 
 <div class="row">

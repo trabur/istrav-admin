@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import { Datatable, rows } from 'svelte-simple-datatables'
 
@@ -12,15 +14,15 @@
 
   export let domain
   export let state
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
 
   let appId
   let endpoint
   let table = []
 
   onMount(async () => {
+    M = window['M']
+    
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
     if (esOne.payload.success === true) {

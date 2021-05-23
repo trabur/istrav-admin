@@ -3,6 +3,8 @@
   // import { login, register } from './methods'
   import parseJwt from '../../helpers/parseJwt.js'
 
+  import { istrav, scripts } from '../../../farmerless/api'
+
   let token
   let decoded
 	let email = '';
@@ -11,10 +13,10 @@
   let username = '';
   let firstName = '';
   let lastName = '';
-  let scripts = window['scripts']
-  let M = window['M']
+  let M
 
   onMount(async () => {
+    M = window['M']
     M.updateTextFields();
 
     token = localStorage.getItem('token')

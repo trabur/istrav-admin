@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  // import { login, register } from './methods'
+
+  import { istrav, scripts } from '../../../farmerless/api'
 
 	let email = '';
   let password = '';
@@ -8,8 +9,6 @@
   let username = '';
   let firstName = '';
   let lastName = '';
-  let scripts = window['scripts']
-  let M = window['M']
 
 	async function auth() {
     if (email === '') return alert('Email must be defined.')

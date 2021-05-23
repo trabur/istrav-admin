@@ -1,8 +1,9 @@
 
 <script>
+  import { istrav, scripts } from '../../../farmerless/api'
+
 	export let domain;
   export let state;
-  let scripts = window['scripts']
   
   function areYouSure() {
     var confirmDelete = prompt(`Are you sure that you want to delete the "${domain}:${state}" application? Please renter quotation to confirm.`, "");

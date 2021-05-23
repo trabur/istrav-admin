@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../../farmerless/api'
 
   import {flip} from "svelte/animate";
   import {dndzone} from "svelte-dnd-action";
@@ -28,9 +30,7 @@
   export let domain
   export let state
   export let slug
-  let scripts = window['scripts']
-  let M = window['M']
-  let Choices = window['Choices']
+  let M
 
   let app
   let page
@@ -68,6 +68,7 @@
   }
 
   onMount(async () => {
+    M = window['M']
     let esOne = await scripts.tenant.apps.getOne(null, domain, state)
     console.log('esOne', esOne)
 

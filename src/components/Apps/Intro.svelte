@@ -1,13 +1,14 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { istrav, scripts } from '../../../farmerless/api'
+
   export let domainId
   export let stateId
   let appId
   let uploads
   let token
-  let scripts = window['scripts']
-  let M = window['M']
+  let M
 
   // intro
   let image = "heic1901a.jpg"
@@ -17,6 +18,7 @@
   let buttonUrl = "https://docs.istrav.com"
 
   onMount(async () => {
+    M = window['M']
     M.updateTextFields();
     token = localStorage.getItem('token')
 

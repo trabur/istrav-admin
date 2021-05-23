@@ -2,10 +2,11 @@
 <script>
   import { onMount } from 'svelte';
 
+  import { istrav, scripts } from '../../../farmerless/api'
+
 	let domain = '';
   let state = '';
   let endpoint = ''
-  let scripts = window['scripts']
 
 	async function create() {
     if (domain === '') return alert('Domain Name must be defined.')

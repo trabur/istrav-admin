@@ -1,10 +1,11 @@
 <script>
-  // import { login } from './methods'
+  import { onMount } from 'svelte';
+  
+  import { istrav, scripts } from '../../../farmerless/api'
 
 	let email = '';
   let password = '';
-  let scripts = window['scripts']
-  let M = window['M']
+  let M
 
 	async function auth() {
     if (email === '') return alert('Email must be defined.')
@@ -19,6 +20,10 @@
       alert(esLogin.payload.reason)
     }
   }
+
+  onMount(() => {
+    M = window['M']
+  })
 </script>
 
 <div class="middle">
