@@ -11,14 +11,7 @@
   import Browser from '../../Browser.svelte'
   import Block from './Block.svelte'
 
-  import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
-  import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
-  import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
-	const views = {
-    SplashPage1,
-    SplashPage2,
-    MasterDetail1
-  }
+  import { views } from './views.js'
 
   const settings = { 
     columnFilter: true,

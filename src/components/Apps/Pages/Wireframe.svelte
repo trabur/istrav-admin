@@ -7,14 +7,7 @@
   import Sidebar from './Sidebar.svelte'
   import Browser from '../../Browser.svelte'
 
-  import SplashPage1 from '../../Wireframes/SplashPage1.svelte'
-  import SplashPage2 from '../../Wireframes/SplashPage2.svelte'
-  import MasterDetail1 from '../../Wireframes/MasterDetail1.svelte'
-	const views = {
-    SplashPage1,
-    SplashPage2,
-    MasterDetail1
-  }
+  import { views } from './views.js'
   
 	export let domain = '';
   export let state = '';
