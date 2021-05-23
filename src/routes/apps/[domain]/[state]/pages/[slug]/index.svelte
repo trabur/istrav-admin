@@ -21,7 +21,7 @@
   $: { reMount($page.params.domain) }
   $: { reMount($page.params.state) }
   $: { reMount($page.params.slug) }
-  function reMount() {
+  function reMount(update) {
     load = false
     setTimeout(() => load = true, 0)
     domain = $page.params.domain
