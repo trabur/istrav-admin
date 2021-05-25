@@ -11,7 +11,7 @@
   import Browser from '../../Browser.svelte'
   import Block from './Block.svelte'
 
-  import { views } from './views.js'
+  import { views } from '../../views.js'
 
   const settings = { 
     columnFilter: true,

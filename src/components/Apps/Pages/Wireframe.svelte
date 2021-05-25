@@ -7,7 +7,8 @@
   import Sidebar from './Sidebar.svelte'
   import Browser from '../../Browser.svelte'
 
-  import { views } from './views.js'
+  import { views } from '../../views.js'
+  import { wireframes } from '../../wireframes.js'
   
 	export let domain = '';
   export let state = '';
@@ -22,7 +23,6 @@
   let appId
   let endpoint
   let wireframeId = ''
-  let wireframes = []
   let wireframeIdChoices
 
 	async function change() {
@@ -73,13 +73,6 @@
         alert(esPages.payload.reason)
       }
 
-      // fetch wireframes
-      wireframes = [
-        { id: 'MasterDetail1', name: 'Master Detail (1)' },
-        { id: 'SplashPage1', name: 'Splash Page (1)' },
-        { id: 'SplashPage2', name: 'Splash Page (2)' },
-        { id: 'Error1', name: 'Error (1)' },
-      ]
       // let esWireframes = await scripts.page.wireframes.getAll(appId)
       // console.log('esWireframes', esWireframes)
       // if (esWireframes.payload.success === true) {
