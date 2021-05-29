@@ -1,11 +1,9 @@
 <script context="module">
   export async function load({ session }) {
-    const { API_URI, IO_URI, HEADLESS_URI } = session;
-
     return { 
-      apiUri: API_URI,
-      ioUri: IO_URI,
-      headlessUri: HEADLESS_URI,
+      apiUri: import.meta.env.VITE_API_URI,
+      ioUri: import.meta.env.VITE_IO_URI,
+      headlessUri: import.meta.env.VITE_HEADLESS_URI,
     };
   }
 </script>
